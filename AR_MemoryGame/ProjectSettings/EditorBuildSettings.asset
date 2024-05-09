@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: da852f17d38664d8397e338dd61986cd
+  - enabled: 1
+    path: Assets/Scenes/MemoryGame.unity
+    guid: a9b4849e4fb564b6385834ea7ee328e1
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 930b12370882e42888962e42f4ab2ce6, type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 957343948bfa74d9486fce0edb7441fc, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 81c1822a5bb50480788223c746fa2eeb, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 36c7861b490e640b3ad1fed269f8ac67, type: 2}
