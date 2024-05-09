@@ -7,24 +7,28 @@ using UnityEngine.XR.ARSubsystems;
 using TMPro;
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
+using System.Net.Sockets;
 
 public class MultiTargetsManager : MonoBehaviour
 {
-    /* TODO - Não deixar renderizar mais do que 2 models ao mesmo tempo */
-
     [SerializeField] private ARTrackedImageManager arTrackedImageManager;
     [SerializeField] private GameObject[] arCollection;
 
     private Dictionary<string, GameObject> arModels = new Dictionary<string, GameObject>(); // Key: string (nome do gameObject). Vai retornar o gameObject cujo o nome corresponde aquele passado pela chave.
     private Dictionary<string, bool> modelState = new Dictionary<string, bool>(); // Key: string (nome do gameObject). Vai retornar o estado de um gameObject, isto é, se esta ativado ou não (presente)
 
-    public TextMeshProUGUI mainText;
-    public TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI mainText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
-    private int score = 0;
-    private bool foundDoctor = false;
-    private bool foundNurse = false;
-    private bool foundPatient = false;
+    [SerializeField] private GameObject minigameBtn;
+    [SerializeField] private GameObject restartBtn;
+
+    public static int score; // Score of the player; Also used as an indicator for the current level of the game; Static so that the variable keeps the value independent of the scene;
+    // TODO: probably a bad idea to have score as a public variable. 
+    public static bool foundFirstMatch = false;
+    public static bool foundSecondMatch = false;
+    public static bool foundThirdMatch = false;
+    //private bool isScoreUpdated = false;
 
     // Start is called before the first frame update
     void Start()
@@ -66,15 +70,33 @@ public class MultiTargetsManager : MonoBehaviour
             Destroy(arModel);
         }
 
-        DisplayMessage("ENCONTRA UM PAR!");
+        scoreText.text = score + "/3";
+        DisplayMessage("ENCONTRA UM PAR!", false);
     }
 
     private void Update()
     {
         /* Check if all matches have been found */
-        if(foundDoctor && foundNurse && foundPatient)
+        if(foundFirstMatch && foundSecondMatch && foundThirdMatch)
         {
-            DisplayMessage("ENCONTRASTE TODOS OS PARES");
+
+            // TODO: when all matches are found the player can render more than 2 models simultaneously
+            /*if(!isScoreUpdated) {
+                UpdateScore();
+            }*/
+
+            if(score == 0) {
+                DisplayMessage("A BORBOLETA AURORA QUER BRINCAR CONTIGO!", true);
+            } else if(score == 1) {
+                DisplayMessage("O COALA KIKO QUER BRINCAR CONTIGO!", true);
+            } else if(score == 2) {
+                DisplayMessage("A ABELHA MEL QUER BRINCAR CONTIGO!", true);
+            } else {
+                // Score >= 3
+                DisplayMessage("BOA! ENCONTRASTE TODOS OS PARES!", false);
+                restartBtn.SetActive(true);
+            }
+
             return;
         }
 
@@ -84,14 +106,14 @@ public class MultiTargetsManager : MonoBehaviour
         /* Check if enough models are being tracked */
         if(numActiveModels < 2)
         {
-            DisplayMessage("ENCONTRA UM PAR!");
+            DisplayMessage("ENCONTRA UM PAR!", false);
             return;
         }
 
         /* Check if too many models are being tracked - if so disable all active models */
         if(numActiveModels > 2)
         {
-            DisplayMessage("POR FAVOR, TENHA APENAS 2 CARTAS PARA CIMA!");
+            DisplayMessage("TENHA APENAS 2 CARTAS PARA CIMA!", false);
             DisableActiveModels();
             return;
         }
@@ -111,35 +133,32 @@ public class MultiTargetsManager : MonoBehaviour
             if(incMarker1 == 4 || decMarker2 == 1)
             {
                 /* Found doctor */
-                DisplayMessage("ENCONTRASTE UM PAR - DOUTOR");
+                DisplayMessage("ENCONTRASTE UM PAR - DOUTOR", false);
 
-                if (!foundDoctor)
+                if (!foundFirstMatch)
                 {
-                    foundDoctor = true;
-                    UpdateScore();
+                    foundFirstMatch = true;
                 }
             } else if (incMarker1 == 5 || decMarker2 == 2)
             {
                 /* Found nurse */
-                DisplayMessage("ENCONTRASTE UM PAR - ENFERMEIRA");
-                if (!foundNurse)
+                DisplayMessage("ENCONTRASTE UM PAR - ENFERMEIRA", false);
+                if (!foundSecondMatch)
                 {
-                    foundNurse = true;
-                    UpdateScore();
+                    foundSecondMatch = true;
                 }
             } else if(incMarker1 == 6 || decMarker2 == 3) 
             {
                 /* Found patient */
-                DisplayMessage("ENCONTRASTE UM PAR - PACIENTE");
-                if(!foundPatient)
+                DisplayMessage("ENCONTRASTE UM PAR - PACIENTE", false);
+                if(!foundThirdMatch)
                 {
-                    foundPatient = true;
-                    UpdateScore();
+                    foundThirdMatch = true;
                 }
             }
         } else
         {
-            DisplayMessage("NÃO É UM PAR - TENTA OUTRA VEZ!");
+            DisplayMessage("NÃO É UM PAR - TENTA OUTRA VEZ!", false);
         }
     }
 
@@ -202,16 +221,24 @@ public class MultiTargetsManager : MonoBehaviour
         }
     }
 
-    public void DisplayMessage(string text)
+    public void DisplayMessage(string text, bool align)
     {
+        if(align) {
+            mainText.alignment = TextAlignmentOptions.Top;
+            minigameBtn.SetActive(true);
+        }
+
         mainText.text = text;
     }
 
-    private void UpdateScore()
+    /*private void UpdateScore()
     {
         score += 1;
-        scoreText.text = score + "/3";
-    }
+        scoreText.text = score +"/3";
+        isScoreUpdated = true;
+
+        return;
+    } */
 
     private (GameObject[], int) GetActiveModels()
     {

@@ -42,12 +42,33 @@ public class GameControl : MonoBehaviour
 
     }
 
-    public void RestartGame()
-    {
-        StartCoroutine(RestartCoroutine());
+    public void StartMinigame() {
+        StartCoroutine(StartMinigameCoroutine());
     }
 
-    IEnumerator RestartCoroutine()
+    IEnumerator StartMinigameCoroutine()
+    {
+        infoText.enabled = true;
+        infoText.text = "A ABRIR O MINIJOGO...";
+
+        // Wait for 3 seconds
+        yield return new WaitForSeconds(3f);
+
+        // Restart Game
+
+        SceneManager.LoadScene("Minigame");
+        LoaderUtility.Deinitialize();
+        LoaderUtility.Initialize();
+
+        // Disable infoText after restart
+        infoText.enabled = false;
+    }
+
+    public void RestartGame() {
+        StartCoroutine(RestartGameCoroutine());
+    }
+
+    IEnumerator RestartGameCoroutine()
     {
         infoText.enabled = true;
         infoText.text = "A RECOMEÇAR O JOGO...";
@@ -56,13 +77,20 @@ public class GameControl : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         // Restart Game
-
-        SceneManager.LoadScene("MemoryGame");
+        SceneManager.LoadScene("Main");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();
 
         // Disable infoText after restart
         infoText.enabled = false;
+
+        // Reset score after restart
+        MultiTargetsManager.score = 0;
+
+        // Reset matches status
+        MultiTargetsManager.foundFirstMatch = false;
+        MultiTargetsManager.foundSecondMatch = false;
+        MultiTargetsManager.foundThirdMatch = false;
     }
 
     public void ReturnToStart()

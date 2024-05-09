@@ -45,7 +45,7 @@ public class StartControl : MonoBehaviour
 
         // Start Game
 
-        SceneManager.LoadScene("MemoryGame");
+        SceneManager.LoadScene("Main");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();
 

@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Start.unity
     guid: da852f17d38664d8397e338dd61986cd
   - enabled: 1
-    path: Assets/Scenes/MemoryGame.unity
+    path: Assets/Scenes/Main.unity
     guid: a9b4849e4fb564b6385834ea7ee328e1
+  - enabled: 1
+    path: Assets/Scenes/Minigame.unity
+    guid: e62f35ad53651488485c02016de1f88d
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 930b12370882e42888962e42f4ab2ce6, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 957343948bfa74d9486fce0edb7441fc, type: 2}
