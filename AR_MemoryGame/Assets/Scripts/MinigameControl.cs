@@ -7,17 +7,16 @@ using TMPro;
 
 public class MinigameControl : MonoBehaviour
 {
-    [SerializeField] private GameObject nextLevelBtn;
+    [SerializeField] private GameObject getEggBtn;
+    [SerializeField] private GameObject procedeBtn;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI mainText;
-    private int score;
     private bool isScoreUpdated = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        int score = MultiTargetsManager.score;
-        scoreText.text = "OVOS: " + score + "/3";
+        scoreText.text = "OVOS: " + MultiTargetsManager.score + "/3";
     }
 
     // Update is called once per frame
@@ -26,7 +25,7 @@ public class MinigameControl : MonoBehaviour
         
     }
 
-    public void NextLevel() {
+    public void GetEgg() {
         // TODO - Only temporary; Score should only increment after the player taps the egg (after finishing the minigame)
         if(!isScoreUpdated) {
             MultiTargetsManager.score++;
@@ -38,8 +37,16 @@ public class MinigameControl : MonoBehaviour
         MultiTargetsManager.foundThirdMatch = false;
 
         scoreText.text = "OVOS: " + MultiTargetsManager.score + "/3";
+        getEggBtn.SetActive(false);
+        procedeBtn.SetActive(true);
+    }
 
-        StartCoroutine(NextLevelCoroutine());
+    public void NextAction() {
+        if(MultiTargetsManager.score < 3) {
+            StartCoroutine(NextLevelCoroutine());
+        } else {
+            StartCoroutine(EndGameCoroutine());
+        }
     }
 
     IEnumerator NextLevelCoroutine() {
@@ -49,6 +56,17 @@ public class MinigameControl : MonoBehaviour
 
         // Load next level
         SceneManager.LoadScene("Main");
+        LoaderUtility.Deinitialize();
+        LoaderUtility.Initialize();
+    }
+
+    IEnumerator EndGameCoroutine() {
+        mainText.text = "A PROSEGUIR PARA O FINAL...";
+        // Wait for 3 seconds
+        yield return new WaitForSeconds(3f);
+
+        // Load next level
+        SceneManager.LoadScene("End");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();
     }

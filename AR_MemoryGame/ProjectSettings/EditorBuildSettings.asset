@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigame.unity
     guid: e62f35ad53651488485c02016de1f88d
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: 9b0f4badbb61e4da78abec9e214541d1
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 930b12370882e42888962e42f4ab2ce6, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 957343948bfa74d9486fce0edb7441fc, type: 2}
