@@ -8,6 +8,7 @@ using TMPro;
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
 using System.Net.Sockets;
+using System.Linq;
 
 public class MultiTargetsManager : MonoBehaviour
 {
@@ -23,39 +24,37 @@ public class MultiTargetsManager : MonoBehaviour
     [SerializeField] private GameObject minigameBtn;
     [SerializeField] private GameObject restartBtn;
 
-    public static int score; // Score of the player; Also used as an indicator for the current level of the game; Static so that the variable keeps the value independent of the scene;
     // TODO: probably a bad idea to have score as a public variable. 
+    public static int score; // Score of the player; Also used as an indicator for the current level of the game; Static so that the variable keeps the value independent of the scene;
     public static bool foundFirstMatch = false;
     public static bool foundSecondMatch = false;
     public static bool foundThirdMatch = false;
-    //private bool isScoreUpdated = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        int i = 1;
-        int j = 4;
+        int idx; // Only playable for 3 levels
+        int j = 1;
+        int t = 4;
 
-        /* Save every model with the name "marker1-6" to facilitate the processs later on */
+        if (score == 0) {
+            /* Level 1 - Buttefly */
+            idx = 0;
+        } else if (score == 1) {
+            /* Level 2 - Koala */
+            idx = 3;
+        } else {
+            /* Level 3 - Bee */
+            idx = 6;
+        }
 
-        foreach(var arModel in arCollection)
-        {
-            GameObject newARModel1 = Instantiate(arModel, Vector3.zero, Quaternion.identity);
-            GameObject newARModel2 = Instantiate(arModel, Vector3.zero, Quaternion.identity);
+        for (int i = idx; i < idx + 3; i++) {
+            GameObject newARModel1 = Instantiate(arCollection[i], Vector3.zero, Quaternion.identity);
+            GameObject newARModel2 = Instantiate(arCollection[i], Vector3.zero, Quaternion.identity);
 
-            if(arModel.name.Equals("Doctor"))
-            {
-                newARModel1.name = "marker" + i;
-                newARModel2.name = "marker" + j;
-            } else if (arModel.name.Equals("Nurse"))
-            {
-                newARModel1.name = "marker" + (i + 1);
-                newARModel2.name = "marker" + (j + 1);
-            } else if (arModel.name.Equals("Patient"))
-            {
-                newARModel1.name = "marker" + (i + 2);
-                newARModel2.name = "marker" + (j + 2);
-            } 
+            // TODO - pares serão sempre os mesmos (1-4; 2-5; 3-6)
+            newARModel1.name = "marker" + j;
+            newARModel2.name = "marker" + t;
 
             arModels.Add(newARModel1.name, newARModel1);
             arModels.Add(newARModel2.name, newARModel2);
@@ -67,7 +66,15 @@ public class MultiTargetsManager : MonoBehaviour
             modelState.Add(newARModel2.name, false);
 
             /* Destroy the original AR Model - Use the models in the dictionary from now on */
-            Destroy(arModel);
+
+            /* Increment i and j for next iteration */
+            j++;
+            t++;
+        }
+
+        /* Destroy the origin AR Models so that they don't appear randomly in the scene */
+        foreach(var model in arCollection) {
+            Destroy(model);
         }
 
         scoreText.text = score + "/3";
@@ -79,12 +86,7 @@ public class MultiTargetsManager : MonoBehaviour
         /* Check if all matches have been found */
         if(foundFirstMatch && foundSecondMatch && foundThirdMatch)
         {
-
             // TODO: when all matches are found the player can render more than 2 models simultaneously
-            /*if(!isScoreUpdated) {
-                UpdateScore();
-            }*/
-
             if(score == 0) {
                 DisplayMessage("A BORBOLETA AURORA QUER BRINCAR CONTIGO!", true);
             } else if(score == 1) {
@@ -127,13 +129,23 @@ public class MultiTargetsManager : MonoBehaviour
         int incMarker1 = id1 + 3;
         int decMarker2 = id2 - 3;
 
+        string animal = "";
+        if(score == 0) {
+            animal = "BORBOLETA";
+        } else if(score == 1) {
+            animal = "COALA";
+        } else if(score == 2) {
+            animal = "ABELHA";
+        }
+
+        /* Increment and decrement are need in case the first model to be set active is "the second" model */
         if (incMarker1 == id2 || decMarker2 == id1)
         {
             /* Found a match */
             if(incMarker1 == 4 || decMarker2 == 1)
             {
                 /* Found doctor */
-                DisplayMessage("ENCONTRASTE UM PAR - DOUTOR", false);
+                DisplayMessage("ENCONTRASTE UM PAR - " + animal, false);
 
                 if (!foundFirstMatch)
                 {
@@ -142,7 +154,7 @@ public class MultiTargetsManager : MonoBehaviour
             } else if (incMarker1 == 5 || decMarker2 == 2)
             {
                 /* Found nurse */
-                DisplayMessage("ENCONTRASTE UM PAR - ENFERMEIRA", false);
+                DisplayMessage("ENCONTRASTE UM PAR - " + animal, false);
                 if (!foundSecondMatch)
                 {
                     foundSecondMatch = true;
@@ -150,7 +162,7 @@ public class MultiTargetsManager : MonoBehaviour
             } else if(incMarker1 == 6 || decMarker2 == 3) 
             {
                 /* Found patient */
-                DisplayMessage("ENCONTRASTE UM PAR - PACIENTE", false);
+                DisplayMessage("ENCONTRASTE UM PAR - " + animal, false);
                 if(!foundThirdMatch)
                 {
                     foundThirdMatch = true;
@@ -230,15 +242,6 @@ public class MultiTargetsManager : MonoBehaviour
 
         mainText.text = text;
     }
-
-    /*private void UpdateScore()
-    {
-        score += 1;
-        scoreText.text = score +"/3";
-        isScoreUpdated = true;
-
-        return;
-    } */
 
     private (GameObject[], int) GetActiveModels()
     {
