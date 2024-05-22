@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
 using TMPro;
+using JetBrains.Annotations;
 
 public class MinigameControl : MonoBehaviour
 {
@@ -12,17 +13,25 @@ public class MinigameControl : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI mainText;
     private bool isScoreUpdated = false;
+    public static bool isMinigameCompleted;
 
     // Start is called before the first frame update
     void Start()
     {
         scoreText.text = "OVOS: " + MultiTargetsManager.score + "/3";
+        isMinigameCompleted = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(isMinigameCompleted) {
+            EnableEggCatching();
+        }
+    }
+
+    public void EnableEggCatching() {
+        getEggBtn.SetActive(true);
     }
 
     public void GetEgg() {
@@ -36,9 +45,12 @@ public class MinigameControl : MonoBehaviour
         MultiTargetsManager.foundSecondMatch = false;
         MultiTargetsManager.foundThirdMatch = false;
 
+        isMinigameCompleted = true;
+
         scoreText.text = "OVOS: " + MultiTargetsManager.score + "/3";
         getEggBtn.SetActive(false);
         procedeBtn.SetActive(true);
+
     }
 
     public void NextAction() {
@@ -53,7 +65,7 @@ public class MinigameControl : MonoBehaviour
         mainText.text = "A PROSEGUIR PARA O PRÓXIMO NÍVEL...";
         // Wait for 3 seconds
         yield return new WaitForSeconds(3f);
-
+        
         // Load next level
         SceneManager.LoadScene("Main");
         LoaderUtility.Deinitialize();
