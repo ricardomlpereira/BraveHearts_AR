@@ -12,6 +12,8 @@ using System.Linq;
 
 public class MultiTargetsManager : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem matchParticleSystem;
+
     [SerializeField] private ARTrackedImageManager arTrackedImageManager;
     [SerializeField] private GameObject[] arCollection;
 
@@ -33,6 +35,7 @@ public class MultiTargetsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         int idx; // Only playable for 3 levels
         int j = 1;
         int t = 4;
@@ -141,11 +144,14 @@ public class MultiTargetsManager : MonoBehaviour
         /* Increment and decrement are need in case the first model to be set active is "the second" model */
         if (incMarker1 == id2 || decMarker2 == id1)
         {
+            matchParticleSystem.Play();
+            DisplayMessage("ENCONTRASTE UM PAR - " + animal, false);
+
             /* Found a match */
             if(incMarker1 == 4 || decMarker2 == 1)
             {
                 /* Found doctor */
-                DisplayMessage("ENCONTRASTE UM PAR - " + animal, false);
+                //matchParticleSystem.Play();
 
                 if (!foundFirstMatch)
                 {
@@ -154,7 +160,8 @@ public class MultiTargetsManager : MonoBehaviour
             } else if (incMarker1 == 5 || decMarker2 == 2)
             {
                 /* Found nurse */
-                DisplayMessage("ENCONTRASTE UM PAR - " + animal, false);
+                //matchParticleSystem.Play();
+
                 if (!foundSecondMatch)
                 {
                     foundSecondMatch = true;
@@ -162,12 +169,14 @@ public class MultiTargetsManager : MonoBehaviour
             } else if(incMarker1 == 6 || decMarker2 == 3) 
             {
                 /* Found patient */
-                DisplayMessage("ENCONTRASTE UM PAR - " + animal, false);
+                //matchParticleSystem.Play();
+
                 if(!foundThirdMatch)
                 {
                     foundThirdMatch = true;
                 }
             }
+            
         } else
         {
             DisplayMessage("NÃO É UM PAR - TENTA OUTRA VEZ!", false);
