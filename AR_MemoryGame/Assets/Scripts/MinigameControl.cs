@@ -14,19 +14,24 @@ public class MinigameControl : MonoBehaviour
     [SerializeField] private TextMeshProUGUI mainText;
     private bool isScoreUpdated = false;
     public static bool isMinigameCompleted;
+    private bool isEggCollected = false; //TEMPORARY
 
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = "OVOS: " + MultiTargetsManager.score + "/3";
+        scoreText.text = MultiTargetsManager.score + "/3";
         isMinigameCompleted = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        /* There's probably a better way to do this */
         if(isMinigameCompleted) {
             EnableEggCatching();
+            if(!isEggCollected) {
+                DisplayMessage("PARABÉNS! COMPLETASTE O MINIJOGO!");
+            }
         }
     }
 
@@ -35,6 +40,8 @@ public class MinigameControl : MonoBehaviour
     }
 
     public void GetEgg() {
+        isEggCollected = true;
+        DisplayMessage("PARABÉNS! AJUDASTE O ALFREDO A ENCONTRAR UM DOS SEUS OVOS!");
         // TODO - Only temporary; Score should only increment after the player taps the egg (after finishing the minigame)
         if(!isScoreUpdated) {
             MultiTargetsManager.score++;
@@ -47,7 +54,7 @@ public class MinigameControl : MonoBehaviour
 
         isMinigameCompleted = true;
 
-        scoreText.text = "OVOS: " + MultiTargetsManager.score + "/3";
+        scoreText.text = MultiTargetsManager.score + "/3";
         getEggBtn.SetActive(false);
         procedeBtn.SetActive(true);
 
@@ -61,8 +68,13 @@ public class MinigameControl : MonoBehaviour
         }
     }
 
+
+    public void DisplayMessage(string msg) {
+        mainText.text = msg;
+    }
+
     IEnumerator NextLevelCoroutine() {
-        mainText.text = "A PROSEGUIR PARA O PRÓXIMO NÍVEL...";
+        DisplayMessage("A PROSEGUIR PARA O PRÓXIMO NÍVEL...");
         // Wait for 3 seconds
         yield return new WaitForSeconds(3f);
         
@@ -73,7 +85,7 @@ public class MinigameControl : MonoBehaviour
     }
 
     IEnumerator EndGameCoroutine() {
-        mainText.text = "A PROSEGUIR PARA O FINAL...";
+        DisplayMessage("A PROSEGUIR PARA O FINAL...");
         // Wait for 3 seconds
         yield return new WaitForSeconds(3f);
 

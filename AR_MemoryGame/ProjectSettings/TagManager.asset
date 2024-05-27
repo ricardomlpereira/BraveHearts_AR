@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ARObject
   - Object
+  - Detector
   layers:
   - Default
   - TransparentFX

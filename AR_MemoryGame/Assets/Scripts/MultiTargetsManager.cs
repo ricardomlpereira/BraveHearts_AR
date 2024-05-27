@@ -22,7 +22,7 @@ public class MultiTargetsManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
 
     [SerializeField] private GameObject minigameBtn;
-    [SerializeField] private GameObject restartBtn;
+    [SerializeField] private GameObject restartBtn; // TODO: APAGAR
 
     // TODO: probably a bad idea to have score as a public variable. 
     public static int score; // Score of the player; Also used as an indicator for the current level of the game; Static so that the variable keeps the value independent of the scene;
@@ -83,6 +83,9 @@ public class MultiTargetsManager : MonoBehaviour
 
     private void Update()
     {
+        /* TODO - ONLY TEMPORARY TO FACILITATE DEBUGING */
+        minigameBtn.SetActive(true);
+
         /* Check if all matches have been found */
         if(foundFirstMatch && foundSecondMatch && foundThirdMatch)
         {
