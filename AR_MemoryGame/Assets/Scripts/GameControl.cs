@@ -24,6 +24,7 @@ public class GameControl : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (objectToShow != null)
         {
             // Get the camera
@@ -34,11 +35,12 @@ public class GameControl : MonoBehaviour
             Vector3 objectPosition = cam.ScreenToWorldPoint(screenCenter);
 
             // Set the position of the object to the calculated position
-            objectToShow.transform.position = objectPosition;
+            //objectToShow.transform.position = objectPosition;
 
-            objectToShow.transform.LookAt(cam.transform);
-            objectToShow.transform.Rotate(0, 45, 0);
+           // objectToShow.transform.LookAt(cam.transform);
+          // objectToShow.transform.Rotate(0, 45, 0);
         }
+        */
 
     }
 
