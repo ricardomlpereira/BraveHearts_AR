@@ -466,6 +466,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bee_1
       objectReference: {fileID: 0}
+    - target: {fileID: 3184412941079108706, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_TagString
+      value: ARObject
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -564,6 +568,10 @@ PrefabInstance:
     - target: {fileID: 2535514775046099799, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535514775046099799, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_TagString
+      value: ARObject
       objectReference: {fileID: 0}
     - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
       propertyPath: m_LocalScale.x
@@ -6106,6 +6114,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bee_2
       objectReference: {fileID: 0}
+    - target: {fileID: 109783838629925943, guid: 115cbd27ecfe2407a974c6d417c5ba14, type: 3}
+      propertyPath: m_TagString
+      value: ARObject
+      objectReference: {fileID: 0}
     - target: {fileID: 778515243904913037, guid: 115cbd27ecfe2407a974c6d417c5ba14, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.7
@@ -7026,6 +7038,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8331865666401472508, guid: f3b1175e1d33245c7814e7de46440185, type: 3}
+      propertyPath: m_TagString
+      value: ARObject
+      objectReference: {fileID: 0}
     - target: {fileID: 8713175557871916358, guid: f3b1175e1d33245c7814e7de46440185, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -7344,10 +7360,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Butterfly_3
       objectReference: {fileID: 0}
+    - target: {fileID: 3076326398642863710, guid: 9b5e4855b2955489cbe5b998cf549af9, type: 3}
+      propertyPath: m_TagString
+      value: ARObject
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3076326398642863710, guid: 9b5e4855b2955489cbe5b998cf549af9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1647987234}
   m_SourcePrefab: {fileID: 100100000, guid: 9b5e4855b2955489cbe5b998cf549af9, type: 3}
 --- !u!4 &1647987232 stripped
 Transform:
@@ -7359,6 +7382,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3076326398642863710, guid: 9b5e4855b2955489cbe5b998cf549af9, type: 3}
   m_PrefabInstance: {fileID: 1647987231}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1647987234
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647987233}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.035119362, y: 0.08028146, z: 0.062733546}
+  m_Center: {x: 0.01740658, y: 0.000296751, z: 0.03247483}
 --- !u!1001 &1659699007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7374,6 +7418,10 @@ PrefabInstance:
     - target: {fileID: 4688226695252468681, guid: 034c61f71293e4d458278fbf4d0d55dc, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688226695252468681, guid: 034c61f71293e4d458278fbf4d0d55dc, type: 3}
+      propertyPath: m_TagString
+      value: ARObject
       objectReference: {fileID: 0}
     - target: {fileID: 5351470408014412147, guid: 034c61f71293e4d458278fbf4d0d55dc, type: 3}
       propertyPath: m_LocalScale.x
@@ -8012,6 +8060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bee_3
       objectReference: {fileID: 0}
+    - target: {fileID: 7615218229602033098, guid: 6a3481214ec7b40538a9140ff219ea7a, type: 3}
+      propertyPath: m_TagString
+      value: ARObject
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8038,6 +8090,10 @@ PrefabInstance:
     - target: {fileID: 7114795778208991921, guid: 0f414980ce6a44ce7abc57ae1e7bf961, type: 3}
       propertyPath: m_Name
       value: Butterfly_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114795778208991921, guid: 0f414980ce6a44ce7abc57ae1e7bf961, type: 3}
+      propertyPath: m_TagString
+      value: ARObject
       objectReference: {fileID: 0}
     - target: {fileID: 7635577998697615371, guid: 0f414980ce6a44ce7abc57ae1e7bf961, type: 3}
       propertyPath: m_LocalScale.x
@@ -8098,7 +8154,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7114795778208991921, guid: 0f414980ce6a44ce7abc57ae1e7bf961, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2011365040}
   m_SourcePrefab: {fileID: 100100000, guid: 0f414980ce6a44ce7abc57ae1e7bf961, type: 3}
 --- !u!4 &2011365038 stripped
 Transform:
@@ -8110,6 +8169,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7114795778208991921, guid: 0f414980ce6a44ce7abc57ae1e7bf961, type: 3}
   m_PrefabInstance: {fileID: 2011365037}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &2011365040
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011365039}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.03135059, y: 0.072865464, z: 0.06290979}
+  m_Center: {x: 0.006628283, y: 0.0005595851, z: 0.033779886}
 --- !u!1 &2113425298
 GameObject:
   m_ObjectHideFlags: 0
