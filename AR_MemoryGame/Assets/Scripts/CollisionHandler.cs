@@ -75,8 +75,6 @@ public class CollisionHandler : MonoBehaviour
                 isObjectSelected = CheckTouchOnObject(initialTouchPos);
             }
 
-            
-
             /* Moves the object selected by the player in 2D (x and y dimensions) */
             if(touch1.phase == TouchPhase.Moved && isObjectSelected)
             {
@@ -87,7 +85,7 @@ public class CollisionHandler : MonoBehaviour
                 UnityEngine.Vector3 screenToWorldPoint = ARCamera.ScreenToWorldPoint(new UnityEngine.Vector3(touch1.position.x, touch1.position.y, ARCamera.WorldToScreenPoint(currentObj.transform.position).z));
                 UnityEngine.Vector3 worldPosition = screenToWorldPoint + worldDiffPos * speedMovement;
 
-                currentObj.transform.position = new UnityEngine.Vector3(worldPosition.x, worldPosition.y, currentObj.transform.position.z);
+                currentObj.transform.position = new UnityEngine.Vector3(worldPosition.x, worldPosition.y, worldPosition.z);
 
                 initialTouchPos = touch1.position;
             }
@@ -114,10 +112,15 @@ public class CollisionHandler : MonoBehaviour
         if (minigameLevel == 0) {
             /* Penso */
             if(currentObj.name == "pomada") {
-                // TODO - Colocar a pomada no braço
                 objectCollection[idx].SetActive(false);
                 idx++;
                 placedObjects++;
+
+                /* Colocar o creme - automatico */
+                objectCollection[idx].SetActive(true);
+                idx++;
+                placedObjects++;
+
                 return;
             }
 
