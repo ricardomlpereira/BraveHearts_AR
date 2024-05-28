@@ -10,21 +10,14 @@ using UnityEngine.SceneManagement;
 using System.Net.Sockets;
 using System.Linq;
 
-public class MultiTargetsManager : MonoBehaviour
+public class MainControl : MonoBehaviour
 {
     [SerializeField] private ParticleSystem matchParticleSystem;
-
     [SerializeField] private ARTrackedImageManager arTrackedImageManager;
     [SerializeField] private GameObject[] arCollection;
 
     private Dictionary<string, GameObject> arModels = new Dictionary<string, GameObject>(); // Key: string (nome do gameObject). Vai retornar o gameObject cujo o nome corresponde aquele passado pela chave.
     private Dictionary<string, bool> modelState = new Dictionary<string, bool>(); // Key: string (nome do gameObject). Vai retornar o estado de um gameObject, isto é, se esta ativado ou não (presente)
-
-    [SerializeField] private TextMeshProUGUI mainText;
-    [SerializeField] private TextMeshProUGUI scoreText;
-
-    [SerializeField] private GameObject minigameBtn;
-    [SerializeField] private GameObject restartBtn; // TODO: APAGAR
 
     // TODO: probably a bad idea to have score as a public variable. 
     public static int score; // Score of the player; Also used as an indicator for the current level of the game; Static so that the variable keeps the value independent of the scene;
@@ -32,9 +25,12 @@ public class MultiTargetsManager : MonoBehaviour
     public static bool foundSecondMatch = false;
     public static bool foundThirdMatch = false;
 
+    private MainUIControl MainUIControl;
+
     // Start is called before the first frame update
     void Start()
     {
+        MainUIControl = FindObjectOfType<MainUIControl>();
 
         int idx; // Only playable for 3 levels
         int j = 1;
@@ -68,8 +64,6 @@ public class MultiTargetsManager : MonoBehaviour
             modelState.Add(newARModel1.name, false);
             modelState.Add(newARModel2.name, false);
 
-            /* Destroy the original AR Model - Use the models in the dictionary from now on */
-
             /* Increment i and j for next iteration */
             j++;
             t++;
@@ -80,54 +74,38 @@ public class MultiTargetsManager : MonoBehaviour
             Destroy(model);
         }
 
-        scoreText.text = score + "/3";
-        DisplayMessage("ENCONTRA UM PAR!", false);
+        MainUIControl.DisplayMessage("ENCONTRA UM PAR!");
     }
 
     private void Update()
     {
-        /* TODO - ONLY TEMPORARY TO FACILITATE DEBUGING */
-        minigameBtn.SetActive(true);
-
-        /* Check if all matches have been found */
+        /* Check if all matches have been found - if so enables the minigame */
         if(foundFirstMatch && foundSecondMatch && foundThirdMatch)
         {
-            // TODO: when all matches are found the player can render more than 2 models simultaneously
-            if(score == 0) {
-                DisplayMessage("A BORBOLETA AURORA QUER BRINCAR CONTIGO!", true);
-            } else if(score == 1) {
-                DisplayMessage("O COALA KIKO QUER BRINCAR CONTIGO!", true);
-            } else if(score == 2) {
-                DisplayMessage("A ABELHA MEL QUER BRINCAR CONTIGO!", true);
-            } else {
-                // Score >= 3
-                DisplayMessage("BOA! ENCONTRASTE TODOS OS PARES!", false);
-                restartBtn.SetActive(true);
-            }
-
+            MainUIControl.EnableMinigame();
             return;
         }
 
+        /* Get active models */
         (GameObject[] activeModels, int numActiveModels) = GetActiveModels();
 
 
         /* Check if enough models are being tracked */
         if(numActiveModels < 2)
         {
-            DisplayMessage("ENCONTRA UM PAR!", false);
+            MainUIControl.DisplayMessage("ENCONTRA UM PAR!");
             return;
         }
 
         /* Check if too many models are being tracked - if so disable all active models */
         if(numActiveModels > 2)
         {
-            DisplayMessage("TENHA APENAS 2 CARTAS PARA CIMA!", false);
+            MainUIControl.DisplayMessage("TENHA APENAS 2 CARTAS PARA CIMA!");
             DisableActiveModels();
             return;
         }
 
-        /* Check for a possible match - has two and only two active models */
-
+        /* If it gets here then all conditions for a posible match are met - lets check if the player has found a match */
         /* Get identification of each marker */
         int id1 = int.Parse(Regex.Match(activeModels[0].name, @"\d+").Value);
         int id2 = int.Parse(Regex.Match(activeModels[1].name, @"\d+").Value);
@@ -147,13 +125,11 @@ public class MultiTargetsManager : MonoBehaviour
         /* Increment and decrement are need in case the first model to be set active is "the second" model */
         if (incMarker1 == id2 || decMarker2 == id1)
         {
-
-            DisplayMessage("ENCONTRASTE UM PAR - " + animal, false);
-
             /* Found a match */
+            MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
             if(incMarker1 == 4 || decMarker2 == 1)
             {
-                /* Found doctor */
+                /* Found first match */
                 if (!foundFirstMatch)
                 {
                     foundFirstMatch = true;
@@ -161,8 +137,7 @@ public class MultiTargetsManager : MonoBehaviour
                 }
             } else if (incMarker1 == 5 || decMarker2 == 2)
             {
-                /* Found nurse */
-
+                /* Found second match */
                 if (!foundSecondMatch)
                 {
                     foundSecondMatch = true;
@@ -170,18 +145,15 @@ public class MultiTargetsManager : MonoBehaviour
                 }
             } else if(incMarker1 == 6 || decMarker2 == 3) 
             {
-                /* Found patient */
-
+                /* Found third match */
                 if(!foundThirdMatch)
                 {
                     foundThirdMatch = true;
                     matchParticleSystem.Play();
                 }
             }
-            
-        } else
-        {
-            DisplayMessage("NÃO É UM PAR - TENTA OUTRA VEZ!", false);
+        } else {
+            MainUIControl.DisplayMessage("NÃO É UM PAR - TENTA OUTRA VEZ!");
         }
     }
 
@@ -242,16 +214,6 @@ public class MultiTargetsManager : MonoBehaviour
             arModel.SetActive(false);
             modelState[trackedImage.referenceImage.name] = false;
         }
-    }
-
-    public void DisplayMessage(string text, bool align)
-    {
-        if(align) {
-            mainText.alignment = TextAlignmentOptions.Top;
-            minigameBtn.SetActive(true);
-        }
-
-        mainText.text = text;
     }
 
     private (GameObject[], int) GetActiveModels()

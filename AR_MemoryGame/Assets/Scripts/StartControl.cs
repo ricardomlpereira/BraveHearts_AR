@@ -7,22 +7,44 @@ using TMPro;
 
 public class StartControl : MonoBehaviour
 {
-    public TextMeshProUGUI startInfo;
+    private Camera cam;
 
-    public TextMeshProUGUI speechBubbleText;
-    public GameObject speechBubbleBtnNext;
-    public GameObject speechBubbleBtnPlay;
+    [SerializeField] private TextMeshProUGUI startInfo;
+    [SerializeField] private TextMeshProUGUI speechBubbleText;
 
-    // Start is called before the first frame update
+    [SerializeField] private GameObject speechBubbleBtnNext;
+    [SerializeField] private GameObject speechBubbleBtnPlay;
+    [SerializeField] private GameObject objectToShow;
+    [SerializeField] private GameObject speechToShow;
+
+    //private float distanceFromCamera = 1.0f;
+    //private Vector3 speechOffset = new Vector3(0.2f, 0.2f, 0);
+
     void Start()
     {
-
+        /* Get the camera */
+        //Camera cam = Camera.main;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        /* Check if the object to show exists - if so centers it */
+        /*if (objectToShow != null)
+        {
+            /* Calculate the position of the object in world space */
+            //Vector3 screenCenter = new Vector3(Screen.width / 2 - 380.0f, Screen.height / 2 - 400.0f, cam.nearClipPlane + distanceFromCamera);
+            //Vector3 objectPosition = cam.ScreenToWorldPoint(screenCenter);
+
+            /* Set the position of the object to the calculated position */
+            //objectToShow.transform.position = objectPosition;
+            //speechToShow.transform.position = objectPosition + speechOffset;
+            
+    
+            /* Make the speechToShow always face the camera - originally the speech is reversed*/
+            //speechToShow.transform.LookAt(cam.transform);
+            //speechToShow.transform.Rotate(0, 180, 0);
+
+        //} 
     }
 
     public void SwitchCanvas()

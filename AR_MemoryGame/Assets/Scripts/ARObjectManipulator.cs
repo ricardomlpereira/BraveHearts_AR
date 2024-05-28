@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ObjectManipulator : MonoBehaviour
+public class ARObjectManipulator : MonoBehaviour
 {
     [SerializeField]
     private Camera ARCamera;
     [SerializeField]
     private TextMeshProUGUI detailsText;
 
-    public GameObject ARObject;
+    private GameObject ARObject;
     private GameObject ARObjectForDetails;
     private bool isARObjectSelected;
     private string tagARObjects = "ARObject";
     private Vector2 initialTouchPos;
-
-    private float screenFactor = 0.0001f;
-    private float speedMovement = 4.0f;
+    
     private float speedRotation = 5.0f;
     private float scaleFactor = 0.1f;
 
@@ -41,25 +39,6 @@ public class ObjectManipulator : MonoBehaviour
             initialTouchPos = touch1.position;
             isARObjectSelected = CheckTouchOnARObject(initialTouchPos);
 
-            /* Code to move model - Useless as the model is not able to move out the marker - to move the model you move the marker
-            if(Input.touchCount == 1)
-            {
-                if(touch1.phase == TouchPhase.Began)
-                {
-                    initialTouchPos = touch1.position;
-                    isARObjectSelected = CheckTouchOnARObject(initialTouchPos);
-                }
-
-                if(touch1.phase == TouchPhase.Moved && isARObjectSelected)
-                {
-                    Vector2 diffPos = (touch1.position - initialTouchPos) * screenFactor;
-
-                    ARObject.transform.position = ARObject.transform.position + new Vector3(diffPos.x * speedMovement, diffPos.y * speedMovement, 0);
-
-                    initialTouchPos = touch1.position;
-                }
-            }*/
-
             if (Input.touchCount == 1 && touch1.phase == TouchPhase.Stationary && isARObjectSelected)
             {
                 /* Verificar se é necessário verificar se ARObjectForDetails é != null pois:
@@ -69,20 +48,15 @@ public class ObjectManipulator : MonoBehaviour
                 GetARObjectForDetails(initialTouchPos);
                 if(ARObjectForDetails != null)
                 {
-                    //detailsText.enabled = true;
-                    //detailsText.text = ARObjectForDetails.name;
                     if(ARObjectForDetails.name == "marker1" || ARObjectForDetails.name == "marker4")
                     {
                         StartCoroutine(DetailsCoroutine("Eu sou um médico!"));
-                        //detailsText.text = "Sou um médico!";
                     } else if(ARObjectForDetails.name == "marker2" || ARObjectForDetails.name == "marker5")
                     {
                         StartCoroutine(DetailsCoroutine("Eu sou uma enfermeira!"));
-                        //detailsText.text = "Sou uma enfermeira!";
                     } else
                     {
                         StartCoroutine(DetailsCoroutine("Eu sou um paciente!"));
-                        //detailsText.text = "Sou um paciente!";
                     }
                 }
             } else

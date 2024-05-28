@@ -43,12 +43,12 @@ public class EndControl : MonoBehaviour
         LoaderUtility.Initialize();
 
         // Reset score after restart
-        MultiTargetsManager.score = 0;
+        MainControl.score = 0;
 
         // Reset matches status
-        MultiTargetsManager.foundFirstMatch = false;
-        MultiTargetsManager.foundSecondMatch = false;
-        MultiTargetsManager.foundThirdMatch = false;
+        MainControl.foundFirstMatch = false;
+        MainControl.foundSecondMatch = false;
+        MainControl.foundThirdMatch = false;
     }
 
         public void QuitGame()

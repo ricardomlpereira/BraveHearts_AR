@@ -5,14 +5,14 @@ using TMPro;
 
 public class CollisionDetector : MonoBehaviour
 {
-    // TODO - Por enquanto e necessario colocar este script em todos os objetos que queremos que colidam 
+    // TODO - Por enquanto e necessario colocar este script em todos os objetos que queremos que colidam
+    private MinigameControl control;
 
     void Start() {
-
+        control = FindObjectOfType<MinigameControl>();
     }
 
     private void OnTriggerEnter(Collider other) {
-        CollisionHandler handler = FindObjectOfType<CollisionHandler>();
-        handler.placeObject();
+        control.placeObject();
     }
 }

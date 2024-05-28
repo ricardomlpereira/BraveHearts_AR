@@ -362,11 +362,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8313885450435332129, guid: a725385d530fa45edada6bb804fb9128, type: 3}
       propertyPath: m_Size.x
-      value: 0.03
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8313885450435332129, guid: a725385d530fa45edada6bb804fb9128, type: 3}
       propertyPath: m_Size.y
-      value: 0.03
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8313885450435332129, guid: a725385d530fa45edada6bb804fb9128, type: 3}
       propertyPath: m_Size.z
@@ -790,8 +790,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 5}
-  m_Center: {x: -1.5, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 4}
+  m_Center: {x: -1.5, y: -0.1, z: 0}
 --- !u!1001 &846095274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -851,6 +851,18 @@ PrefabInstance:
     - target: {fileID: 3038586219135648577, guid: 23fcd154727f2460fb5faa63bc92c296, type: 3}
       propertyPath: m_TagString
       value: Object
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504018413101529524, guid: 23fcd154727f2460fb5faa63bc92c296, type: 3}
+      propertyPath: m_Size.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504018413101529524, guid: 23fcd154727f2460fb5faa63bc92c296, type: 3}
+      propertyPath: m_Size.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504018413101529524, guid: 23fcd154727f2460fb5faa63bc92c296, type: 3}
+      propertyPath: m_Size.z
+      value: 0.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2343,7 +2355,7 @@ GameObject:
   - component: {fileID: 2109061925}
   - component: {fileID: 2109061926}
   m_Layer: 0
-  m_Name: CollisionHandler
+  m_Name: MinigameControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2385,7 +2397,6 @@ MonoBehaviour:
   - {fileID: 1117684977}
   - {fileID: 233272708}
   - {fileID: 1620792570}
-  mainText: {fileID: 1082744193}
 --- !u!1001 &5991173650631678405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2404,7 +2415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5566031235837001019, guid: aec126ebd15224c53aa1fb0581a56dd2, type: 3}
       propertyPath: m_Size.x
-      value: 0.1
+      value: 0.075
       objectReference: {fileID: 0}
     - target: {fileID: 5566031235837001019, guid: aec126ebd15224c53aa1fb0581a56dd2, type: 3}
       propertyPath: m_Size.y
