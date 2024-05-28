@@ -132,6 +132,7 @@ public class MainControl : MonoBehaviour
                 /* Found first match */
                 if (!foundFirstMatch)
                 {
+                    MainUIControl.foundMatches++;
                     foundFirstMatch = true;
                     matchParticleSystem.Play();
                 }
@@ -140,6 +141,7 @@ public class MainControl : MonoBehaviour
                 /* Found second match */
                 if (!foundSecondMatch)
                 {
+                    MainUIControl.foundMatches++;
                     foundSecondMatch = true;
                     matchParticleSystem.Play();
                 }
@@ -148,6 +150,7 @@ public class MainControl : MonoBehaviour
                 /* Found third match */
                 if(!foundThirdMatch)
                 {
+                    MainUIControl.foundMatches++;
                     foundThirdMatch = true;
                     matchParticleSystem.Play();
                 }

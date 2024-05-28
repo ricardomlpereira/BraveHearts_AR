@@ -9,19 +9,23 @@ public class MainUIControl : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI mainText;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI foundMatchesText;
     [SerializeField] private TextMeshProUGUI infoText;
     [SerializeField] private GameObject miniGameBtn;
+
+    public int foundMatches;
 
     void Start()
     {
         infoText.enabled = false;
         miniGameBtn.SetActive(false);
         scoreText.text = MainControl.score + "/3";
+        
     }
 
     private void Update()
     {
-
+        foundMatchesText.text = foundMatches + "/3";
     }
 
     public void DisplayMessage(string msg) {
