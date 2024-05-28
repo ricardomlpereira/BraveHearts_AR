@@ -144,36 +144,35 @@ public class MultiTargetsManager : MonoBehaviour
         /* Increment and decrement are need in case the first model to be set active is "the second" model */
         if (incMarker1 == id2 || decMarker2 == id1)
         {
-            matchParticleSystem.Play();
+
             DisplayMessage("ENCONTRASTE UM PAR - " + animal, false);
 
             /* Found a match */
             if(incMarker1 == 4 || decMarker2 == 1)
             {
                 /* Found doctor */
-                //matchParticleSystem.Play();
-
                 if (!foundFirstMatch)
                 {
                     foundFirstMatch = true;
+                    matchParticleSystem.Play();
                 }
             } else if (incMarker1 == 5 || decMarker2 == 2)
             {
                 /* Found nurse */
-                //matchParticleSystem.Play();
 
                 if (!foundSecondMatch)
                 {
                     foundSecondMatch = true;
+                    matchParticleSystem.Play();
                 }
             } else if(incMarker1 == 6 || decMarker2 == 3) 
             {
                 /* Found patient */
-                //matchParticleSystem.Play();
 
                 if(!foundThirdMatch)
                 {
                     foundThirdMatch = true;
+                    matchParticleSystem.Play();
                 }
             }
             
