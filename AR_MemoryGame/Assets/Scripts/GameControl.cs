@@ -24,7 +24,7 @@ public class GameControl : MonoBehaviour
 
     private void Update()
     {
-        /*
+        
         if (objectToShow != null)
         {
             // Get the camera
@@ -40,7 +40,7 @@ public class GameControl : MonoBehaviour
            // objectToShow.transform.LookAt(cam.transform);
           // objectToShow.transform.Rotate(0, 45, 0);
         }
-        */
+
 
     }
 
