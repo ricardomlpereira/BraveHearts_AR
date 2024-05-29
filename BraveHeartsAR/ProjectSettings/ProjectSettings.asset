@@ -140,11 +140,7 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1
-  preloadedAssets:
-  - {fileID: 1304437850804137437, guid: 36c7861b490e640b3ad1fed269f8ac67, type: 2}
-  - {fileID: 11400000, guid: 81c1822a5bb50480788223c746fa2eeb, type: 2}
-  - {fileID: 4800000, guid: c9f956787b1d945e7b36e0516201fc76, type: 3}
-  - {fileID: 4800000, guid: 0945859e5a1034c2cb6dce53cb4fb899, type: 3}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -951,7 +947,7 @@ PlayerSettings:
   cloudProjectId: e52ba3ae-a943-4837-a687-fb19f22c1404
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: AR_MemoryGame
+  projectName: BraveHeartsAR
   organizationId: ricardoperas
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
