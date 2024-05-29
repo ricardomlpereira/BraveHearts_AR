@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
@@ -12,6 +13,9 @@ public class MainUIControl : MonoBehaviour
     [SerializeField] private TextMeshProUGUI foundMatchesText;
     [SerializeField] private TextMeshProUGUI infoText;
     [SerializeField] private GameObject miniGameBtn;
+    [SerializeField] private RawImage butterflyImage;
+    [SerializeField] private RawImage koalaImage;
+    [SerializeField] private RawImage beeImage;
 
     public int foundMatches;
 
@@ -20,6 +24,22 @@ public class MainUIControl : MonoBehaviour
         infoText.enabled = false;
         miniGameBtn.SetActive(false);
         scoreText.text = MainControl.score + "/3";
+        switch(MainControl.score){
+            case 0:
+                butterflyImage.gameObject.SetActive(true);
+                break;
+            case 1:
+                butterflyImage.gameObject.SetActive(false);
+                koalaImage.gameObject.SetActive(true);
+                break;
+            case 2:
+                koalaImage.gameObject.SetActive(false);
+                //butterflyImage.gameObject.SetActive(false);
+                beeImage.gameObject.SetActive(true);
+                break;
+            default:
+                break;
+        }
         
     }
 
