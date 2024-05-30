@@ -7,6 +7,7 @@ TagManager:
   - ARObject
   - Object
   - Detector
+  - BackgroundObject
   layers:
   - Default
   - TransparentFX

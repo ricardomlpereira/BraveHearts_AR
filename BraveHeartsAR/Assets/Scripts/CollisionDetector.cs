@@ -9,10 +9,11 @@ public class CollisionDetector : MonoBehaviour
     private MinigameControl control;
 
     void Start() {
+        /* Get control script */
         control = FindObjectOfType<MinigameControl>();
     }
 
     private void OnTriggerEnter(Collider other) {
-        control.placeObject();
+        control.HandleObject();
     }
 }
