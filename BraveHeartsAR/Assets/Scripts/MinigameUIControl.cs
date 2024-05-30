@@ -50,8 +50,6 @@ public class MinigameUIControl : MonoBehaviour
         MainControl.foundSecondMatch = false;
         MainControl.foundThirdMatch = false;
 
-        isMinigameCompleted = true;
-
         scoreText.text = MainControl.score + "/3";
         getEggBtn.SetActive(false);
         procedeBtn.SetActive(true);
@@ -59,6 +57,7 @@ public class MinigameUIControl : MonoBehaviour
     }
 
     public void NextAction() {
+        MinigameControl.minigameLevel++;
         if(MainControl.score < 3) {
             StartCoroutine(NextLevelCoroutine());
         } else {
@@ -74,7 +73,7 @@ public class MinigameUIControl : MonoBehaviour
         DisplayMessage("A PROSSEGUIR PARA O PRÓXIMO NÍVEL...");
         // Wait for 3 seconds
         yield return new WaitForSeconds(3f);
-        
+
         /* Load next level */
         SceneManager.LoadScene("Main");
         LoaderUtility.Deinitialize();
