@@ -35,7 +35,12 @@ public class MinigameControl : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        // TODO: Only here until third minigame is implemented
+        if(minigameLevel == 2) {
+            minigameUIControl.NextAction();
+        }
+
         // Check if player has completed the minigame - if so, return
         if(isLastObject()) {
             return;
@@ -111,7 +116,7 @@ public class MinigameControl : MonoBehaviour
                     collidersToRemove.Add(obj);
                 }
             }
-        } else if(minigameLevel == 3) {
+        } else if(minigameLevel == 2) {
             // TODO
             return;
         }

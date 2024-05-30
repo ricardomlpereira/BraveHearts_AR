@@ -44,6 +44,7 @@ public class EndControl : MonoBehaviour
 
         // Reset score after restart
         MainControl.score = 0;
+        MinigameControl.minigameLevel = 0;
 
         // Reset matches status
         MainControl.foundFirstMatch = false;
