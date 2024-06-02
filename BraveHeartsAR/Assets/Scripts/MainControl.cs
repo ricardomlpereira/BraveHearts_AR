@@ -66,7 +66,6 @@ public class MainControl : MonoBehaviour
             GameObject newARModel1 = Instantiate(arCollection[i], Vector3.zero, Quaternion.identity);
             GameObject newARModel2 = Instantiate(arCollection[i], Vector3.zero, Quaternion.identity);
 
-            // TODO - pares serão sempre os mesmos (1-4; 2-5; 3-6)
             newARModel1.name = "marker" + markerIds[0];
             newARModel2.name = "marker" + markerIds[1];
 

@@ -115,4 +115,12 @@ public class MainUIControl : MonoBehaviour
         /* Disable infoText after switching to start scene */
         infoText.enabled = false;
     }
+
+    // TEMPORARY: only to facilitate debugging
+    public void SkipGame() {
+        MainControl.foundFirstMatch = true;
+        MainControl.foundSecondMatch = true;
+        MainControl.foundThirdMatch = true;
+        foundMatches = 3;
+    }
 }
