@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SearchEggControl : MonoBehaviour
@@ -15,7 +16,10 @@ public class SearchEggControl : MonoBehaviour
     public SpriteRenderer goalEggSprite; 
     public SpriteRenderer eggSprite_1; 
     public SpriteRenderer eggSprite_2; 
-    public SpriteRenderer eggSprite_3; 
+    public SpriteRenderer eggSprite_3;
+    public SpriteRenderer eggFinalSprite;
+    public TextMeshProUGUI buddyText;
+    public ParticleSystem confettiParticleSystem;
     private bool eggFound = false;
     public float shakeDuration = 0.5f; // Duration of the shake effect
     public float shakeMagnitude = 0.1f; // Magnitude of the shake effect
@@ -121,10 +125,21 @@ public class SearchEggControl : MonoBehaviour
                 if(hit.transform != goalBushSprite.transform){
                     //Arbustos desaparecem
                      hit.transform.gameObject.SetActive(false);
-                }else{
+                     buddyText.text = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
+                }else if(hit.transform == goalBushSprite.transform && eggFound){ //JA ENCONTROU O OVO
+                    confettiParticleSystem.gameObject.SetActive(true);
+                    confettiParticleSystem.Play();
+                    bushSprite_1.gameObject.SetActive(false);
+                    bushSprite_2.gameObject.SetActive(false);
+                    bushSprite_3.gameObject.SetActive(false);
+                    goalEggSprite.gameObject.SetActive(false);
+                    eggFinalSprite.gameObject.SetActive(true);
+                }else{ //AINDA NAO ENCONTROU O OVO
                     //Encontrou o ovo
                     goalEggSprite.gameObject.SetActive(true);
+                    //goalBushSprite.gameObject.SetActive(false);
                     eggFound = true;
+                    buddyText.text = "BOA ENCONTRASTE O OVO!\nOBRIGADO!";
                 }
             }
         }
