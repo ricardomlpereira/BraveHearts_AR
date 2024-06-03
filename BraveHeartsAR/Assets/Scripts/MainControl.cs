@@ -24,17 +24,32 @@ public class MainControl : MonoBehaviour
     public static bool foundFirstMatch = false;
     public static bool foundSecondMatch = false;
     public static bool foundThirdMatch = false;
-
     private MainUIControl MainUIControl;
+    private List<int> markerIds;
+    private List<Tuple<int,int>> matches; // TODO: make this static and only change the matches whenever the level changes
 
     // Start is called before the first frame update
     void Start()
     {
         MainUIControl = FindObjectOfType<MainUIControl>();
 
+        // Initialize the list 
+        markerIds = new List<int> {1,2,3,4,5,6};
+        matches = new List<Tuple<int, int>>();
+
+        // Shuffle the ID list
+        System.Random rng = new System.Random();
+        int n = markerIds.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            int value = markerIds[k];
+            markerIds[k] = markerIds[n];
+            markerIds[n] = value;
+        }
+
         int idx; // Only playable for 3 levels
-        int j = 1;
-        int t = 4;
 
         if (score == 0) {
             /* Level 1 - Buttefly */
@@ -51,9 +66,8 @@ public class MainControl : MonoBehaviour
             GameObject newARModel1 = Instantiate(arCollection[i], Vector3.zero, Quaternion.identity);
             GameObject newARModel2 = Instantiate(arCollection[i], Vector3.zero, Quaternion.identity);
 
-            // TODO - pares serão sempre os mesmos (1-4; 2-5; 3-6)
-            newARModel1.name = "marker" + j;
-            newARModel2.name = "marker" + t;
+            newARModel1.name = "marker" + markerIds[0];
+            newARModel2.name = "marker" + markerIds[1];
 
             arModels.Add(newARModel1.name, newARModel1);
             arModels.Add(newARModel2.name, newARModel2);
@@ -64,9 +78,9 @@ public class MainControl : MonoBehaviour
             modelState.Add(newARModel1.name, false);
             modelState.Add(newARModel2.name, false);
 
-            /* Increment i and j for next iteration */
-            j++;
-            t++;
+            matches.Add(new Tuple<int, int>(markerIds[0], markerIds[1]));
+            markerIds.RemoveAt(1);
+            markerIds.RemoveAt(0);
         }
 
         /* Destroy the origin AR Models so that they don't appear randomly in the scene */
@@ -110,9 +124,6 @@ public class MainControl : MonoBehaviour
         int id1 = int.Parse(Regex.Match(activeModels[0].name, @"\d+").Value);
         int id2 = int.Parse(Regex.Match(activeModels[1].name, @"\d+").Value);
 
-        int incMarker1 = id1 + 3;
-        int decMarker2 = id2 - 3;
-
         string animal = "";
         if(score == 0) {
             animal = "BORBOLETA";
@@ -122,41 +133,32 @@ public class MainControl : MonoBehaviour
             animal = "ABELHA";
         }
 
-        /* Increment and decrement are need in case the first model to be set active is "the second" model */
-        if (incMarker1 == id2 || decMarker2 == id1)
+        int matchIdx = GetMatchIdx(id1, id2);
+        if(matchIdx == -1)
         {
-            /* Found a match */
-            MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
-            if(incMarker1 == 4 || decMarker2 == 1)
-            {
-                /* Found first match */
-                if (!foundFirstMatch)
-                {
-                    MainUIControl.foundMatches++;
-                    foundFirstMatch = true;
-                    matchParticleSystem.Play();
-                }
-            } else if (incMarker1 == 5 || decMarker2 == 2)
-            {
-                /* Found second match */
-                if (!foundSecondMatch)
-                {
-                    MainUIControl.foundMatches++;
-                    foundSecondMatch = true;
-                    matchParticleSystem.Play();
-                }
-            } else if(incMarker1 == 6 || decMarker2 == 3) 
-            {
-                /* Found third match */
-                if(!foundThirdMatch)
-                {
-                    MainUIControl.foundMatches++;
-                    foundThirdMatch = true;
-                    matchParticleSystem.Play();
-                }
-            }
-        } else {
             MainUIControl.DisplayMessage("NÃO É UM PAR - TENTA OUTRA VEZ!");
+            return;
+        } else if(matchIdx == 0) {
+            MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
+            if(!foundFirstMatch) {
+                MainUIControl.foundMatches++;
+                foundFirstMatch = true;
+                matchParticleSystem.Play();
+            }
+        } else if(matchIdx == 1) {
+            MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
+            if(!foundSecondMatch) {
+                MainUIControl.foundMatches++;
+                foundSecondMatch = true;
+                matchParticleSystem.Play();
+            }
+        } else if(matchIdx == 2) {
+            MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
+            if(!foundThirdMatch) {
+                MainUIControl.foundMatches++;
+                foundThirdMatch = true;
+                matchParticleSystem.Play();
+            }
         }
     }
 
@@ -242,5 +244,17 @@ public class MainControl : MonoBehaviour
             model.SetActive(false);
             modelState[model.name] = false;
         }
+    }
+
+    private int GetMatchIdx(int m1Id, int m2Id)
+    {
+        foreach(var match in matches) {
+            if((match.Item1 == m1Id && match.Item2 == m2Id) || match.Item1 == m2Id && match.Item2 == m1Id) {
+                return matches.IndexOf(match);
+            } 
+        }
+
+        // If pair is not a match then return -1
+        return -1;
     }
 }
