@@ -212,6 +212,7 @@ public class MinigameControl : MonoBehaviour
     private bool isLastObject() {
         if(placedObjects >= objectCollection.Count) {
             MinigameUIControl.isMinigameCompleted = true;
+            minigameUIControl.DisplayMessage("BOA! COMPLETASTE O MINIJOGO!");
             return true;
         }
 

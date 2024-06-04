@@ -26,18 +26,26 @@ public class MinigameUIControl : MonoBehaviour
     {
         /* There's probably a better way to do this */
         if(isMinigameCompleted) {
-            EnableEggCatching();
-            if(!isEggCollected) {
-                DisplayMessage("PARABÉNS! COMPLETASTE O MINIJOGO!");
-            }
+            getEggBtn.SetActive(true);
         }
     }
 
-    public void EnableEggCatching() {
-        getEggBtn.SetActive(true);
+    public void NextAction() {
+        mainText.text = "VAMOS ENCONTRAR O MEU OVO!"; //FIXME: Não aparece, provavelmente pq a mensagem anterior esta a ser chamada num Update()
+        StartCoroutine(HatchEggSceneCoroutine());
     }
 
-    public void GetEgg() {
+    IEnumerator HatchEggSceneCoroutine() {
+        /* Wait for 3 seconds */
+        yield return new WaitForSeconds(3f);
+
+        /* Load next level */
+        SceneManager.LoadScene("SearchEgg");
+        LoaderUtility.Deinitialize();
+        LoaderUtility.Initialize();
+    }
+
+    /*public void GetEgg() {
         isEggCollected = true;
         DisplayMessage("PARABÉNS! AJUDASTE O ALFREDO A ENCONTRAR UM DOS SEUS OVOS!");
         // TODO - Only temporary; Score should only increment after the player taps the egg (after finishing the minigame)
@@ -54,41 +62,41 @@ public class MinigameUIControl : MonoBehaviour
         getEggBtn.SetActive(false);
         procedeBtn.SetActive(true);
 
-    }
+    } */
 
-    public void NextAction() {
+    /*public void NextAction() {
         MinigameControl.minigameLevel++;
         if(MainControl.score < 3) {
             StartCoroutine(NextLevelCoroutine());
         } else {
             StartCoroutine(EndGameCoroutine());
         }
-    }
+    } */
 
     public void DisplayMessage(string msg) {
         mainText.text = msg;
     }
 
-    IEnumerator NextLevelCoroutine() {
+    /*IEnumerator NextLevelCoroutine() {
         DisplayMessage("A PROSSEGUIR PARA O PRÓXIMO NÍVEL...");
         // Wait for 3 seconds
         yield return new WaitForSeconds(3f);
 
         /* Load next level */
-        SceneManager.LoadScene("Main");
-        LoaderUtility.Deinitialize();
-        LoaderUtility.Initialize();
-    }
+        //SceneManager.LoadScene("Main");
+        //LoaderUtility.Deinitialize();
+        //LoaderUtility.Initialize();
+    //}
 
-    IEnumerator EndGameCoroutine() {
+    /*IEnumerator EndGameCoroutine() {
         DisplayMessage("A PROSSEGUIR PARA O FINAL...");
         
         /* Wait for 3 seconds */
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f);
 
         /* Load next level */
-        SceneManager.LoadScene("End");
-        LoaderUtility.Deinitialize();
-        LoaderUtility.Initialize();
-    }
+        //SceneManager.LoadScene("End");
+        //LoaderUtility.Deinitialize();
+        //LoaderUtility.Initialize();
+    //}
 }
