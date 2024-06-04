@@ -27,6 +27,21 @@ public class MainControl : MonoBehaviour
     private MainUIControl MainUIControl;
     private List<int> markerIds;
     private List<Tuple<int,int>> matches; // TODO: make this static and only change the matches whenever the level changes
+    
+    /*
+    private struct GameState
+    {
+        public bool foundFirstMatch;
+        public bool foundSecondMatch;
+        public bool foundThirdMatch;
+        public int numActiveModels;
+        public int id1;
+        public int id2;
+    }
+
+    //Guarda o estado do jogo do frame anterior e vai comparar com o estado do frame atual
+    private GameState previousState;
+    */
 
     // Start is called before the first frame update
     void Start()
@@ -88,11 +103,18 @@ public class MainControl : MonoBehaviour
             Destroy(model);
         }
 
-        MainUIControl.DisplayMessage("ENCONTRA UM PAR!");
+        // Changes Start: Initialize the previousState variable
+        //previousState = new GameState();
+
+        //MainUIControl.DisplayMessage("ENCONTRA UM PAR!");
     }
 
     private void Update()
     {
+        if(MainUIControl.IsDisplayingMessage())
+        {
+            return;
+        }
         /* Check if all matches have been found - if so enables the minigame */
         if(foundFirstMatch && foundSecondMatch && foundThirdMatch)
         {
@@ -107,7 +129,7 @@ public class MainControl : MonoBehaviour
         /* Check if enough models are being tracked */
         if(numActiveModels < 2)
         {
-            MainUIControl.DisplayMessage("ENCONTRA UM PAR!");
+            //MainUIControl.DisplayMessage("ENCONTRA UM PAR!");
             return;
         }
 

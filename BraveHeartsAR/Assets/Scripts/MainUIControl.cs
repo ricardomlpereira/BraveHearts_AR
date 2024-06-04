@@ -16,11 +16,16 @@ public class MainUIControl : MonoBehaviour
     [SerializeField] private RawImage butterflyImage;
     [SerializeField] private RawImage koalaImage;
     [SerializeField] private RawImage beeImage;
-
     public int foundMatches;
+    private TW_MultiStrings_All typewriter;
+    private bool isDisplayingMessage = false;
 
     void Start()
     {
+        typewriter = mainText.gameObject.AddComponent<TW_MultiStrings_All>();
+        typewriter.timeOut = 1; // Set timeout for the typewriter effect
+        typewriter.LaunchOnStart = false;
+
         infoText.enabled = false;
         miniGameBtn.SetActive(false);
         scoreText.text = MainControl.score + "/3";
@@ -49,7 +54,29 @@ public class MainUIControl : MonoBehaviour
     }
 
     public void DisplayMessage(string msg) {
-        mainText.text = msg;
+        if(!isDisplayingMessage){
+            StartCoroutine(DisplayMessageCoroutine(msg));
+        }
+        typewriter.ORIGINAL_TEXT = msg;
+        typewriter.StartTypewriter();
+        //mainText.text = msg;
+    }
+
+    private IEnumerator DisplayMessageCoroutine(string msg)
+    {
+        isDisplayingMessage = true;
+        typewriter.ORIGINAL_TEXT = msg;
+        typewriter.StartTypewriter();
+
+        // Wait until the typewriter finishes
+        yield return new WaitUntil(() => typewriter.IsFinished());
+
+        isDisplayingMessage = false;
+    }
+
+    public bool IsDisplayingMessage()
+    {
+        return isDisplayingMessage;
     }
 
     public void EnableMinigame() {
@@ -57,16 +84,24 @@ public class MainUIControl : MonoBehaviour
 
         switch (MainControl.score){
             case 0:
-                mainText.text = "A BORBOLETA AURORA QUER BRINCAR CONTIGO!";
+                typewriter.ORIGINAL_TEXT = "A BORBOLETA AURORA QUER BRINCAR CONTIGO!";
+                typewriter.StartTypewriter();
+                //mainText.text = "A BORBOLETA AURORA QUER BRINCAR CONTIGO!";
                 break;
             case 1:
-                mainText.text = "O COALA KIKO QUER BRINCAR CONTIGO!";
+                typewriter.ORIGINAL_TEXT = "O COALA KIKO QUER BRINCAR CONTIGO!";
+                typewriter.StartTypewriter();
+                //mainText.text = "O COALA KIKO QUER BRINCAR CONTIGO!";
                 break;
             case 2:
-                mainText.text = "A ABELHA MEL QUER BRINCAR CONTIGO!";
+                typewriter.ORIGINAL_TEXT = "A ABELHA MEL QUER BRINCAR CONTIGO!";
+                typewriter.StartTypewriter();
+                //mainText.text = "A ABELHA MEL QUER BRINCAR CONTIGO!";
                 break;
             default:
-                mainText.text = "BOA! ENCONTRASTE TODOS OS PARES";
+                typewriter.ORIGINAL_TEXT = "BOA! ENCONTRASTE TODOS OS PARES";
+                typewriter.StartTypewriter();
+                //mainText.text = "BOA! ENCONTRASTE TODOS OS PARES";
                 break;
         }
 
