@@ -15,7 +15,7 @@ public class SearchEggControl : MonoBehaviour
     public ParticleSystem particleSystem_1;
     public ParticleSystem particleSystem_2;
     public ParticleSystem particleSystem_3;
-    public SpriteRenderer goalEggSprite; 
+    private SpriteRenderer goalEggSprite; 
     public SpriteRenderer eggSprite_1; 
     public SpriteRenderer eggSprite_2; 
     public SpriteRenderer eggSprite_3;
@@ -25,11 +25,16 @@ public class SearchEggControl : MonoBehaviour
     private bool eggFound = false;
     public float shakeDuration = 0.5f; // Duration of the shake effect
     public float shakeMagnitude = 0.1f; // Magnitude of the shake effect
-    private MainControl mainControl;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    private bool hasCollectedEgg;
 
     // Start is called before the first frame update
     void Start()
     {
+        scoreText.text = MainControl.score + "/3";
+
+        hasCollectedEgg = false;
+
         DefineGoal();
 
         if (goalBushSprite == null)
@@ -81,12 +86,17 @@ public class SearchEggControl : MonoBehaviour
                     }
                 }
 
-                if(hit.transform == eggFinalSprite.transform) {
-                    buddyText.text = "ENTROU";
+                if(hit.transform == eggFinalSprite.transform && !hasCollectedEgg) {
+                    hasCollectedEgg = true;
                     MinigameControl.minigameLevel++;
+                    MainControl.score++;
+
+                    MainControl.foundFirstMatch = false;
+                    MainControl.foundSecondMatch = false;
+                    MainControl.foundThirdMatch = false;
+
+                    scoreText.text = MainControl.score + "/3";
                     StartCoroutine(NextAction());
-                } else {
-                    buddyText.text = "NÃO ENTROU";
                 }
             }
         }
