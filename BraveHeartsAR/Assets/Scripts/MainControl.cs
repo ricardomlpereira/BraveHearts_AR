@@ -79,6 +79,11 @@ public class MainControl : MonoBehaviour
 
     private void Update()
     {
+        // TODO: Delete this after implementing search egg
+        foundFirstMatch = true;
+        foundSecondMatch = true;
+        foundThirdMatch = true;
+
         /* Check if all matches have been found - if so enables the minigame */
         if(foundFirstMatch && foundSecondMatch && foundThirdMatch)
         {

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.XR.ARFoundation;
 
 public class SearchEggControl : MonoBehaviour
 {
@@ -43,6 +45,67 @@ public class SearchEggControl : MonoBehaviour
         // Start the shaking coroutine every 5 seconds
         InvokeRepeating("StartShaking", 0, 10f);
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Check if the user has touched the screen
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            // Create a ray from the touch position
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            RaycastHit hit;
+
+            // Check if the ray has hit anything
+            if (Physics.Raycast(ray, out hit))
+            {
+                if(hit.transform == bushSprite_1.transform || hit.transform == bushSprite_2.transform || hit.transform == bushSprite_3.transform){
+                    if(hit.transform != goalBushSprite.transform){
+                        //Arbustos desaparecem
+                        hit.transform.gameObject.SetActive(false);
+                        buddyText.text = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
+                    }else if(hit.transform == goalBushSprite.transform && eggFound){ //JA ENCONTROU O OVO
+                        confettiParticleSystem.gameObject.SetActive(true);
+                        confettiParticleSystem.Play();
+                        bushSprite_1.gameObject.SetActive(false);
+                        bushSprite_2.gameObject.SetActive(false);
+                        bushSprite_3.gameObject.SetActive(false);
+                        goalEggSprite.gameObject.SetActive(false);
+                        eggFinalSprite.gameObject.SetActive(true);
+                    }else{ //AINDA NAO ENCONTROU O OVO
+                        //Encontrou o ovo
+                        goalEggSprite.gameObject.SetActive(true);
+                        //goalBushSprite.gameObject.SetActive(false);
+                        eggFound = true;
+                        buddyText.text = "BOA ENCONTRASTE O OVO!\nOBRIGADO!";
+                    }
+                }
+
+                if(hit.transform == eggFinalSprite.transform) {
+                    buddyText.text = "ENTROU";
+                    MinigameControl.minigameLevel++;
+                    StartCoroutine(NextAction());
+                } else {
+                    buddyText.text = "NÃO ENTROU";
+                }
+            }
+        }
+    }
+
+    IEnumerator NextAction() {
+        /* Wait for 3 seconds */
+        yield return new WaitForSeconds(3f);
+
+        /* Load next level or end scene */
+        if(MinigameControl.minigameLevel > 2) {
+            SceneManager.LoadScene("End");
+        } else {
+            SceneManager.LoadScene("Main");
+        }
+
+        LoaderUtility.Deinitialize();
+        LoaderUtility.Initialize();
+    }   
 
     void DefineGoal(){
         int random = UnityEngine.Random.Range(0, 3);
@@ -108,42 +171,18 @@ public class SearchEggControl : MonoBehaviour
         goalBushSprite.transform.localPosition = originalPosition;
     }
 
-    // Update is called once per frame
-    void Update()
+    private bool CheckTouchOnObject(UnityEngine.Vector2 touchPos)
     {
-        // Check if the user has touched the screen
-    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-    {
-        // Create a ray from the touch position
-        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(touchPos);
 
-        // Check if the ray has hit anything
-        if (Physics.Raycast(ray, out hit))
+        if(Physics.Raycast(ray, out RaycastHit hitObject))
         {
-            if(hit.transform == bushSprite_1.transform || hit.transform == bushSprite_2.transform || hit.transform == bushSprite_3.transform){
-                if(hit.transform != goalBushSprite.transform){
-                    //Arbustos desaparecem
-                     hit.transform.gameObject.SetActive(false);
-                     buddyText.text = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
-                }else if(hit.transform == goalBushSprite.transform && eggFound){ //JA ENCONTROU O OVO
-                    confettiParticleSystem.gameObject.SetActive(true);
-                    confettiParticleSystem.Play();
-                    bushSprite_1.gameObject.SetActive(false);
-                    bushSprite_2.gameObject.SetActive(false);
-                    bushSprite_3.gameObject.SetActive(false);
-                    goalEggSprite.gameObject.SetActive(false);
-                    eggFinalSprite.gameObject.SetActive(true);
-                }else{ //AINDA NAO ENCONTROU O OVO
-                    //Encontrou o ovo
-                    goalEggSprite.gameObject.SetActive(true);
-                    //goalBushSprite.gameObject.SetActive(false);
-                    eggFound = true;
-                    buddyText.text = "BOA ENCONTRASTE O OVO!\nOBRIGADO!";
-                }
+            if(hitObject.collider.CompareTag("Object"))
+            {
+                return true;
             }
         }
-    }
-        
+
+        return false;
     }
 }

@@ -67,7 +67,7 @@ public class StartControl : MonoBehaviour
 
         // Start Game
 
-        SceneManager.LoadScene("SearchEgg");
+        SceneManager.LoadScene("Main");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();
 
