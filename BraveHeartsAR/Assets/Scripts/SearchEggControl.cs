@@ -25,6 +25,8 @@ public class SearchEggControl : MonoBehaviour
     public float shakeMagnitude = 0.1f; // Magnitude of the shake effect
     private MainControl mainControl;
 
+    public float typingSpeed = 0.02f; // Adjust this to change the speed of the typing
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,6 +110,16 @@ public class SearchEggControl : MonoBehaviour
         goalBushSprite.transform.localPosition = originalPosition;
     }
 
+    IEnumerator TypeSentence (string sentence)
+    {
+        buddyText.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            buddyText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -125,7 +137,8 @@ public class SearchEggControl : MonoBehaviour
                 if(hit.transform != goalBushSprite.transform){
                     //Arbustos desaparecem
                      hit.transform.gameObject.SetActive(false);
-                     buddyText.text = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
+                     StartCoroutine(TypeSentence("PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO"));
+                     //buddyText.text = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
                 }else if(hit.transform == goalBushSprite.transform && eggFound){ //JA ENCONTROU O OVO
                     confettiParticleSystem.gameObject.SetActive(true);
                     confettiParticleSystem.Play();
@@ -139,7 +152,8 @@ public class SearchEggControl : MonoBehaviour
                     goalEggSprite.gameObject.SetActive(true);
                     //goalBushSprite.gameObject.SetActive(false);
                     eggFound = true;
-                    buddyText.text = "BOA ENCONTRASTE O OVO!\nOBRIGADO!";
+                    StartCoroutine(TypeSentence("BOA ENCONTRASTE O OVO!\nOBRIGADO!"));
+                    //buddyText.text = "BOA ENCONTRASTE O OVO!\nOBRIGADO!";
                 }
             }
         }
