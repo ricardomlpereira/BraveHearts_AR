@@ -108,6 +108,8 @@ public class MainUIControl : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         /* Switch to start scene */
+        StartControl.hasReturned = true;
+
         SceneManager.LoadScene("Start");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();

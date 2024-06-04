@@ -27,6 +27,7 @@ public class MainControl : MonoBehaviour
     private MainUIControl MainUIControl;
     private List<int> markerIds;
     private List<Tuple<int,int>> matches; // TODO: make this static and only change the matches whenever the level changes
+    public static bool resetProgress;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +87,15 @@ public class MainControl : MonoBehaviour
         /* Destroy the origin AR Models so that they don't appear randomly in the scene */
         foreach(var model in arCollection) {
             Destroy(model);
+        }
+
+        if(resetProgress) {
+            resetProgress = false;
+            foundFirstMatch = false;
+            foundSecondMatch = false;
+            foundThirdMatch = false;
+
+            MainUIControl.foundMatches = 0;
         }
 
         MainUIControl.DisplayMessage("ENCONTRA UM PAR!");
