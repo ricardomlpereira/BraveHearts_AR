@@ -19,16 +19,16 @@ public class MainControl : MonoBehaviour
     private Dictionary<string, GameObject> arModels = new Dictionary<string, GameObject>(); // Key: string (nome do gameObject). Vai retornar o gameObject cujo o nome corresponde aquele passado pela chave.
     private Dictionary<string, bool> modelState = new Dictionary<string, bool>(); // Key: string (nome do gameObject). Vai retornar o estado de um gameObject, isto é, se esta ativado ou não (presente)
 
-    // TODO: probably a bad idea to have score as a public variable. 
     public static int score; // Score of the player; Also used as an indicator for the current level of the game; Static so that the variable keeps the value independent of the scene;
     public static bool foundFirstMatch = false;
     public static bool foundSecondMatch = false;
     public static bool foundThirdMatch = false;
     private MainUIControl MainUIControl;
     private List<int> markerIds;
-    private List<Tuple<int,int>> matches; // TODO: make this static and only change the matches whenever the level changes
-    
-    /*
+    private List<Tuple<int, int>> matches;
+    private bool minigameEnabled = false;
+
+    // Changes Start: Define a structure to store the current and previous states
     private struct GameState
     {
         public bool foundFirstMatch;
@@ -37,22 +37,19 @@ public class MainControl : MonoBehaviour
         public int numActiveModels;
         public int id1;
         public int id2;
+        
     }
 
-    //Guarda o estado do jogo do frame anterior e vai comparar com o estado do frame atual
     private GameState previousState;
-    */
+    // Changes End
 
-    // Start is called before the first frame update
     void Start()
     {
         MainUIControl = FindObjectOfType<MainUIControl>();
 
-        // Initialize the list 
-        markerIds = new List<int> {1,2,3,4,5,6};
+        markerIds = new List<int> { 1, 2, 3, 4, 5, 6 };
         matches = new List<Tuple<int, int>>();
 
-        // Shuffle the ID list
         System.Random rng = new System.Random();
         int n = markerIds.Count;
         while (n > 1)
@@ -64,16 +61,13 @@ public class MainControl : MonoBehaviour
             markerIds[n] = value;
         }
 
-        int idx; // Only playable for 3 levels
+        int idx;
 
         if (score == 0) {
-            /* Level 1 - Buttefly */
             idx = 0;
         } else if (score == 1) {
-            /* Level 2 - Koala */
             idx = 3;
         } else {
-            /* Level 3 - Bee */
             idx = 6;
         }
 
@@ -98,85 +92,116 @@ public class MainControl : MonoBehaviour
             markerIds.RemoveAt(0);
         }
 
-        /* Destroy the origin AR Models so that they don't appear randomly in the scene */
-        foreach(var model in arCollection) {
+        foreach (var model in arCollection) {
             Destroy(model);
         }
 
         // Changes Start: Initialize the previousState variable
-        //previousState = new GameState();
-
-        //MainUIControl.DisplayMessage("ENCONTRA UM PAR!");
+        previousState = new GameState();
+        // Changes End
     }
 
     private void Update()
     {
-        if(MainUIControl.IsDisplayingMessage())
+        if (MainUIControl.IsDisplayingMessage() || minigameEnabled)
         {
             return;
         }
-        /* Check if all matches have been found - if so enables the minigame */
-        if(foundFirstMatch && foundSecondMatch && foundThirdMatch)
+
+        if (foundFirstMatch && foundSecondMatch && foundThirdMatch)
         {
             MainUIControl.EnableMinigame();
+            minigameEnabled = true;
             return;
         }
 
-        /* Get active models */
         (GameObject[] activeModels, int numActiveModels) = GetActiveModels();
 
-
-        /* Check if enough models are being tracked */
-        if(numActiveModels < 2)
+        int id1 = -1;
+        int id2 = -1;
+        if (numActiveModels >= 2)
         {
-            //MainUIControl.DisplayMessage("ENCONTRA UM PAR!");
+            id1 = int.Parse(Regex.Match(activeModels[0].name, @"\d+").Value);
+            id2 = int.Parse(Regex.Match(activeModels[1].name, @"\d+").Value);
+        }
+
+        // Changes Start: Update the currentState variable
+        GameState currentState = new GameState
+        {
+            foundFirstMatch = foundFirstMatch,
+            foundSecondMatch = foundSecondMatch,
+            foundThirdMatch = foundThirdMatch,
+            numActiveModels = numActiveModels,
+            id1 = id1,
+            id2 = id2
+        };
+
+        if (previousState.Equals(currentState))
+        {
             return;
         }
 
-        /* Check if too many models are being tracked - if so disable all active models */
-        if(numActiveModels > 2)
+        previousState = currentState;
+        // Changes End
+
+        if (numActiveModels == 0)
+        {
+            MainUIControl.DisplayMessage("ENCONTRA OS PARES!");
+            return;
+        }
+        if (numActiveModels == 1){
+            MainUIControl.DisplayMessage("AGORA ENCONTRA O OUTRO PAR!");
+            return;
+        }
+
+
+        if (numActiveModels > 2)
         {
             MainUIControl.DisplayMessage("TENHA APENAS 2 CARTAS PARA CIMA!");
             DisableActiveModels();
             return;
         }
 
-        /* If it gets here then all conditions for a posible match are met - lets check if the player has found a match */
-        /* Get identification of each marker */
-        int id1 = int.Parse(Regex.Match(activeModels[0].name, @"\d+").Value);
-        int id2 = int.Parse(Regex.Match(activeModels[1].name, @"\d+").Value);
-
         string animal = "";
-        if(score == 0) {
+        if (score == 0) {
             animal = "BORBOLETA";
-        } else if(score == 1) {
+        } else if (score == 1) {
             animal = "COALA";
-        } else if(score == 2) {
+        } else if (score == 2) {
             animal = "ABELHA";
         }
 
         int matchIdx = GetMatchIdx(id1, id2);
-        if(matchIdx == -1)
+        if (matchIdx == -1)
         {
             MainUIControl.DisplayMessage("NÃO É UM PAR - TENTA OUTRA VEZ!");
             return;
-        } else if(matchIdx == 0) {
+        }
+        else if (matchIdx == 0)
+        {
             MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
-            if(!foundFirstMatch) {
+            if (!foundFirstMatch)
+            {
                 MainUIControl.foundMatches++;
                 foundFirstMatch = true;
                 matchParticleSystem.Play();
             }
-        } else if(matchIdx == 1) {
+        }
+        else if (matchIdx == 1)
+        {
             MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
-            if(!foundSecondMatch) {
+            if (!foundSecondMatch)
+            {
                 MainUIControl.foundMatches++;
                 foundSecondMatch = true;
                 matchParticleSystem.Play();
             }
-        } else if(matchIdx == 2) {
+        }
+        else if (matchIdx == 2)
+        {
             MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
-            if(!foundThirdMatch) {
+            if (!foundThirdMatch)
+            {
                 MainUIControl.foundMatches++;
                 foundThirdMatch = true;
                 matchParticleSystem.Play();
@@ -196,17 +221,18 @@ public class MainControl : MonoBehaviour
 
     private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs args)
     {
-        foreach(var trackedImage in args.added)
+        foreach (var trackedImage in args.added)
         {
             ShowARModel(trackedImage);
         }
 
-        foreach(var trackedImage in args.updated)
+        foreach (var trackedImage in args.updated)
         {
-            if(trackedImage.trackingState == TrackingState.Tracking)
+            if (trackedImage.trackingState == TrackingState.Tracking)
             {
                 ShowARModel(trackedImage);
-            } else if(trackedImage.trackingState == TrackingState.Limited)
+            }
+            else if (trackedImage.trackingState == TrackingState.Limited)
             {
                 HideARModel(trackedImage);
             }
@@ -216,16 +242,17 @@ public class MainControl : MonoBehaviour
     private void ShowARModel(ARTrackedImage trackedImage)
     {
         bool isActive = modelState[trackedImage.referenceImage.name];
-        if(!isActive)
+        if (!isActive)
         {
             GameObject arModel = arModels[trackedImage.referenceImage.name];
             arModel.transform.position = trackedImage.transform.position;
             arModel.SetActive(true);
-            
+
             arModel.transform.rotation = Quaternion.Euler(-90f, 0f, -130f);
 
             modelState[trackedImage.referenceImage.name] = true;
-        } else
+        }
+        else
         {
             GameObject arModel = arModels[trackedImage.referenceImage.name];
             arModel.transform.position = trackedImage.transform.position;
@@ -261,7 +288,7 @@ public class MainControl : MonoBehaviour
 
     private void DisableActiveModels()
     {
-        foreach(var model in arModels.Values)
+        foreach (var model in arModels.Values)
         {
             model.SetActive(false);
             modelState[model.name] = false;
@@ -270,10 +297,12 @@ public class MainControl : MonoBehaviour
 
     private int GetMatchIdx(int m1Id, int m2Id)
     {
-        foreach(var match in matches) {
-            if((match.Item1 == m1Id && match.Item2 == m2Id) || match.Item1 == m2Id && match.Item2 == m1Id) {
+        foreach (var match in matches)
+        {
+            if ((match.Item1 == m1Id && match.Item2 == m2Id) || match.Item1 == m2Id && match.Item2 == m1Id)
+            {
                 return matches.IndexOf(match);
-            } 
+            }
         }
 
         // If pair is not a match then return -1
