@@ -28,12 +28,16 @@ public class MainControl : MonoBehaviour
     private List<int> markerIds;
     private List<Tuple<int,int>> matches; // TODO: make this static and only change the matches whenever the level changes
     public static bool resetProgress;
-
+    private AudioControl _audioControl;
+    private bool playedFailAudio = false;
+    private bool playedErrorAudio = false;
+    
     // Start is called before the first frame update
     void Start()
     {
         MainUIControl = FindObjectOfType<MainUIControl>();
-
+        _audioControl = FindObjectOfType<AudioControl>();
+        
         // Initialize the list 
         markerIds = new List<int> {1,2,3,4,5,6};
         matches = new List<Tuple<int, int>>();
@@ -118,6 +122,7 @@ public class MainControl : MonoBehaviour
         if(numActiveModels < 2)
         {
             MainUIControl.DisplayMessage("ENCONTRA UM PAR!");
+            playedFailAudio = false;
             return;
         }
 
@@ -125,10 +130,20 @@ public class MainControl : MonoBehaviour
         if(numActiveModels > 2)
         {
             MainUIControl.DisplayMessage("TENHA APENAS 2 CARTAS PARA CIMA!");
+            playedFailAudio = false;
+
+            if (!playedErrorAudio)
+            {
+                _audioControl.PlayAudio("error");
+                playedErrorAudio = true;
+            }
+            
             DisableActiveModels();
             return;
         }
 
+        playedErrorAudio = false;
+        
         /* If it gets here then all conditions for a posible match are met - lets check if the player has found a match */
         /* Get identification of each marker */
         int id1 = int.Parse(Regex.Match(activeModels[0].name, @"\d+").Value);
@@ -147,27 +162,39 @@ public class MainControl : MonoBehaviour
         if(matchIdx == -1)
         {
             MainUIControl.DisplayMessage("NÃO É UM PAR - TENTA OUTRA VEZ!");
+            if (!playedFailAudio)
+            {
+                playedFailAudio = true;
+                _audioControl.PlayAudio("fail");    
+            }
+            
             return;
         } else if(matchIdx == 0) {
             MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
+            playedFailAudio = false;
             if(!foundFirstMatch) {
                 MainUIControl.foundMatches++;
                 foundFirstMatch = true;
                 matchParticleSystem.Play();
+                _audioControl.PlayAudio("congrats");
             }
         } else if(matchIdx == 1) {
             MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
+            playedFailAudio = false;
             if(!foundSecondMatch) {
                 MainUIControl.foundMatches++;
                 foundSecondMatch = true;
                 matchParticleSystem.Play();
+                _audioControl.PlayAudio("congrats");
             }
         } else if(matchIdx == 2) {
             MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
+            playedFailAudio = false;
             if(!foundThirdMatch) {
                 MainUIControl.foundMatches++;
                 foundThirdMatch = true;
                 matchParticleSystem.Play();
+                _audioControl.PlayAudio("congrats");
             }
         }
     }
