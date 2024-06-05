@@ -34,7 +34,6 @@ public class MainControl : MonoBehaviour
     private List<Tuple<int, int>> matches;
     private bool minigameEnabled = false;
     private GameState previousState;
-    private List<Tuple<int,int>> matches; // TODO: make this static and only change the matches whenever the level changes
     public static bool resetProgress;
     private AudioControl _audioControl;
     private bool playedFailAudio = false;

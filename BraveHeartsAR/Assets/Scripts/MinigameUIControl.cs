@@ -12,9 +12,7 @@ public class MinigameUIControl : MonoBehaviour
     [SerializeField] private GameObject procedeBtn;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI mainText;
-    private bool isScoreUpdated = false;
     public static bool isMinigameCompleted;
-    private bool isEggCollected = false; //TEMPORARY
 
     void Start()
     {
