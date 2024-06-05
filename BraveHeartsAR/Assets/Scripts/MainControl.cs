@@ -18,7 +18,6 @@ public class MainControl : MonoBehaviour
 
     private Dictionary<string, GameObject> arModels = new Dictionary<string, GameObject>(); // Key: string (nome do gameObject). Vai retornar o gameObject cujo o nome corresponde aquele passado pela chave.
     private Dictionary<string, bool> modelState = new Dictionary<string, bool>(); // Key: string (nome do gameObject). Vai retornar o estado de um gameObject, isto é, se esta ativado ou não (presente)
-
     public static int score; // Score of the player; Also used as an indicator for the current level of the game; Static so that the variable keeps the value independent of the scene;
     public static bool foundFirstMatch = false;
     public static bool foundSecondMatch = false;
@@ -31,13 +30,9 @@ public class MainControl : MonoBehaviour
     // Changes Start: Define a structure to store the current and previous states
     private struct GameState
     {
-        public bool foundFirstMatch;
-        public bool foundSecondMatch;
-        public bool foundThirdMatch;
         public int numActiveModels;
         public int id1;
         public int id2;
-        
     }
 
     private GameState previousState;
@@ -63,15 +58,21 @@ public class MainControl : MonoBehaviour
 
         int idx;
 
-        if (score == 0) {
+        if (score == 0)
+        {
             idx = 0;
-        } else if (score == 1) {
+        }
+        else if (score == 1)
+        {
             idx = 3;
-        } else {
+        }
+        else
+        {
             idx = 6;
         }
 
-        for (int i = idx; i < idx + 3; i++) {
+        for (int i = idx; i < idx + 3; i++)
+        {
             GameObject newARModel1 = Instantiate(arCollection[i], Vector3.zero, Quaternion.identity);
             GameObject newARModel2 = Instantiate(arCollection[i], Vector3.zero, Quaternion.identity);
 
@@ -92,7 +93,8 @@ public class MainControl : MonoBehaviour
             markerIds.RemoveAt(0);
         }
 
-        foreach (var model in arCollection) {
+        foreach (var model in arCollection)
+        {
             Destroy(model);
         }
 
@@ -119,7 +121,8 @@ public class MainControl : MonoBehaviour
 
         int id1 = -1;
         int id2 = -1;
-        if (numActiveModels >= 2)
+        
+        if (numActiveModels == 2)
         {
             id1 = int.Parse(Regex.Match(activeModels[0].name, @"\d+").Value);
             id2 = int.Parse(Regex.Match(activeModels[1].name, @"\d+").Value);
@@ -128,15 +131,12 @@ public class MainControl : MonoBehaviour
         // Changes Start: Update the currentState variable
         GameState currentState = new GameState
         {
-            foundFirstMatch = foundFirstMatch,
-            foundSecondMatch = foundSecondMatch,
-            foundThirdMatch = foundThirdMatch,
             numActiveModels = numActiveModels,
             id1 = id1,
             id2 = id2
         };
 
-        if (previousState.Equals(currentState))
+        if ((previousState.numActiveModels == 0 && currentState.numActiveModels == 1) || (previousState.numActiveModels == 1 && currentState.numActiveModels == 0) || (previousState.Equals(currentState)))
         {
             return;
         }
@@ -144,30 +144,35 @@ public class MainControl : MonoBehaviour
         previousState = currentState;
         // Changes End
 
-        if (numActiveModels == 0)
+        if (numActiveModels <= 1)
         {
             MainUIControl.DisplayMessage("ENCONTRA OS PARES!");
             return;
         }
-        if (numActiveModels == 1){
-            MainUIControl.DisplayMessage("AGORA ENCONTRA O OUTRO PAR!");
-            return;
-        }
-
 
         if (numActiveModels > 2)
         {
+            //DisableActiveModels();
+            foreach (var model in arModels.Values)
+            {
+                model.SetActive(false);
+                //modelState[model.name] = false;
+            }
             MainUIControl.DisplayMessage("TENHA APENAS 2 CARTAS PARA CIMA!");
-            DisableActiveModels();
             return;
         }
 
         string animal = "";
-        if (score == 0) {
+        if (score == 0)
+        {
             animal = "BORBOLETA";
-        } else if (score == 1) {
+        }
+        else if (score == 1)
+        {
             animal = "COALA";
-        } else if (score == 2) {
+        }
+        else if (score == 2)
+        {
             animal = "ABELHA";
         }
 
