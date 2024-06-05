@@ -49,7 +49,7 @@ public class StartControl : MonoBehaviour
 
     public void SwitchCanvas()
     {
-        speechBubbleText.text = "Vamos jogar!";
+        //speechBubbleText.text = "Vamos jogar!";
         speechBubbleBtnNext.SetActive(false);
         speechBubbleBtnPlay.SetActive(true);
     }

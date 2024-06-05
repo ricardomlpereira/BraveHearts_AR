@@ -27,10 +27,16 @@ public class SearchEggControl : MonoBehaviour
     public float shakeMagnitude = 0.1f; // Magnitude of the shake effect
     [SerializeField] private TextMeshProUGUI scoreText;
     private bool hasCollectedEgg;
+    private TW_MultiStrings_All typewriter;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        typewriter = buddyText.gameObject.AddComponent<TW_MultiStrings_All>();
+        typewriter.timeOut = 1; // Set timeout for the typewriter effect
+        typewriter.LaunchOnStart = false;
+
         scoreText.text = MainControl.score + "/3";
 
         hasCollectedEgg = false;
@@ -68,7 +74,9 @@ public class SearchEggControl : MonoBehaviour
                     if(hit.transform != goalBushSprite.transform){
                         //Arbustos desaparecem
                         hit.transform.gameObject.SetActive(false);
-                        buddyText.text = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
+                        //buddyText.text = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
+                        typewriter.ORIGINAL_TEXT = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
+                        typewriter.StartTypewriter();
                     }else if(hit.transform == goalBushSprite.transform && eggFound){ //JA ENCONTROU O OVO
                         confettiParticleSystem.gameObject.SetActive(true);
                         confettiParticleSystem.Play();
@@ -82,7 +90,9 @@ public class SearchEggControl : MonoBehaviour
                         goalEggSprite.gameObject.SetActive(true);
                         //goalBushSprite.gameObject.SetActive(false);
                         eggFound = true;
-                        buddyText.text = "BOA ENCONTRASTE O OVO!\nOBRIGADO!";
+                        //buddyText.text = "BOA ENCONTRASTE O OVO!\nOBRIGADO!";
+                        typewriter.ORIGINAL_TEXT = "BOA ENCONTRASTE O OVO!\nOBRIGADO!";
+                        typewriter.StartTypewriter();
                     }
                 }
 
