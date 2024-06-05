@@ -12,6 +12,13 @@ using System.Linq;
 
 public class MainControl : MonoBehaviour
 {
+    private struct GameState
+    {
+        public int numActiveModels;
+        public int id1;
+        public int id2;
+    }
+
     [SerializeField] private ParticleSystem matchParticleSystem;
     [SerializeField] private ARTrackedImageManager arTrackedImageManager;
     [SerializeField] private GameObject[] arCollection;
@@ -26,23 +33,21 @@ public class MainControl : MonoBehaviour
     private List<int> markerIds;
     private List<Tuple<int, int>> matches;
     private bool minigameEnabled = false;
-
-    // Changes Start: Define a structure to store the current and previous states
-    private struct GameState
-    {
-        public int numActiveModels;
-        public int id1;
-        public int id2;
-    }
-
     private GameState previousState;
-    // Changes End
-
+    private List<Tuple<int,int>> matches; // TODO: make this static and only change the matches whenever the level changes
+    public static bool resetProgress;
+    private AudioControl _audioControl;
+    private bool playedFailAudio = false;
+    private bool playedErrorAudio = false;
+    
+    // Start is called before the first frame update
     void Start()
     {
         MainUIControl = FindObjectOfType<MainUIControl>();
-
-        markerIds = new List<int> { 1, 2, 3, 4, 5, 6 };
+        _audioControl = FindObjectOfType<AudioControl>();
+        
+        // Initialize the list 
+        markerIds = new List<int> {1,2,3,4,5,6};
         matches = new List<Tuple<int, int>>();
 
         System.Random rng = new System.Random();
@@ -98,9 +103,15 @@ public class MainControl : MonoBehaviour
             Destroy(model);
         }
 
-        // Changes Start: Initialize the previousState variable
         previousState = new GameState();
-        // Changes End
+        if(resetProgress) {
+            resetProgress = false;
+            foundFirstMatch = false;
+            foundSecondMatch = false;
+            foundThirdMatch = false;
+
+            MainUIControl.foundMatches = 0;
+        }
     }
 
     private void Update()
@@ -147,6 +158,7 @@ public class MainControl : MonoBehaviour
         if (numActiveModels <= 1)
         {
             MainUIControl.DisplayMessage("ENCONTRA OS PARES!");
+            playedFailAudio = false;
             return;
         }
 
@@ -159,8 +171,19 @@ public class MainControl : MonoBehaviour
                 //modelState[model.name] = false;
             }
             MainUIControl.DisplayMessage("TENHA APENAS 2 CARTAS PARA CIMA!");
+            
+            playedFailAudio = false;
+
+            if (!playedErrorAudio)
+            {
+                _audioControl.PlayAudio("error");
+                playedErrorAudio = true;
+            }
+            
             return;
         }
+
+        playedErrorAudio = false;
 
         string animal = "";
         if (score == 0)
@@ -180,36 +203,48 @@ public class MainControl : MonoBehaviour
         if (matchIdx == -1)
         {
             MainUIControl.DisplayMessage("NÃO É UM PAR - TENTA OUTRA VEZ!");
+            if (!playedFailAudio)
+            {
+                playedFailAudio = true;
+                _audioControl.PlayAudio("fail");    
+            }
+            
             return;
         }
         else if (matchIdx == 0)
         {
             MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
-            if (!foundFirstMatch)
-            {
+            playedFailAudio = false;
+            
+            if(!foundFirstMatch) {
                 MainUIControl.foundMatches++;
                 foundFirstMatch = true;
                 matchParticleSystem.Play();
+                _audioControl.PlayAudio("congrats");
             }
         }
         else if (matchIdx == 1)
         {
             MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
-            if (!foundSecondMatch)
-            {
+            playedFailAudio = false;
+            
+            if(!foundSecondMatch) {
                 MainUIControl.foundMatches++;
                 foundSecondMatch = true;
                 matchParticleSystem.Play();
+                _audioControl.PlayAudio("congrats");
             }
         }
         else if (matchIdx == 2)
         {
             MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
-            if (!foundThirdMatch)
-            {
+            playedFailAudio = false;
+            
+            if(!foundThirdMatch) {
                 MainUIControl.foundMatches++;
                 foundThirdMatch = true;
                 matchParticleSystem.Play();
+                _audioControl.PlayAudio("congrats");
             }
         }
     }

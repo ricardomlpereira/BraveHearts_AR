@@ -8,7 +8,6 @@ using TMPro;
 public class StartControl : MonoBehaviour
 {
     private Camera cam;
-
     [SerializeField] private TextMeshProUGUI startInfo;
     [SerializeField] private TextMeshProUGUI speechBubbleText;
 
@@ -16,6 +15,7 @@ public class StartControl : MonoBehaviour
     [SerializeField] private GameObject speechBubbleBtnPlay;
     [SerializeField] private GameObject objectToShow;
     [SerializeField] private GameObject speechToShow;
+    public static bool hasReturned;
 
     //private float distanceFromCamera = 1.0f;
     //private Vector3 speechOffset = new Vector3(0.2f, 0.2f, 0);
@@ -66,6 +66,10 @@ public class StartControl : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         // Start Game
+        if(hasReturned) {
+            hasReturned = false;
+            MainControl.resetProgress = true;
+        }
 
         SceneManager.LoadScene("Main");
         LoaderUtility.Deinitialize();

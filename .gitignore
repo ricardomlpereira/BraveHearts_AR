@@ -74,3 +74,13 @@
 
 # Hidden word file
 ~$*
+
+# VSCode hidden files
+/BraveHeartsAR/.vscode/
+
+# Visual Studio files
+/BraveHeartsAR/.vs/
+/BraveHeartsAR/.vsconfig/
+
+# Rider (or any other JetBrains IDE) 
+/BraveHeartsAR/.idea/
