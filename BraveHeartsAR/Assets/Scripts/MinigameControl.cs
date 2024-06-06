@@ -25,10 +25,13 @@ public class MinigameControl : MonoBehaviour
     private int placedObjects;
     private string backgroundObj = "BackgroundObject";
     private MinigameUIControl minigameUIControl;
+    private AudioManager audioManager;
+    private bool isCompleted = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         minigameUIControl = FindObjectOfType<MinigameUIControl>();
         HandleCollections();
     }
@@ -39,6 +42,11 @@ public class MinigameControl : MonoBehaviour
         // TODO: Only here until third minigame is implemented
         if(minigameLevel == 2) {
             minigameUIControl.NextAction();
+        }
+
+        // FIXME: meter isto como deve ser depois; n faz sentido ter 2 bools relativos ao facto de o minijogo estar completo ou n em 2 scripts
+        if(isCompleted) {
+            return;
         }
 
         // Check if player has completed the minigame - if so, return
@@ -188,9 +196,11 @@ public class MinigameControl : MonoBehaviour
         } else if(currentObj.name == "pensoAberto") {
             currentObj.transform.position = posPenso.transform.position;
             placedObjects++;
+            audioManager.PlayAudio("progress");
             return;
         } else if(currentObj.name == "garrote") {
             objectCollection[idx].SetActive(false); // Desativar o garrote
+            audioManager.PlayAudio("progress");
             placedObjects++;
         }
 
@@ -206,13 +216,15 @@ public class MinigameControl : MonoBehaviour
             currentObj.SetActive(true);
         }
 
+        audioManager.PlayAudio("progress");
         isLastObject();
     }
 
     private bool isLastObject() {
         if(placedObjects >= objectCollection.Count) {
-            MinigameUIControl.isMinigameCompleted = true;
             minigameUIControl.DisplayMessage("BOA! COMPLETASTE O MINIJOGO!");
+            minigameUIControl.CompleteMinigame();
+            isCompleted = true;
             return true;
         }
 

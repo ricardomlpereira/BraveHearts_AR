@@ -19,9 +19,12 @@ public class MainUIControl : MonoBehaviour
     public int foundMatches;
     private TW_MultiStrings_All typewriter;
     private bool isDisplayingMessage = false;
+    private AudioManager audioManager;
 
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
+
         typewriter = mainText.gameObject.AddComponent<TW_MultiStrings_All>();
         typewriter.timeOut = 1; // Set timeout for the typewriter effect
         typewriter.LaunchOnStart = false;
@@ -80,6 +83,7 @@ public class MainUIControl : MonoBehaviour
     }
 
     public void EnableMinigame() {
+        audioManager.PlayAudio("congrats");
         mainText.alignment = TextAlignmentOptions.Top;
 
         switch (MainControl.score){
@@ -113,6 +117,7 @@ public class MainUIControl : MonoBehaviour
     }
 
     public void StartMinigame() {
+        audioManager.PlayAudio("btn");
         StartCoroutine(StartMinigameCoroutine());
     }
 
@@ -135,6 +140,7 @@ public class MainUIControl : MonoBehaviour
 
     public void ReturnToStart()
     {
+        audioManager.PlayAudio("btn");
         StartCoroutine(ReturnCoroutine());
     }
 

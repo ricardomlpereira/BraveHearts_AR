@@ -88,9 +88,12 @@ public class TW_MultiStrings_All : MonoBehaviour {
     private static string symbols = "#@$^*?~&";
     private static string all = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$^*?~&";
     private static string[] PointerSymbols = { "None", "<", "_", "|", ">" };
+    private AudioManager audioManager;
 
     // Use this for initialization
     void Start () {
+        audioManager = FindObjectOfType<AudioManager>();
+
         MultiStrings[0] = gameObject.GetComponent<TMP_Text>().text;
         ORIGINAL_TEXT = gameObject.GetComponent<TMP_Text>().text;
         gameObject.GetComponent<TMP_Text>().text = "";
@@ -147,6 +150,8 @@ public class TW_MultiStrings_All : MonoBehaviour {
             index_of_string = 0;
         }
         ORIGINAL_TEXT = MultiStrings[index_of_string];
+
+        audioManager.PlayAudio("btn");
     }
 
     private void NewLineCheck(string S)

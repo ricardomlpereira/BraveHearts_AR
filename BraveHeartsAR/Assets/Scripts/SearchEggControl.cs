@@ -28,10 +28,12 @@ public class SearchEggControl : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     private bool hasCollectedEgg;
     private TW_MultiStrings_All typewriter;
+    private AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
 
         typewriter = buddyText.gameObject.AddComponent<TW_MultiStrings_All>();
         typewriter.timeOut = 1; // Set timeout for the typewriter effect
@@ -75,11 +77,15 @@ public class SearchEggControl : MonoBehaviour
                         //Arbustos desaparecem
                         hit.transform.gameObject.SetActive(false);
                         //buddyText.text = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
+                        audioManager.PlayAudio("fail");
                         typewriter.ORIGINAL_TEXT = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
                         typewriter.StartTypewriter();
                     }else if(hit.transform == goalBushSprite.transform && eggFound){ //JA ENCONTROU O OVO
                         confettiParticleSystem.gameObject.SetActive(true);
                         confettiParticleSystem.Play();
+
+                        audioManager.PlayAudio("progress");
+
                         bushSprite_1.gameObject.SetActive(false);
                         bushSprite_2.gameObject.SetActive(false);
                         bushSprite_3.gameObject.SetActive(false);
@@ -87,6 +93,7 @@ public class SearchEggControl : MonoBehaviour
                         eggFinalSprite.gameObject.SetActive(true);
                     }else{ //AINDA NAO ENCONTROU O OVO
                         //Encontrou o ovo
+                        audioManager.PlayAudio("progress");
                         goalEggSprite.gameObject.SetActive(true);
                         //goalBushSprite.gameObject.SetActive(false);
                         eggFound = true;
@@ -106,6 +113,9 @@ public class SearchEggControl : MonoBehaviour
                     MainControl.foundThirdMatch = false;
 
                     scoreText.text = MainControl.score + "/3";
+
+                    audioManager.PlayAudio("congrats");
+
                     StartCoroutine(NextAction());
                 }
             }

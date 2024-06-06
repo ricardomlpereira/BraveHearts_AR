@@ -15,6 +15,7 @@ public class StartControl : MonoBehaviour
     [SerializeField] private GameObject speechBubbleBtnPlay;
     [SerializeField] private GameObject objectToShow;
     [SerializeField] private GameObject speechToShow;
+    private AudioManager audioManager;
     public static bool hasReturned;
 
     //private float distanceFromCamera = 1.0f;
@@ -22,6 +23,8 @@ public class StartControl : MonoBehaviour
 
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
+
         /* Get the camera */
         //Camera cam = Camera.main;
     }
@@ -49,13 +52,19 @@ public class StartControl : MonoBehaviour
 
     public void SwitchCanvas()
     {
+        
         //speechBubbleText.text = "Vamos jogar!";
         speechBubbleBtnNext.SetActive(false);
+
+        audioManager.PlayAudio("btn");
+
         speechBubbleBtnPlay.SetActive(true);
     }
 
     public void StartGame()
     {
+        // FIXME: não devia de ser possível estar constantemente a carregar no btn enquanto a coroutine processa
+        audioManager.PlayAudio("btn");
         StartCoroutine(StartGameCoroutine());
     }
 
