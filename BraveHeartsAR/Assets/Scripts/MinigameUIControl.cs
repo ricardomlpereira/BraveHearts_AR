@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
 using TMPro;
-using JetBrains.Annotations;
 
 public class MinigameUIControl : MonoBehaviour
 {
@@ -14,10 +13,15 @@ public class MinigameUIControl : MonoBehaviour
     [SerializeField] private TextMeshProUGUI mainText;
     public static bool isMinigameCompleted;
     private AudioManager audioManager;
+    private TW_MultiStrings_All typewriter;
 
     void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
+        typewriter = mainText.gameObject.AddComponent<TW_MultiStrings_All>();
+        typewriter.timeOut = 1; // Set timeout for the typewriter effect
+        typewriter.LaunchOnStart = false;
+
         scoreText.text = MainControl.score + "/3";
         isMinigameCompleted = false;
     }
@@ -37,7 +41,7 @@ public class MinigameUIControl : MonoBehaviour
 
     public void NextAction() {
         audioManager.PlayAudio("btn");
-        mainText.text = "VAMOS ENCONTRAR O MEU OVO!"; //FIXME: Não aparece, provavelmente pq a mensagem anterior esta a ser chamada num Update()
+        DisplayMessage("VAMOS ENCONTRAR O MEU OVO!");
         StartCoroutine(HatchEggSceneCoroutine());
     }
 
@@ -80,7 +84,8 @@ public class MinigameUIControl : MonoBehaviour
     } */
 
     public void DisplayMessage(string msg) {
-        mainText.text = msg;
+        typewriter.ORIGINAL_TEXT = msg;
+        typewriter.StartTypewriter();
     }
 
     /*IEnumerator NextLevelCoroutine() {

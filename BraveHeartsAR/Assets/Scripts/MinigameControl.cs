@@ -27,6 +27,7 @@ public class MinigameControl : MonoBehaviour
     private MinigameUIControl minigameUIControl;
     private AudioManager audioManager;
     private bool isCompleted = false;
+    private int previousPlacedObjects = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class MinigameControl : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         minigameUIControl = FindObjectOfType<MinigameUIControl>();
         HandleCollections();
+        HandleMessage();
     }
 
     // Update is called once per frame
@@ -54,7 +56,12 @@ public class MinigameControl : MonoBehaviour
             return;
         }
 
-        HandleMessage();
+        if(previousPlacedObjects != placedObjects) {
+            // Mudar a msg quando é colocado um objetoto)
+            HandleMessage();
+            previousPlacedObjects = placedObjects;
+        }
+
         HandleInput();
     }
 
@@ -236,15 +243,16 @@ public class MinigameControl : MonoBehaviour
         if(minigameLevel == 0) {
             switch (placedObjects){
                 case 0:
-                    minigameUIControl.DisplayMessage("VAMOS APLICAR A POMADA");
+                    minigameUIControl.DisplayMessage("VAMOS COMEÇAR POR APLICAR A POMADA. ARRASTA ESTA PARA O LOCAL CORRETO.");
                     break;
                 case 2:
-                    minigameUIControl.DisplayMessage("VAMOS ABRIR O PENSO");
+                    minigameUIControl.DisplayMessage("BOA! AGORA, VAMOS ABRIR O PENSO. CARREGA NELE!");
                     break;
                 case 3:
-                    minigameUIControl.DisplayMessage("VAMOS APLICAR O PENSO");
+                    minigameUIControl.DisplayMessage("MUITO BEM! PARA APLICAR O PENSO ARRASTA-O PARA CIMA DA POMADA!");
                     break;
                 default:
+                    minigameUIControl.DisplayMessage("ERRO");
                     break;
             }
         } else if(minigameLevel == 1) {
