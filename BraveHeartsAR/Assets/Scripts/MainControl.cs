@@ -35,7 +35,7 @@ public class MainControl : MonoBehaviour
     private bool minigameEnabled = false;
     private GameState previousState;
     public static bool resetProgress;
-    private AudioControl _audioControl;
+    private AudioManager audioManager;
     private bool playedFailAudio = false;
     private bool playedErrorAudio = false;
     
@@ -43,7 +43,7 @@ public class MainControl : MonoBehaviour
     void Start()
     {
         MainUIControl = FindObjectOfType<MainUIControl>();
-        _audioControl = FindObjectOfType<AudioControl>();
+        audioManager = FindObjectOfType<AudioManager>();
         
         // Initialize the list 
         markerIds = new List<int> {1,2,3,4,5,6};
@@ -175,7 +175,7 @@ public class MainControl : MonoBehaviour
 
             if (!playedErrorAudio)
             {
-                _audioControl.PlayAudio("error");
+                audioManager.PlayAudio("error");
                 playedErrorAudio = true;
             }
             
@@ -205,7 +205,7 @@ public class MainControl : MonoBehaviour
             if (!playedFailAudio)
             {
                 playedFailAudio = true;
-                _audioControl.PlayAudio("fail");    
+                audioManager.PlayAudio("fail");    
             }
             
             return;
@@ -219,7 +219,7 @@ public class MainControl : MonoBehaviour
                 MainUIControl.foundMatches++;
                 foundFirstMatch = true;
                 matchParticleSystem.Play();
-                _audioControl.PlayAudio("congrats");
+                audioManager.PlayAudio("progress");
             }
         }
         else if (matchIdx == 1)
@@ -231,7 +231,7 @@ public class MainControl : MonoBehaviour
                 MainUIControl.foundMatches++;
                 foundSecondMatch = true;
                 matchParticleSystem.Play();
-                _audioControl.PlayAudio("congrats");
+                audioManager.PlayAudio("progress");
             }
         }
         else if (matchIdx == 2)
@@ -243,7 +243,7 @@ public class MainControl : MonoBehaviour
                 MainUIControl.foundMatches++;
                 foundThirdMatch = true;
                 matchParticleSystem.Play();
-                _audioControl.PlayAudio("congrats");
+                audioManager.PlayAudio("progress");
             }
         }
     }

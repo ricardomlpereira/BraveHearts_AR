@@ -13,9 +13,11 @@ public class MinigameUIControl : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI mainText;
     public static bool isMinigameCompleted;
+    private AudioManager audioManager;
 
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         scoreText.text = MainControl.score + "/3";
         isMinigameCompleted = false;
     }
@@ -28,7 +30,13 @@ public class MinigameUIControl : MonoBehaviour
         }
     }
 
+    public void CompleteMinigame() {
+        isMinigameCompleted = true;
+        audioManager.PlayAudio("congrats");
+    }
+
     public void NextAction() {
+        audioManager.PlayAudio("btn");
         mainText.text = "VAMOS ENCONTRAR O MEU OVO!"; //FIXME: Não aparece, provavelmente pq a mensagem anterior esta a ser chamada num Update()
         StartCoroutine(HatchEggSceneCoroutine());
     }
