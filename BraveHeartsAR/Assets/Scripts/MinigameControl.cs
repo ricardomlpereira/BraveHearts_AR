@@ -27,6 +27,8 @@ public class MinigameControl : MonoBehaviour
     private MinigameUIControl minigameUIControl;
     private AudioManager audioManager;
     private bool isCompleted = false;
+    private int previousPlacedObjects = 0;
+    private bool isFirstInteration = true;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,7 @@ public class MinigameControl : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         minigameUIControl = FindObjectOfType<MinigameUIControl>();
         HandleCollections();
+        HandleMessage();
     }
 
     // Update is called once per frame
@@ -42,6 +45,12 @@ public class MinigameControl : MonoBehaviour
         // TODO: Only here until third minigame is implemented
         if(minigameLevel == 2) {
             minigameUIControl.NextAction();
+        }
+
+        // FIXME: meter isto como deve ser depois
+        if(isFirstInteration) {
+            HandleMessage();
+            isFirstInteration = false;
         }
 
         // FIXME: meter isto como deve ser depois; n faz sentido ter 2 bools relativos ao facto de o minijogo estar completo ou n em 2 scripts
@@ -54,7 +63,12 @@ public class MinigameControl : MonoBehaviour
             return;
         }
 
-        HandleMessage();
+        if(previousPlacedObjects != placedObjects) {
+            // Mudar a msg quando é colocado um objeto)
+            HandleMessage();
+            previousPlacedObjects = placedObjects;
+        }
+
         HandleInput();
     }
 
@@ -108,9 +122,9 @@ public class MinigameControl : MonoBehaviour
                 if(obj.name == "pensoAberto") {
                     obj.SetActive(true);
                     obj.transform.position = posPenso.transform.position;
-                    obj.tag = backgroundObj;
-                    idx++; // Porque a coleção vai ter o penso aberto e o creme
-                    placedObjects++; // Porque a coleção vai ter o penso aberto e o creme
+                    //obj.tag = backgroundObj;
+                    //idx++; // Porque a coleção vai ter o penso aberto e o creme
+                    //placedObjects++; // Porque a coleção vai ter o penso aberto e o creme
                     continue;
                 }
 
@@ -159,6 +173,14 @@ public class MinigameControl : MonoBehaviour
                 PlaceObject();
                 return;
             } 
+
+            // Remover o penso da mao no minijogo do garrote -> TODO: Em vez de ser um toque no penso devia de ser arrastar o penso
+            if(touch1.phase == TouchPhase.Began && currentObj.name == "pensoAberto" && isObjectSelected && minigameLevel == 1) {
+                objectCollection[idx].SetActive(false); // Desativar o penso aberto
+                objectCollection[idx - 1].SetActive(false);
+                PlaceObject();
+                return;
+            }
 
             /* Check if the player has touched the screen - MIGHT BE UNNECESSEARY */
             if(touch1.phase == TouchPhase.Began) {
@@ -236,23 +258,28 @@ public class MinigameControl : MonoBehaviour
         if(minigameLevel == 0) {
             switch (placedObjects){
                 case 0:
-                    minigameUIControl.DisplayMessage("VAMOS APLICAR A POMADA");
+                    minigameUIControl.DisplayMessage("VAMOS COMEÇAR POR APLICAR A POMADA. ARRASTA ESTA PARA O LOCAL CORRETO.");
                     break;
                 case 2:
-                    minigameUIControl.DisplayMessage("VAMOS ABRIR O PENSO");
+                    minigameUIControl.DisplayMessage("BOA! AGORA, VAMOS ABRIR O PENSO. CARREGA NELE!");
                     break;
                 case 3:
-                    minigameUIControl.DisplayMessage("VAMOS APLICAR O PENSO");
+                    minigameUIControl.DisplayMessage("MUITO BEM! PARA APLICAR O PENSO ARRASTA-O PARA CIMA DA POMADA!");
                     break;
                 default:
+                    minigameUIControl.DisplayMessage("ERRO");
                     break;
             }
         } else if(minigameLevel == 1) {
             switch(placedObjects) {
+                case 1:
+                    minigameUIControl.DisplayMessage("VAMOS COMEÇAR POR RETIRAR O PENSO. CARREGA NELE!");
+                    break;
                 case 2:
-                    minigameUIControl.DisplayMessage("VAMOS APLICAR O GARROTE");
+                    minigameUIControl.DisplayMessage("BOA! VAMOS AGORA APLICAR O GARROTE. ARRASTA-O PARA O LOCAL CORRETO.");
                     break;
                 default:
+                    minigameUIControl.DisplayMessage("ERRO");
                     break;
             }
         }

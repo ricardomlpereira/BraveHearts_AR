@@ -114,7 +114,7 @@ public class MainControl : MonoBehaviour
     }
 
     private void Update()
-    {
+    {        
         if (MainUIControl.IsDisplayingMessage() || minigameEnabled)
         {
             return;
@@ -287,7 +287,17 @@ public class MainControl : MonoBehaviour
             arModel.transform.position = trackedImage.transform.position;
             arModel.SetActive(true);
 
-            arModel.transform.rotation = Quaternion.Euler(-90f, 0f, -130f);
+            if(score == 0) {
+                // Level 1 - Butterfly
+                arModel.transform.rotation = Quaternion.Euler(-120f, -140f, -60f);
+            } else if(score == 1) {
+                // Level 2 - Koala
+                //arModel.transform.rotation = Quaternion.Euler(-120f, -140f, -60f)
+                Camera cam = Camera.main;
+                transform.LookAt(cam.transform);
+            } else if(score == 2) {
+                // Level 3 - Bee
+            }
 
             modelState[trackedImage.referenceImage.name] = true;
         }
