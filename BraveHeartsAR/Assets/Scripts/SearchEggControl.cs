@@ -7,6 +7,7 @@ using UnityEngine.XR.ARFoundation;
 
 public class SearchEggControl : MonoBehaviour
 {
+    [SerializeField] private GameObject nextButton;
     private SpriteRenderer goalBushSprite;
     public SpriteRenderer bushSprite_1; 
     public SpriteRenderer bushSprite_2;
@@ -73,13 +74,16 @@ public class SearchEggControl : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 if(hit.transform == bushSprite_1.transform || hit.transform == bushSprite_2.transform || hit.transform == bushSprite_3.transform){
+                    nextButton.SetActive(false);
                     if(hit.transform != goalBushSprite.transform){
                         //Arbustos desaparecem
                         hit.transform.gameObject.SetActive(false);
                         //buddyText.text = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
                         audioManager.PlayAudio("fail");
-                        typewriter.ORIGINAL_TEXT = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
+                        if(eggFound == false){
+                        typewriter.ORIGINAL_TEXT = "PARECE QUE NÃO ESTÁ NESSE ARBUSTO!\nTENTA OUTRO";
                         typewriter.StartTypewriter();
+                        }     
                     }else if(hit.transform == goalBushSprite.transform && eggFound){ //JA ENCONTROU O OVO
                         confettiParticleSystem.gameObject.SetActive(true);
                         confettiParticleSystem.Play();
