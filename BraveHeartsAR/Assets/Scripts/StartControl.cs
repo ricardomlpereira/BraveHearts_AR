@@ -52,13 +52,11 @@ public class StartControl : MonoBehaviour
 
     public void SwitchCanvas()
     {
-        
-        //speechBubbleText.text = "Vamos jogar!";
+        if(speechBubbleText.text == "Placeholder"){ //Mudar para a ultima string antes de "Vamos jogar?"
         speechBubbleBtnNext.SetActive(false);
-
         audioManager.PlayAudio("btn");
-
         speechBubbleBtnPlay.SetActive(true);
+        }
     }
 
     public void StartGame()

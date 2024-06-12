@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 831655754}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -945,7 +945,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bem-vindo ao BraveHearts!
+  m_text: Bem-vindo BraveHeart!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1039,7 +1039,10 @@ MonoBehaviour:
   Charstype: 0
   MultiStrings:
   - 
-  - Vamos Jogar!
+  - "O meu nome \xE9 Alfredo"
+  - Vou te acompanhar durante esta aventura
+  - Placeholder
+  - Vamos Jogar?
   pointer: 0
   style: 0
   ORIGINAL_TEXT: 
