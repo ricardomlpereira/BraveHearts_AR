@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &9171156692709895465
+--- !u!1001 &5367524087239156827
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -55,5 +55,64 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dda3d77b3cf3041c98378d60a04f4c96, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1041197601388368279}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dda3d77b3cf3041c98378d60a04f4c96, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3364627852025963003}
   m_SourcePrefab: {fileID: 100100000, guid: dda3d77b3cf3041c98378d60a04f4c96, type: 3}
+--- !u!1 &5097001010240624906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: dda3d77b3cf3041c98378d60a04f4c96, type: 3}
+  m_PrefabInstance: {fileID: 5367524087239156827}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1041197601388368279
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5097001010240624906}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3364627852025963003
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5097001010240624906}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.018014781, y: 0.018449787, z: 0.043627635}
+  m_Center: {x: -0.00034945225, y: -0.000009507405, z: 0.011833815}

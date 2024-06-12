@@ -106,6 +106,8 @@ public class MinigameControl : MonoBehaviour
             foreach(GameObject obj in colliderCollection) {
                 if(obj.name != "pensoCollider") {
                     collidersToRemove.Add(obj);
+                } else {
+                    obj.SetActive(true);
                 }
             }
         } else if(minigameLevel == 1) {
@@ -122,19 +124,16 @@ public class MinigameControl : MonoBehaviour
                 if(obj.name == "pensoAberto") {
                     obj.SetActive(true);
                     obj.transform.position = posPenso.transform.position;
-                    //obj.tag = backgroundObj;
-                    //idx++; // Porque a coleção vai ter o penso aberto e o creme
-                    //placedObjects++; // Porque a coleção vai ter o penso aberto e o creme
                     continue;
                 }
 
-                if(obj.name != "garrote" && obj.name != "garrote_arm") {
+                if(obj.name != "garrote" && obj.name != "garrote_arm" && obj.name != "desinfetante" && obj.name != "pano" && obj.name != "gotas") {
                     objectsToRemove.Add(obj);
                 }
             }
 
             foreach(GameObject obj in colliderCollection) {
-                if(obj.name != "garroteCollider") {
+                if(obj.name != "garroteCollider" && obj.name != "pensoCollider") { // collider do penso passa a ser necessário neste minijogo por causa do pano
                     collidersToRemove.Add(obj);
                 }
             }
@@ -154,10 +153,13 @@ public class MinigameControl : MonoBehaviour
             Destroy(obj);
         }
         
+        foreach(GameObject obj in objectCollection) {
+            obj.AddComponent<CollisionDetector>();
+        }
+
         /* Enable objects and colliders to be used in the minigame */
         currentObj = objectCollection[idx].gameObject;
         currentObj.SetActive(true);
-        colliderCollection[0].SetActive(true); // Se houver algum minijogo com mais do que um collider -> criar um idx para os colliders
     }
 
     private void HandleInput() {
@@ -177,8 +179,20 @@ public class MinigameControl : MonoBehaviour
             // Remover o penso da mao no minijogo do garrote -> TODO: Em vez de ser um toque no penso devia de ser arrastar o penso
             if(touch1.phase == TouchPhase.Began && currentObj.name == "pensoAberto" && isObjectSelected && minigameLevel == 1) {
                 objectCollection[idx].SetActive(false); // Desativar o penso aberto
-                objectCollection[idx - 1].SetActive(false);
+                objectCollection[idx - 1].SetActive(false); // Desativar a pomada
                 PlaceObject();
+                return;
+            }
+
+            if(touch1.phase == TouchPhase.Began && currentObj.name == "desinfetante" && isObjectSelected) {
+                objectCollection[idx].SetActive(false); // Desativar o desinfetante
+                placedObjects++;
+                idx++;
+                objectCollection[idx].SetActive(true); // Ativar as gotas
+                // Ativar o collider do penso (por causa do pano)
+                colliderCollection[0].SetActive(true);
+                objectCollection[idx + 1].SetActive(true); // Ativar o pano
+                //PlaceObject();
                 return;
             }
 
@@ -206,24 +220,50 @@ public class MinigameControl : MonoBehaviour
     }
 
     public void HandleObject() {
-        if(currentObj.name == "pomada") {
-            objectCollection[idx].SetActive(false); // Desativar a pomada
-            placedObjects++;
-            idx++;
-            
-            objectCollection[idx].SetActive(true); // Ativar o creme
-        } else if(currentObj.name == "pensoFechado") {
-            // Isto é necessário e eu não faço ideia porque
-            return;
-        } else if(currentObj.name == "pensoAberto") {
-            currentObj.transform.position = posPenso.transform.position;
-            placedObjects++;
-            audioManager.PlayAudio("progress");
-            return;
-        } else if(currentObj.name == "garrote") {
-            objectCollection[idx].SetActive(false); // Desativar o garrote
-            audioManager.PlayAudio("progress");
-            placedObjects++;
+        if(minigameLevel == 0) {
+            switch(currentObj.name) {
+                case "pomada":
+                    objectCollection[idx].SetActive(false); // Desativar a pomada
+                    placedObjects++;
+                    idx++;
+                    objectCollection[idx].SetActive(true); // Ativar o creme
+                    break;
+                case "pensoFechado":
+                    return;
+                case "pensoAberto":
+                    currentObj.transform.position = posPenso.transform.position;
+                    placedObjects++;
+                    audioManager.PlayAudio("progress");
+                    return;
+                default:
+                    break;
+            }
+        } else if (minigameLevel == 1) {
+            switch(currentObj.name) {
+                case "pensoAberto":
+                    return;
+                case "desinfetante":
+                    return;
+                case "pano":
+                    colliderCollection[0].SetActive(false);
+                    colliderCollection[1].SetActive(true);
+
+                    objectCollection[idx - 1].SetActive(false); // Desativar as gotas
+                    objectCollection[idx].SetActive(false); // Desativar o pano
+
+                    idx++;
+                    placedObjects++;
+                    currentObj = objectCollection[idx].gameObject;
+                    currentObj.SetActive(true);
+                    return;
+                case "garrote":
+                    objectCollection[idx].SetActive(false); // Desativar o garrote
+                    audioManager.PlayAudio("progress");
+                    placedObjects++;
+                    break;
+                default:
+                    break;
+            }
         }
 
         /* Place object - if is last object the complete the minigame */
@@ -276,7 +316,14 @@ public class MinigameControl : MonoBehaviour
                     minigameUIControl.DisplayMessage("VAMOS COMEÇAR POR RETIRAR O PENSO. CARREGA NELE!");
                     break;
                 case 2:
-                    minigameUIControl.DisplayMessage("BOA! VAMOS AGORA APLICAR O GARROTE. ARRASTA-O PARA O LOCAL CORRETO.");
+                    minigameUIControl.DisplayMessage("BOA! VAMOS DESINFETAR O LOCAL. CARREGA NO DESINFETANTE!");
+                    break;
+                case 3:
+                case 4:
+                    minigameUIControl.DisplayMessage("MUITO BEM! AGORA VAMOS LIMPAR O LOCAL. ARRASTA O PANO PARA LÁ!");
+                    break;
+                case 5:
+                    minigameUIControl.DisplayMessage("BOA! VAMOS AGORA APLICAR O GARROTE. ARRASTA-O PARA O INICIO DO ANTEBRAÇO!");
                     break;
                 default:
                     minigameUIControl.DisplayMessage("ERRO");
