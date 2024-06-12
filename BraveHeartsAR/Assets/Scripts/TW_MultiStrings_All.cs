@@ -61,6 +61,7 @@ public class TW_MultiStrings_All_Editor : Editor
 
 }
 #endif
+
 public class TW_MultiStrings_All : MonoBehaviour {
     private bool finished = false;
     public bool LaunchOnStart = true;
@@ -191,7 +192,7 @@ public class TW_MultiStrings_All : MonoBehaviour {
             string emptyString = new string(' ', ORIGINAL.Length - POINTER.Length);
             string TEXT = ORIGINAL.Substring(0, сharIndex);
             if (сharIndex < ORIGINAL.Length) TEXT = TEXT + POINTER + emptyString.Substring(сharIndex);
-            gameObject.GetComponent<TMP_Text>().text = TEXT;
+            gameObject.GetComponent<TMP_Text>().text = TEXT.Replace("\\n", "\n");
             time += 1;
             yield return new WaitForSeconds(0.01f);
             CharIndexPlus();
@@ -208,7 +209,7 @@ public class TW_MultiStrings_All : MonoBehaviour {
             string TEXT = ORIGINAL.Substring(0, сharIndex);
             if (сharIndex < ORIGINAL.Length) TEXT = TEXT + POINTER + emptyString.Substring(сharIndex);
             TEXT = InsertNewLine(TEXT, List);
-            gameObject.GetComponent<TMP_Text>().text = TEXT;
+            gameObject.GetComponent<TMP_Text>().text = TEXT.Replace("\\n", "\n");
             time += 1f;
             yield return new WaitForSeconds(0.01f);
             CharIndexPlus();
@@ -224,7 +225,7 @@ public class TW_MultiStrings_All : MonoBehaviour {
             string emptyString = new string(' ', ORIGINAL.Length - 1);
             string TEXT = ORIGINAL.Substring(0, сharIndex) + RandomChar(ORIGINAL, сharIndex);
             if (сharIndex < ORIGINAL.Length) TEXT = TEXT + emptyString.Substring(сharIndex);
-            gameObject.GetComponent<TMP_Text>().text = TEXT;
+            gameObject.GetComponent<TMP_Text>().text = TEXT.Replace("\\n", "\n");
             time += 1f;
             yield return new WaitForSeconds(0.01f);
             CharIndexPlus();
@@ -241,7 +242,7 @@ public class TW_MultiStrings_All : MonoBehaviour {
             string TEXT = ORIGINAL.Substring(0, сharIndex) + RandomChar(ORIGINAL, сharIndex);
             if (сharIndex < ORIGINAL.Length) TEXT = TEXT + emptyString.Substring(сharIndex);
             TEXT = InsertNewLine(TEXT, List);
-            gameObject.GetComponent<TMP_Text>().text = TEXT;
+            gameObject.GetComponent<TMP_Text>().text = TEXT.Replace("\\n", "\n");
             time += 1f;
             yield return new WaitForSeconds(0.01f);
             CharIndexPlus();
@@ -256,7 +257,7 @@ public class TW_MultiStrings_All : MonoBehaviour {
         {
             string chars = GetCharsType(Charstype);
             string randomString = new string(Enumerable.Repeat(chars, ORIGINAL.Length).Select(s => s[random.Next(s.Length)]).ToArray());
-            gameObject.GetComponent<TMP_Text>().text = ORIGINAL.Substring(0, сharIndex) + randomString.Substring(сharIndex);
+            gameObject.GetComponent<TMP_Text>().text = ORIGINAL.Substring(0, сharIndex) + randomString.Substring(сharIndex).Replace("\\n", "\n");
             time += 1f;
             yield return new WaitForSeconds(0.01f);
             CharIndexPlus();
@@ -273,7 +274,7 @@ public class TW_MultiStrings_All : MonoBehaviour {
             string randomString = new string(Enumerable.Repeat(chars, ORIGINAL.Length).Select(s => s[random.Next(s.Length)]).ToArray());
             string TEXT = ORIGINAL.Substring(0, сharIndex) + randomString.Substring(сharIndex);
             TEXT = InsertNewLine(TEXT, List);
-            gameObject.GetComponent<TMP_Text>().text = TEXT;
+            gameObject.GetComponent<TMP_Text>().text = TEXT.Replace("\\n", "\n");
             time += 1f;
             yield return new WaitForSeconds(0.01f);
             CharIndexPlus();

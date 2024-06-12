@@ -17,7 +17,6 @@ public class StartControl : MonoBehaviour
     [SerializeField] private GameObject speechToShow;
     private AudioManager audioManager;
     public static bool hasReturned;
-
     //private float distanceFromCamera = 1.0f;
     //private Vector3 speechOffset = new Vector3(0.2f, 0.2f, 0);
 
@@ -31,23 +30,24 @@ public class StartControl : MonoBehaviour
 
     void Update()
     {
-        /* Check if the object to show exists - if so centers it */
-        /*if (objectToShow != null)
+        /* Check if the object to show exists - if so centers it 
+        if (objectToShow != null)
         {
-            /* Calculate the position of the object in world space */
-            //Vector3 screenCenter = new Vector3(Screen.width / 2 - 380.0f, Screen.height / 2 - 400.0f, cam.nearClipPlane + distanceFromCamera);
-            //Vector3 objectPosition = cam.ScreenToWorldPoint(screenCenter);
+            /* Calculate the position of the object in world space 
+            Vector3 screenCenter = new Vector3(Screen.width / 2 - 380.0f, Screen.height / 2 - 400.0f, cam.nearClipPlane + distanceFromCamera);
+            Vector3 objectPosition = cam.ScreenToWorldPoint(screenCenter);
 
-            /* Set the position of the object to the calculated position */
-            //objectToShow.transform.position = objectPosition;
-            //speechToShow.transform.position = objectPosition + speechOffset;
+            /* Set the position of the object to the calculated position
+            objectToShow.transform.position = objectPosition;
+            speechToShow.transform.position = objectPosition + speechOffset;
             
     
-            /* Make the speechToShow always face the camera - originally the speech is reversed*/
-            //speechToShow.transform.LookAt(cam.transform);
+            /* Make the speechToShow always face the camera - originally the speech is reversed
+            speechToShow.transform.LookAt(cam.transform);
             //speechToShow.transform.Rotate(0, 180, 0);
 
-        //} 
+        } 
+        */
     }
 
     public void SwitchCanvas()
