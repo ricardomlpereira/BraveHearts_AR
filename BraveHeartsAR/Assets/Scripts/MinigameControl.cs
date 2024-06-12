@@ -9,10 +9,8 @@ public class MinigameControl : MonoBehaviour
     [SerializeField] private Camera ARCamera;
     [SerializeField] private GameObject posPenso;
     [SerializeField] private GameObject posGarrote;
-    [SerializeField] private GameObject posCateter;
-    //[SerializeField] private GameObject[] objectCollection;
+    [SerializeField] private GameObject posObturador;
     [SerializeField] private List<GameObject> objectCollection;
-    //[SerializeField] private GameObject[] colliderCollection;
     [SerializeField] private List<GameObject> colliderCollection;
     private GameObject currentObj;
     public static int minigameLevel; // TODO - Tal como o score deve haver uma maneira melhor de fazer isto
@@ -29,22 +27,58 @@ public class MinigameControl : MonoBehaviour
     private bool isCompleted = false;
     private int previousPlacedObjects = 0;
     private bool isFirstInteration = true;
+    private int garroteArmIdx = -1;
 
     // Start is called before the first frame update
     void Start()
     {
+        minigameLevel = 2;
         audioManager = FindObjectOfType<AudioManager>();
         minigameUIControl = FindObjectOfType<MinigameUIControl>();
         HandleCollections();
         HandleMessage();
+
+        
+        /*int aux = 0;
+        foreach(GameObject obj in objectCollection) {
+            Debug.Log("idx: " + aux + "/ obj name: " + obj.name);
+            aux++;
+        } */
     }
 
     // Update is called once per frame
     void Update()
     {   
-        // TODO: Only here until third minigame is implemented
-        if(minigameLevel == 2) {
-            minigameUIControl.NextAction();
+        Debug.Log("placed Object upd: " + placedObjects);
+
+        if(idx == garroteArmIdx) {
+            idx++;
+            placedObjects++;
+            currentObj = objectCollection[idx].gameObject;
+            currentObj.SetActive(true);
+            return;
+        }
+
+        if(currentObj.name == "obturador") {
+            /* Desativar todos os colliders menos o do catater */
+            foreach(GameObject obj in colliderCollection) {
+                if(obj.name != "cateterCollider") {
+                    obj.SetActive(false);
+                }
+            }
+        }
+
+        // TODO: Temporary, ignorar o desinfetante pq n da para detectar clicks no environment
+        if(currentObj.name == "desinfetante") {
+            objectCollection[idx].SetActive(false); // Desativar o desinfetante
+            placedObjects++;
+            idx++;
+            objectCollection[idx].SetActive(true); // Ativar as gotas
+            idx++;
+            placedObjects++;
+            objectCollection[idx].SetActive(true); // Ativar o pano
+            currentObj = objectCollection[idx].gameObject;
+            return;
         }
 
         // FIXME: meter isto como deve ser depois
@@ -95,51 +129,74 @@ public class MinigameControl : MonoBehaviour
         idx = 0;
         placedObjects = 0;
 
-        if(minigameLevel == 0) {
-            /* Minigame - Penso */
-            foreach(GameObject obj in objectCollection) {
-                if(obj.name != "pomada" && obj.name != "creme" && obj.name != "pensoFechado" && obj.name != "pensoAberto") {
-                    objectsToRemove.Add(obj);
-                }
-            }
-
-            foreach(GameObject obj in colliderCollection) {
-                if(obj.name != "pensoCollider") {
-                    collidersToRemove.Add(obj);
-                } else {
-                    obj.SetActive(true);
-                }
-            }
-        } else if(minigameLevel == 1) {
-            /* Minigame - Garrote */
-            foreach(GameObject obj in objectCollection) {
-                if(obj.name == "creme") {
-                    obj.SetActive(true);
-                    obj.tag = backgroundObj;
-                    idx++; // Porque a coleção vai ter o penso aberto e o creme
-                    placedObjects++; // Porque a coleção vai ter o penso aberto e o creme
-                    continue;
+        switch(minigameLevel) {
+            case 0:
+                /* Minigame - Penso */
+                foreach(GameObject obj in objectCollection) {
+                    if(obj.name != "pomada" && obj.name != "creme" && obj.name != "pensoFechado" && obj.name != "pensoAberto") {
+                        objectsToRemove.Add(obj);
+                    }
                 }
 
-                if(obj.name == "pensoAberto") {
-                    obj.SetActive(true);
-                    obj.transform.position = posPenso.transform.position;
-                    continue;
+                foreach(GameObject obj in colliderCollection) {
+                    if(obj.name != "handCollider") {
+                        collidersToRemove.Add(obj);
+                    } else {
+                        obj.SetActive(true);
+                    }
+                }
+                break;
+            case 1:
+                /* Minigame - Garrote */
+                foreach(GameObject obj in objectCollection) {
+                    if(obj.name == "creme") {
+                        obj.SetActive(true);
+                        obj.tag = backgroundObj;
+                        idx++; // Porque a coleção vai ter o penso aberto e o creme
+                        placedObjects++; // Porque a coleção vai ter o penso aberto e o creme
+                        continue;
+                    }
+
+                    if(obj.name == "pensoAberto") {
+                        obj.SetActive(true);
+                        obj.transform.position = posPenso.transform.position;
+                        continue;
+                    }
+
+                    if(obj.name != "garrote" && obj.name != "garrote_arm" && obj.name != "desinfetante" && obj.name != "pano" && obj.name != "gotas") {
+                        objectsToRemove.Add(obj);
+                    }
                 }
 
-                if(obj.name != "garrote" && obj.name != "garrote_arm" && obj.name != "desinfetante" && obj.name != "pano" && obj.name != "gotas") {
-                    objectsToRemove.Add(obj);
+                foreach(GameObject obj in colliderCollection) {
+                    if(obj.name != "garroteCollider" && obj.name != "handCollider") { // collider do penso passa a ser necessário neste minijogo por causa do pano
+                        collidersToRemove.Add(obj);
+                    }
                 }
-            }
+                break;
+            case 2:
+                // Minigame - Cateter
+                foreach(GameObject obj in objectCollection) {
+                    if(obj.name != "desinfetante" && obj.name != "gotas" && obj.name != "pano" && obj.name != "cateter" && obj.name != "cateter_arm" && obj.name != "obturador" && obj.name != "adesivo" && obj.name != "tala" && obj.name != "tala_arm" && obj.name != "garrote_arm") {
+                        objectsToRemove.Add(obj);
+                    }
 
-            foreach(GameObject obj in colliderCollection) {
-                if(obj.name != "garroteCollider" && obj.name != "pensoCollider") { // collider do penso passa a ser necessário neste minijogo por causa do pano
-                    collidersToRemove.Add(obj);
+                    if(obj.name == "garrote_arm") {
+                        obj.SetActive(true);
+                    }
                 }
-            }
-        } else if(minigameLevel == 2) {
-            // TODO
-            return;
+
+                foreach(GameObject obj in colliderCollection) {
+                    if(obj.name != "handCollider" && obj.name != "talaCollider" && obj.name != "cateterCollider") {
+                        collidersToRemove.Add(obj);
+                    }
+
+                    // Começamos com o collider da mao ativo e o da tala inativo
+                    if(obj.name == "handCollider") {
+                        obj.SetActive(true);
+                    }
+                }
+                break;
         }
 
         /* Remove unnecessary objects and colliders */
@@ -153,13 +210,22 @@ public class MinigameControl : MonoBehaviour
             Destroy(obj);
         }
         
-        foreach(GameObject obj in objectCollection) {
+        /*foreach(GameObject obj in objectCollection) {
             obj.AddComponent<CollisionDetector>();
-        }
+        }*/
 
-        /* Enable objects and colliders to be used in the minigame */
+        /* Enable first object to be used in the minigame */
         currentObj = objectCollection[idx].gameObject;
         currentObj.SetActive(true);
+
+        // Hack fix - get garrote arm idx para o minijogo 3
+        if(minigameLevel == 2) {
+            foreach(GameObject obj in objectCollection) {
+                if(obj.name == "garrote_arm") {
+                    garroteArmIdx = objectCollection.IndexOf(obj);
+                }
+            }
+        }
     }
 
     private void HandleInput() {
@@ -264,6 +330,86 @@ public class MinigameControl : MonoBehaviour
                 default:
                     break;
             }
+        } else if(minigameLevel == 2) {
+            switch(currentObj.name) {
+                case "desinfetante":
+                    return;
+                case "pano":
+                    objectCollection[idx - 1].SetActive(false); // Desativar as gotas
+                    objectCollection[idx].SetActive(false); // Desativar o pano
+
+                    idx++;
+                    placedObjects++;
+                    currentObj = objectCollection[idx].gameObject;
+                    currentObj.SetActive(true);
+                    return;
+                case "cateter":
+                    objectCollection[idx].SetActive(false); // Desativar o cateter
+                    idx++;
+                    placedObjects++;
+                    objectCollection[idx].gameObject.SetActive(true); // Ativar o cateter_arm
+                    idx++;
+                    placedObjects++;
+                    currentObj = objectCollection[idx].gameObject;
+                    currentObj.SetActive(true);
+
+                    objectCollection[garroteArmIdx].SetActive(false); //desativar o garrote
+
+                    return;
+                case "obturador":
+                    // TODO: BUGADO; ESTA MERDA VAI LOGO PARA O SITIO QUE É SUPOSTO PQP FODA-SE
+                    /* Ativar o collider da mao */
+                    foreach(GameObject obj in colliderCollection) {
+                        if(obj.name == "handCollider") {
+                            obj.SetActive(true);
+                        } else {
+                            obj.SetActive(false);
+                        
+                        }
+                    }
+
+                    currentObj.transform.position = posObturador.transform.position;
+                    placedObjects++;
+                    idx++;
+                    currentObj = objectCollection[idx].gameObject;
+                    currentObj.SetActive(true);
+                    return;
+                case "adesivo":
+                    currentObj.transform.position = posPenso.transform.position;
+                    // hack fix - só para n dar para mexer mais este gajo dps de ele estar no sitio certo
+                    currentObj.tag = backgroundObj;
+                    placedObjects++;
+                    idx++;
+                    audioManager.PlayAudio("progress");
+
+                    currentObj = objectCollection[idx].gameObject;
+                    currentObj.SetActive(true); // ativar a tala
+
+                    // Ativar o collider da tala
+                    foreach(GameObject obj in colliderCollection) {
+                        if(obj.name == "talaCollider") {
+                            obj.SetActive(true);
+                        } else {
+                            obj.SetActive(false);
+                        }
+                    }
+
+                    return;
+                case "tala":
+                    currentObj.SetActive(false);
+                    idx++;
+                    placedObjects++;
+                    objectCollection[idx].SetActive(true); // Ativar a tala_arm
+                    placedObjects++;
+
+                    Debug.Log("placed objects: " + placedObjects);
+                    Debug.Log("object collection count: " + objectCollection.Count);
+
+                    isLastObject();
+                    return;
+                default:
+                    return;
+            }
         }
 
         /* Place object - if is last object the complete the minigame */
@@ -329,6 +475,35 @@ public class MinigameControl : MonoBehaviour
                     minigameUIControl.DisplayMessage("ERRO");
                     break;
             }
+        } else if(minigameLevel == 2) {
+            switch(placedObjects) {
+                case 0:
+                    minigameUIControl.DisplayMessage("VAMOS COMEÇAR POR DESINFETAR O LOCAL. CARREGA NO DESINFETANTE!");
+                    break;
+                case 1:
+                case 2:
+                    minigameUIControl.DisplayMessage("MUITO BEM! AGORA VAMOS LIMPAR O LOCAL. ARRASTA O PANO PARA LÁ!");
+                    break;
+                case 3:
+                case 4:
+                    minigameUIControl.DisplayMessage("BOA! AGORA VAMOS APLICAR O CATETER. ARRASTA-O PARA O LOCAL CORRETO!");
+                    break;
+                case 5:
+                case 6:
+                    minigameUIControl.DisplayMessage("MUITO BEM! AGORA VAMOS APLICAR O OBTURADOR. ARRASTA-O PARA O LOCAL CORRETO!");
+                    break;
+                case 7:
+                    minigameUIControl.DisplayMessage("BOA! VAMOS AGORA APLICAR O ADESIVO. ARRASTA-O PARA O LOCAL CORRETO!");
+                    break;
+                case 8:
+                case 9:
+                    minigameUIControl.DisplayMessage("MUITO BEM! VAMOS AGORA APLICAR A TALA. ARRASTA-A PARA O LOCAL CORRETO!");
+                    break;
+                default:
+                    minigameUIControl.DisplayMessage("ERRO");
+                    break;
+            }
+
         }
     }
 }
