@@ -244,6 +244,7 @@ public class MinigameControl : MonoBehaviour
                 colliderCollection[0].SetActive(true);
                 objectCollection[idx + 1].SetActive(true); // Ativar o pano
                 //PlaceObject();
+                audioManager.PlayAudio("progress");
                 return;
             }
 
