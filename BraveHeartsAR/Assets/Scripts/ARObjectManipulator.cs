@@ -89,10 +89,10 @@ public class ARObjectManipulator : MonoBehaviour
 
                     float angle = Vector2.SignedAngle(touchPosDiff, currentTouchPosDiff);
 
-                    if(Mathf.Abs(angle) > rotationTolerance)
+                    /*if(Mathf.Abs(angle) > rotationTolerance)
                     {
                         ARObject.transform.rotation = Quaternion.Euler(0, ARObject.transform.rotation.eulerAngles.y - Mathf.Sign(angle) * speedRotation, 0);
-                    }
+                    }*/
 
                     touchDis = currentTouchDis;
                     touchPosDiff = currentTouchPosDiff;
