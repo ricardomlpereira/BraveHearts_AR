@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
 using System.Net.Sockets;
 using System.Linq;
+using System.Numerics;
 
 public class MainControl : MonoBehaviour
 {
@@ -77,8 +78,8 @@ public class MainControl : MonoBehaviour
 
         for (int i = idx; i < idx + 3; i++)
         {
-            GameObject newARModel1 = Instantiate(arCollection[i], Vector3.zero, Quaternion.identity);
-            GameObject newARModel2 = Instantiate(arCollection[i], Vector3.zero, Quaternion.identity);
+            GameObject newARModel1 = Instantiate(arCollection[i], UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
+            GameObject newARModel2 = Instantiate(arCollection[i], UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
 
             newARModel1.name = "marker" + markerIds[0];
             newARModel2.name = "marker" + markerIds[1];
@@ -289,15 +290,17 @@ public class MainControl : MonoBehaviour
 
             if(score == 0) {
                 // Level 1 - Butterfly
-                arModel.transform.rotation = Quaternion.Euler(-120f, -140f, -60f);
+                arModel.transform.rotation = UnityEngine.Quaternion.Euler(-180f, -140f, -90f);
             } else if(score == 1) {
                 // Level 2 - Koala
-                //arModel.transform.rotation = Quaternion.Euler(-120f, -140f, -60f)
-                Camera cam = Camera.main;
-                transform.LookAt(cam.transform);
+                arModel.transform.rotation = UnityEngine.Quaternion.Euler(0f, -140f, -90f);
             } else if(score == 2) {
                 // Level 3 - Bee
             }
+
+            UnityEngine.Vector3 camPos = Camera.main.transform.position;
+            arModel.transform.LookAt(camPos);
+
 
             modelState[trackedImage.referenceImage.name] = true;
         }
