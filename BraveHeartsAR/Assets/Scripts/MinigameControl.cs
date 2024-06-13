@@ -32,7 +32,7 @@ public class MinigameControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        minigameLevel = 2;
+        //minigameLevel = 2;
         audioManager = FindObjectOfType<AudioManager>();
         minigameUIControl = FindObjectOfType<MinigameUIControl>();
         HandleCollections();
@@ -58,7 +58,7 @@ public class MinigameControl : MonoBehaviour
         }
 
         // TODO: Temporary, ignorar o desinfetante pq n da para detectar clicks no environment
-        if(currentObj.name == "desinfetante") {
+        /*if(currentObj.name == "desinfetante") {
             objectCollection[idx].SetActive(false); // Desativar o desinfetante
             placedObjects++;
             idx++;
@@ -68,7 +68,7 @@ public class MinigameControl : MonoBehaviour
             objectCollection[idx].SetActive(true); // Ativar o pano
             currentObj = objectCollection[idx].gameObject;
             return;
-        } 
+        } */
 
         // FIXME: meter isto como deve ser depois
         if(isFirstInteration) {
