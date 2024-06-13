@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 831655754}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15105,6 +15105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c693162fcf421f47be16fa63482559f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextButton: {fileID: 1319122691}
   bushSprite_1: {fileID: 1022291104}
   bushSprite_2: {fileID: 826994299}
   bushSprite_3: {fileID: 793653422}

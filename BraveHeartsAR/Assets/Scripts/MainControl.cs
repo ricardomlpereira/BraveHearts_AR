@@ -20,6 +20,7 @@ public class MainControl : MonoBehaviour
         public int id2;
     }
 
+    [SerializeField] private GameObject nextButton;
     [SerializeField] private ParticleSystem matchParticleSystem;
     [SerializeField] private ARTrackedImageManager arTrackedImageManager;
     [SerializeField] private GameObject[] arCollection;
@@ -147,6 +148,11 @@ public class MainControl : MonoBehaviour
             id2 = id2
         };
 
+        if(nextButton.activeSelf == true && numActiveModels == 1){ //Encontrou o primeiro model de todos - Desativa o tutorial
+                MainUIControl.DisplayMessage("ENCONTRA OS PARES!");
+                nextButton.SetActive(false);
+        }
+
         if ((previousState.numActiveModels == 0 && currentState.numActiveModels == 1) || (previousState.numActiveModels == 1 && currentState.numActiveModels == 0) || (previousState.Equals(currentState)))
         {
             return;
@@ -154,6 +160,7 @@ public class MainControl : MonoBehaviour
 
         previousState = currentState;
         // Changes End
+        Debug.Log("Num active models: " + numActiveModels);
 
         if (numActiveModels <= 1)
         {
