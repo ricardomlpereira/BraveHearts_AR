@@ -12,10 +12,6 @@ public class StartControl : MonoBehaviour
     [SerializeField] private GameObject speechBubbleBtnNext;
     [SerializeField] private GameObject speechBubbleBtnPlay;
 
-    // 3D model and speech bubble
-    [SerializeField] private GameObject objectToShow;
-    [SerializeField] private GameObject speechToShow;
-
     private AudioManager audioManager;
     public static bool hasReturned;
 
@@ -26,7 +22,7 @@ public class StartControl : MonoBehaviour
 
     void Update()
     {
-        PlaceObjectInCenterAndLookAtCamera();
+        
     }
 
     public void SwitchCanvas()
@@ -75,26 +71,4 @@ public class StartControl : MonoBehaviour
         Application.Quit();
     }
 
-    private void PlaceObjectInCenterAndLookAtCamera()
-    {
-        if (objectToShow != null)
-        {
-            Camera mainCamera = Camera.main;
-            if (mainCamera != null)
-            {
-                // Calculate the center position of the screen in world coordinates
-                Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, mainCamera.nearClipPlane + 2.0f); // 2.0f is an example distance from the camera
-                Vector3 worldPosition = mainCamera.ScreenToWorldPoint(screenCenter);
-
-                // Set the object's position to the calculated world position
-                objectToShow.transform.position = worldPosition;
-
-                // Make the object look at the camera
-                objectToShow.transform.LookAt(mainCamera.transform);
-
-                // Apply an additional rotation to the right (e.g., 10 degrees)
-                objectToShow.transform.Rotate(0, -40, 0); // Rotate 10 degrees around the Y axis to the right
-            }
-        }
-    }
 }
