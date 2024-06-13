@@ -49,23 +49,12 @@ public class MinigameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        Debug.Log("placed Object upd: " + placedObjects);
-
         if(idx == garroteArmIdx) {
             idx++;
             placedObjects++;
             currentObj = objectCollection[idx].gameObject;
             currentObj.SetActive(true);
             return;
-        }
-
-        if(currentObj.name == "obturador") {
-            /* Desativar todos os colliders menos o do catater */
-            foreach(GameObject obj in colliderCollection) {
-                if(obj.name != "cateterCollider") {
-                    obj.SetActive(false);
-                }
-            }
         }
 
         // TODO: Temporary, ignorar o desinfetante pq n da para detectar clicks no environment
@@ -79,7 +68,7 @@ public class MinigameControl : MonoBehaviour
             objectCollection[idx].SetActive(true); // Ativar o pano
             currentObj = objectCollection[idx].gameObject;
             return;
-        }
+        } 
 
         // FIXME: meter isto como deve ser depois
         if(isFirstInteration) {
@@ -209,10 +198,6 @@ public class MinigameControl : MonoBehaviour
             colliderCollection.Remove(obj);
             Destroy(obj);
         }
-        
-        /*foreach(GameObject obj in objectCollection) {
-            obj.AddComponent<CollisionDetector>();
-        }*/
 
         /* Enable first object to be used in the minigame */
         currentObj = objectCollection[idx].gameObject;
@@ -316,12 +301,7 @@ public class MinigameControl : MonoBehaviour
 
                     objectCollection[idx - 1].SetActive(false); // Desativar as gotas
                     objectCollection[idx].SetActive(false); // Desativar o pano
-
-                    idx++;
-                    placedObjects++;
-                    currentObj = objectCollection[idx].gameObject;
-                    currentObj.SetActive(true);
-                    return;
+                    break;
                 case "garrote":
                     objectCollection[idx].SetActive(false); // Desativar o garrote
                     audioManager.PlayAudio("progress");
@@ -337,12 +317,7 @@ public class MinigameControl : MonoBehaviour
                 case "pano":
                     objectCollection[idx - 1].SetActive(false); // Desativar as gotas
                     objectCollection[idx].SetActive(false); // Desativar o pano
-
-                    idx++;
-                    placedObjects++;
-                    currentObj = objectCollection[idx].gameObject;
-                    currentObj.SetActive(true);
-                    return;
+                    break;
                 case "cateter":
                     objectCollection[idx].SetActive(false); // Desativar o cateter
                     idx++;
@@ -350,10 +325,18 @@ public class MinigameControl : MonoBehaviour
                     objectCollection[idx].gameObject.SetActive(true); // Ativar o cateter_arm
                     idx++;
                     placedObjects++;
+
+                    objectCollection[garroteArmIdx].SetActive(false); //desativar o garrote_arm
+
+                    /* Desativar todos os colliders menos o do catater */
+                    foreach(GameObject obj in colliderCollection) {
+                        if(obj.name != "cateterCollider") {
+                            obj.SetActive(false);
+                        }
+                    }
+
                     currentObj = objectCollection[idx].gameObject;
                     currentObj.SetActive(true);
-
-                    objectCollection[garroteArmIdx].SetActive(false); //desativar o garrote
 
                     return;
                 case "obturador":
@@ -369,21 +352,12 @@ public class MinigameControl : MonoBehaviour
                     }
 
                     currentObj.transform.position = posObturador.transform.position;
-                    placedObjects++;
-                    idx++;
-                    currentObj = objectCollection[idx].gameObject;
-                    currentObj.SetActive(true);
-                    return;
+                    currentObj.tag = backgroundObj;
+                    break;
                 case "adesivo":
                     currentObj.transform.position = posPenso.transform.position;
-                    // hack fix - só para n dar para mexer mais este gajo dps de ele estar no sitio certo
                     currentObj.tag = backgroundObj;
-                    placedObjects++;
-                    idx++;
-                    audioManager.PlayAudio("progress");
-
-                    currentObj = objectCollection[idx].gameObject;
-                    currentObj.SetActive(true); // ativar a tala
+                    PlaceObject();
 
                     // Ativar o collider da tala
                     foreach(GameObject obj in colliderCollection) {
