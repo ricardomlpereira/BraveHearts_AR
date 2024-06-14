@@ -126,13 +126,13 @@ TextureImporter:
       name: TutorialSpeechBubble_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 25
-        width: 509
-        height: 185
+        x: 133
+        y: 0
+        width: 389
+        height: 256
       alignment: 9
-      pivot: {x: 0.7857275, y: 0.018632445}
-      border: {x: 25, y: 85, z: 119, w: 43}
+      pivot: {x: 0.11645541, y: 0.11601598}
+      border: {x: 124, y: 91, z: 67, w: 68}
       outline: []
       physicsShape: []
       tessellationDetail: 0
