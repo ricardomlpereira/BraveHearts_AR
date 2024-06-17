@@ -393,8 +393,6 @@ MonoBehaviour:
   speechBubbleText: {fileID: 668718710}
   speechBubbleBtnNext: {fileID: 627006257}
   speechBubbleBtnPlay: {fileID: 1715969515}
-  objectToShow: {fileID: 0}
-  speechToShow: {fileID: 1289422926}
 --- !u!1 &252070615
 GameObject:
   m_ObjectHideFlags: 0

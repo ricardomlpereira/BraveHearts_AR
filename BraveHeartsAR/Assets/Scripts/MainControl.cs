@@ -149,7 +149,7 @@ public class MainControl : MonoBehaviour
         };
 
         if(nextButton.activeSelf == true && numActiveModels == 1){ //Encontrou o primeiro model de todos - Desativa o tutorial
-                MainUIControl.DisplayMessage("ENCONTRA OS PARES!");
+                MainUIControl.DisplayMessage("Encontra os pares!");
                 nextButton.SetActive(false);
         }
 
@@ -164,7 +164,7 @@ public class MainControl : MonoBehaviour
 
         if (numActiveModels <= 1)
         {
-            MainUIControl.DisplayMessage("ENCONTRA OS PARES!");
+            MainUIControl.DisplayMessage("Encontra os pares!");
             playedFailAudio = false;
             return;
         }
@@ -177,7 +177,7 @@ public class MainControl : MonoBehaviour
                 model.SetActive(false);
                 //modelState[model.name] = false;
             }
-            MainUIControl.DisplayMessage("TENHA APENAS 2 CARTAS PARA CIMA!");
+            MainUIControl.DisplayMessage("Tenha apenas duas cartas viradas para cima!");
             
             playedFailAudio = false;
 
@@ -195,21 +195,21 @@ public class MainControl : MonoBehaviour
         string animal = "";
         if (score == 0)
         {
-            animal = "BORBOLETA";
+            animal = "Borboleta";
         }
         else if (score == 1)
         {
-            animal = "COALA";
+            animal = "Coala";
         }
         else if (score == 2)
         {
-            animal = "ABELHA";
+            animal = "Abelha";
         }
 
         int matchIdx = GetMatchIdx(id1, id2);
         if (matchIdx == -1)
         {
-            MainUIControl.DisplayMessage("NÃO É UM PAR - TENTA OUTRA VEZ!");
+            MainUIControl.DisplayMessage("Não é um par!\nTenta outra vez");
             if (!playedFailAudio)
             {
                 playedFailAudio = true;
@@ -220,7 +220,7 @@ public class MainControl : MonoBehaviour
         }
         else if (matchIdx == 0)
         {
-            MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
+            MainUIControl.DisplayMessage("Encontraste um par - " + animal);
             playedFailAudio = false;
             
             if(!foundFirstMatch) {
@@ -232,7 +232,7 @@ public class MainControl : MonoBehaviour
         }
         else if (matchIdx == 1)
         {
-            MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
+            MainUIControl.DisplayMessage("Encontraste um par - " + animal);
             playedFailAudio = false;
             
             if(!foundSecondMatch) {
@@ -244,7 +244,7 @@ public class MainControl : MonoBehaviour
         }
         else if (matchIdx == 2)
         {
-            MainUIControl.DisplayMessage("ENCONTRASTE UM PAR - " + animal);
+            MainUIControl.DisplayMessage("Encontraste um par - " + animal);
             playedFailAudio = false;
             
             if(!foundThirdMatch) {
@@ -294,7 +294,7 @@ public class MainControl : MonoBehaviour
             GameObject arModel = arModels[trackedImage.referenceImage.name];
             arModel.transform.position = trackedImage.transform.position;
             arModel.SetActive(true);
-
+/*
             if(score == 0) {
                 // Level 1 - Butterfly
                 arModel.transform.rotation = UnityEngine.Quaternion.Euler(-180f, -140f, -90f);
@@ -308,7 +308,7 @@ public class MainControl : MonoBehaviour
             UnityEngine.Vector3 camPos = Camera.main.transform.position;
             arModel.transform.LookAt(camPos);
 
-
+*/
             modelState[trackedImage.referenceImage.name] = true;
         }
         else
