@@ -4,41 +4,57 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARFoundation;
 using TMPro;
+using Unity.VisualScripting;
 
 public class EndControl : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI mainText;
-    [SerializeField]
-    private GameObject restartBtn;
-    [SerializeField]
-    private GameObject quitBtn;
+    [SerializeField] private TextMeshProUGUI infoText;
+    [SerializeField] private TextMeshProUGUI sbText;
+    [SerializeField] private GameObject sbBtnNext;
+    [SerializeField] private GameObject sbBtnRestart;
+    [SerializeField] private GameObject quitBtn;
+    [SerializeField] private GameObject buddy;
+    private AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioManager = FindObjectOfType<AudioManager>();
+
+        Animator anim = buddy.GetComponent<Animator>();
+        anim.SetBool("hasFoundAllEggs", true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void ChangeSBBtn()
+    {
+        if (sbText.text == "Placeholder") // Change to the last string before "Let's play?"
+        {
+            sbBtnNext.SetActive(false);
+            audioManager.PlayAudio("btn");
+            sbBtnRestart.SetActive(true);
+        }
     }
 
     public void RestartGame() {
+        audioManager.PlayAudio("btn");
         StartCoroutine(RestartGameCoroutine());
     }
 
     IEnumerator RestartGameCoroutine()
     {
-        mainText.text = "A RECOMEÇAR O JOGO...";
+        infoText.text = "A RECOMEÇAR O JOGO...";
 
         // Wait for 3 seconds
         yield return new WaitForSeconds(3f);
 
         // Restart Game
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Start");
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();
 
@@ -59,7 +75,7 @@ public class EndControl : MonoBehaviour
 
     IEnumerator QuitGameCoroutine()
     {
-        mainText.text = "OBRIGADO POR JOGARES!";
+        infoText.text = "OBRIGADO POR JOGARES!";
 
         yield return new WaitForSeconds(3f);
 
