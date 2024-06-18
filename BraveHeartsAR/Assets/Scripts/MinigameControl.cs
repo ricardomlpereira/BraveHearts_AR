@@ -20,7 +20,7 @@ public class MinigameControl : MonoBehaviour
     private string tagObjects = "Object";
     private float screenFactor = 0.0001f;
     private float speedMovement = 4.0f;
-    private int placedObjects;
+    public static int placedObjects;
     private string backgroundObj = "BackgroundObject";
     private MinigameUIControl minigameUIControl;
     private AudioManager audioManager;
@@ -405,7 +405,7 @@ public class MinigameControl : MonoBehaviour
 
     private bool isLastObject() {
         if(placedObjects >= objectCollection.Count) {
-            minigameUIControl.DisplayMessage("BOA! COMPLETASTE O MINIJOGO!");
+            minigameUIControl.DisplayMessage("Boa! completaste o mini-jogo!\n Vamos encontrar o ovo!");
             minigameUIControl.CompleteMinigame();
             isCompleted = true;
             return true;
