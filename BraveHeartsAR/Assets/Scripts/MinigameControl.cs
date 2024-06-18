@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Numerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -28,6 +27,7 @@ public class MinigameControl : MonoBehaviour
     private int previousPlacedObjects = 0;
     private bool isFirstInteration = true;
     private int garroteArmIdx = -1;
+    private int garroteTaps = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,11 @@ public class MinigameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        Debug.Log("teste: " + placedObjects);
+        // hack fix - trocar a tag do garrote_arm para "Object" para ser possível detetar toques
+        if(minigameLevel == 1 && idx == garroteArmIdx) {
+            objectCollection[idx].tag = tagObjects;
+        }
+
         if(idx == garroteArmIdx) {
             idx++;
             placedObjects++;
@@ -183,12 +187,10 @@ public class MinigameControl : MonoBehaviour
         currentObj = objectCollection[idx].gameObject;
         currentObj.SetActive(true);
 
-        // Hack fix - get garrote arm idx para o minijogo 3
-        if(minigameLevel == 2) {
-            foreach(GameObject obj in objectCollection) {
-                if(obj.name == "garrote_arm") {
-                    garroteArmIdx = objectCollection.IndexOf(obj);
-                }
+        // Hack fix - get garrote arm idx
+        foreach(GameObject obj in objectCollection) {
+            if(obj.name == "garrote_arm") {
+                garroteArmIdx = objectCollection.IndexOf(obj);
             }
         }
     }
@@ -199,6 +201,21 @@ public class MinigameControl : MonoBehaviour
             Touch touch1 = Input.GetTouch(0);
             initialTouchPos = touch1.position;
             isObjectSelected = CheckTouchOnObject(initialTouchPos);
+
+            if(minigameLevel == 1 && idx == garroteArmIdx && garroteTaps <= 3) {
+                if(touch1.phase == TouchPhase.Began && isObjectSelected) {
+                    Vector3 newScale = new Vector3(5f, 5f, 5f);
+                    objectCollection[idx].gameObject.transform.localScale -= newScale;
+                    garroteTaps++;
+                }
+
+                if(garroteTaps == 3) {
+                    objectCollection[idx].gameObject.tag = backgroundObj;
+                    PlaceObject();
+                }
+
+                return;
+            }
 
             /* Transition from the closed bandaid to the open bandaid (ready to be applied) */ 
             if(touch1.phase == TouchPhase.Began && currentObj.name == "pensoFechado" && isObjectSelected) {
@@ -223,7 +240,6 @@ public class MinigameControl : MonoBehaviour
                 // Ativar o collider do penso (por causa do pano)
                 colliderCollection[0].SetActive(true);
                 objectCollection[idx + 1].SetActive(true); // Ativar o pano
-                //PlaceObject();
                 audioManager.PlayAudio("progress");
                 return;
             }
@@ -237,14 +253,14 @@ public class MinigameControl : MonoBehaviour
             /* Moves the object selected by the player in 2D (x and y dimensions) */
             if(touch1.phase == TouchPhase.Moved && isObjectSelected)
             {
-                UnityEngine.Vector2 diffPos = (touch1.position - initialTouchPos) * screenFactor;
-                UnityEngine.Vector3 worldDiffPos = new UnityEngine.Vector3(diffPos.x, diffPos.y, 0);
+                Vector2 diffPos = (touch1.position - initialTouchPos) * screenFactor;
+                Vector3 worldDiffPos = new Vector3(diffPos.x, diffPos.y, 0);
 
                 // Convert screen position to world position
-                UnityEngine.Vector3 screenToWorldPoint = ARCamera.ScreenToWorldPoint(new UnityEngine.Vector3(touch1.position.x, touch1.position.y, ARCamera.WorldToScreenPoint(currentObj.transform.position).z));
-                UnityEngine.Vector3 worldPosition = screenToWorldPoint + worldDiffPos * speedMovement;
+                Vector3 screenToWorldPoint = ARCamera.ScreenToWorldPoint(new Vector3(touch1.position.x, touch1.position.y, ARCamera.WorldToScreenPoint(currentObj.transform.position).z));
+                Vector3 worldPosition = screenToWorldPoint + worldDiffPos * speedMovement;
 
-                currentObj.transform.position = new UnityEngine.Vector3(worldPosition.x, worldPosition.y, worldPosition.z);
+                currentObj.transform.position = new Vector3(worldPosition.x, worldPosition.y, worldPosition.z);
 
                 initialTouchPos = touch1.position;
             }
@@ -285,9 +301,11 @@ public class MinigameControl : MonoBehaviour
                     break;
                 case "garrote":
                     objectCollection[idx].SetActive(false); // Desativar o garrote
+                    idx++;
+                    objectCollection[idx].SetActive(true); // Ativar o garrote_arm
                     audioManager.PlayAudio("progress");
-                    placedObjects++;
-                    break;
+                    //placedObjects++;
+                    return;
                 default:
                     break;
             }
@@ -321,7 +339,7 @@ public class MinigameControl : MonoBehaviour
 
                     return;
                 case "obturador":
-                    // TODO: BUGADO; ESTA MERDA VAI LOGO PARA O SITIO QUE É SUPOSTO PQP FODA-SE
+                    // TODO: bugado, isto vai logo para o sitio suposto
                     /* Ativar o collider da mao */
                     foreach(GameObject obj in colliderCollection) {
                         if(obj.name == "handCollider") {
@@ -357,9 +375,6 @@ public class MinigameControl : MonoBehaviour
                     objectCollection[idx].SetActive(true); // Ativar a tala_arm
                     placedObjects++;
 
-                    Debug.Log("placed objects: " + placedObjects);
-                    Debug.Log("object collection count: " + objectCollection.Count);
-
                     isLastObject();
                     return;
                 default:
@@ -388,6 +403,9 @@ public class MinigameControl : MonoBehaviour
             minigameUIControl.DisplayMessage("Boa! completaste o mini-jogo!\n Vamos encontrar o ovo!");
             minigameUIControl.CompleteMinigame();
             isCompleted = true;
+            if(minigameLevel == 1) {
+                objectCollection[garroteArmIdx].tag = backgroundObj;
+            }
             return true;
         }
 

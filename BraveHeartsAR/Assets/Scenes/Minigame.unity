@@ -3923,17 +3923,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4641590996203378194, guid: 794be06929238452b8e5395720ef440f, type: 3}
+      propertyPath: m_TagString
+      value: BackgroundObject
+      objectReference: {fileID: 0}
     - target: {fileID: 5413870768292023464, guid: 794be06929238452b8e5395720ef440f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 70
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 5413870768292023464, guid: 794be06929238452b8e5395720ef440f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 70
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 5413870768292023464, guid: 794be06929238452b8e5395720ef440f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 70
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 5413870768292023464, guid: 794be06929238452b8e5395720ef440f, type: 3}
       propertyPath: m_LocalPosition.x
