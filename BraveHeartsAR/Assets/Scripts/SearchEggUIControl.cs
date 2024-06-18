@@ -35,6 +35,7 @@ public class SearchEggUIControl : MonoBehaviour
         MainControl.foundThirdMatch = false;
 
         scoreText.text = MainControl.score + "/3";
+        MinigameControl.placedObjects = 0;
 
         if(MainControl.score == 3) {
             StartCoroutine(EndGameCoroutine());
