@@ -32,23 +32,16 @@ public class MinigameControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //minigameLevel = 2;
         audioManager = FindObjectOfType<AudioManager>();
         minigameUIControl = FindObjectOfType<MinigameUIControl>();
         HandleCollections();
         HandleMessage();
-
-        
-        /*int aux = 0;
-        foreach(GameObject obj in objectCollection) {
-            Debug.Log("idx: " + aux + "/ obj name: " + obj.name);
-            aux++;
-        } */
     }
 
     // Update is called once per frame
     void Update()
     {   
+        Debug.Log("teste: " + placedObjects);
         if(idx == garroteArmIdx) {
             idx++;
             placedObjects++;
@@ -56,19 +49,6 @@ public class MinigameControl : MonoBehaviour
             currentObj.SetActive(true);
             return;
         }
-
-        // TODO: Temporary, ignorar o desinfetante pq n da para detectar clicks no environment
-        /*if(currentObj.name == "desinfetante") {
-            objectCollection[idx].SetActive(false); // Desativar o desinfetante
-            placedObjects++;
-            idx++;
-            objectCollection[idx].SetActive(true); // Ativar as gotas
-            idx++;
-            placedObjects++;
-            objectCollection[idx].SetActive(true); // Ativar o pano
-            currentObj = objectCollection[idx].gameObject;
-            return;
-        } */
 
         // FIXME: meter isto como deve ser depois
         if(isFirstInteration) {
@@ -419,63 +399,63 @@ public class MinigameControl : MonoBehaviour
         if(minigameLevel == 0) {
             switch (placedObjects){
                 case 0:
-                    minigameUIControl.DisplayMessage("VAMOS COMEÇAR POR APLICAR A POMADA. ARRASTA ESTA PARA O LOCAL CORRETO.");
+                    minigameUIControl.DisplayMessage("Vamos começar por aplicar a pomada. Arrasta esta para o local correto.");
                     break;
                 case 2:
-                    minigameUIControl.DisplayMessage("BOA! AGORA, VAMOS ABRIR O PENSO. CARREGA NELE!");
+                    minigameUIControl.DisplayMessage("Boa! Agora, vamos abrir o penso. Carrega nele!");
                     break;
                 case 3:
-                    minigameUIControl.DisplayMessage("MUITO BEM! PARA APLICAR O PENSO ARRASTA-O PARA CIMA DA POMADA!");
+                    minigameUIControl.DisplayMessage("Muito bem! Para aplicar o penso, arrasta-o para cima da pomada!");
                     break;
                 default:
-                    minigameUIControl.DisplayMessage("ERRO");
+                    minigameUIControl.DisplayMessage("Erro");
                     break;
             }
         } else if(minigameLevel == 1) {
             switch(placedObjects) {
                 case 1:
-                    minigameUIControl.DisplayMessage("VAMOS COMEÇAR POR RETIRAR O PENSO. CARREGA NELE!");
+                    minigameUIControl.DisplayMessage("Vamos começar por retirar o penso. Carrega nele!");
                     break;
                 case 2:
-                    minigameUIControl.DisplayMessage("BOA! VAMOS DESINFETAR O LOCAL. CARREGA NO DESINFETANTE!");
+                    minigameUIControl.DisplayMessage("Boa! Vamos desinfetar o local. Carrega no desinfetante!");
                     break;
                 case 3:
                 case 4:
-                    minigameUIControl.DisplayMessage("MUITO BEM! AGORA VAMOS LIMPAR O LOCAL. ARRASTA O PANO PARA LÁ!");
+                    minigameUIControl.DisplayMessage("Muito bem! Agora vamos desinfetar o local. Arrasta o pano para lá!");
                     break;
                 case 5:
-                    minigameUIControl.DisplayMessage("BOA! VAMOS AGORA APLICAR O GARROTE. ARRASTA-O PARA O INICIO DO ANTEBRAÇO!");
+                    minigameUIControl.DisplayMessage("Boa! Vamos agora aplicar o garrote. Arrasta-o para o inicio do antebraço!");
                     break;
                 default:
-                    minigameUIControl.DisplayMessage("ERRO");
+                    minigameUIControl.DisplayMessage("Erro");
                     break;
             }
         } else if(minigameLevel == 2) {
             switch(placedObjects) {
                 case 0:
-                    minigameUIControl.DisplayMessage("VAMOS COMEÇAR POR DESINFETAR O LOCAL. CARREGA NO DESINFETANTE!");
+                    minigameUIControl.DisplayMessage("Vamos começar por desinfetar o local. Carrega no desinfetante!");
                     break;
                 case 1:
                 case 2:
-                    minigameUIControl.DisplayMessage("MUITO BEM! AGORA VAMOS LIMPAR O LOCAL. ARRASTA O PANO PARA LÁ!");
+                    minigameUIControl.DisplayMessage("Muito bem! Agora vamos limpar o local. Arrasta o pano para lá!");
                     break;
                 case 3:
                 case 4:
-                    minigameUIControl.DisplayMessage("BOA! AGORA VAMOS APLICAR O CATETER. ARRASTA-O PARA O LOCAL CORRETO!");
+                    minigameUIControl.DisplayMessage("Boa! Agora vamos aplicar o cateter. Arrasta-o para o local correto!");
                     break;
                 case 5:
                 case 6:
-                    minigameUIControl.DisplayMessage("MUITO BEM! AGORA VAMOS APLICAR O OBTURADOR. ARRASTA-O PARA O LOCAL CORRETO!");
+                    minigameUIControl.DisplayMessage("Muito bem! Agora vamos aplicar o obturador. Arrasta-o para o local correto!");
                     break;
                 case 7:
-                    minigameUIControl.DisplayMessage("BOA! VAMOS AGORA APLICAR O ADESIVO. ARRASTA-O PARA O LOCAL CORRETO!");
+                    minigameUIControl.DisplayMessage("Boa! Vamos agora aplicar o adesivo. Arrasta-o para o cateter!");
                     break;
                 case 8:
                 case 9:
-                    minigameUIControl.DisplayMessage("MUITO BEM! VAMOS AGORA APLICAR A TALA. ARRASTA-A PARA O LOCAL CORRETO!");
+                    minigameUIControl.DisplayMessage("Muito bem! Vamos agora colocar a tala. Arrasta-a para o braço!");
                     break;
                 default:
-                    minigameUIControl.DisplayMessage("ERRO");
+                    minigameUIControl.DisplayMessage("Erro");
                     break;
             }
 
