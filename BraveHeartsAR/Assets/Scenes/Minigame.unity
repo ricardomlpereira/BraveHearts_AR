@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1064859981}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1148,6 +1148,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5605938921233238111, guid: 3adbdf906df2541c3a8972920717dad8, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6254576083908913546, guid: 3adbdf906df2541c3a8972920717dad8, type: 3}
       propertyPath: m_Name
       value: obturador
@@ -1399,6 +1403,10 @@ PrefabInstance:
     - target: {fileID: 5204268066183246005, guid: 6e86bbbe1c46949d4a1ac8cdc0a953bd, type: 3}
       propertyPath: m_TagString
       value: BackgroundObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 5997029213032239456, guid: 6e86bbbe1c46949d4a1ac8cdc0a953bd, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8085526439997468592, guid: 6e86bbbe1c46949d4a1ac8cdc0a953bd, type: 3}
       propertyPath: m_IsActive
@@ -2345,6 +2353,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1992861582}
     m_Modifications:
+    - target: {fileID: 5031957217481476553, guid: 3f2f12b11e22543ce9e19b2c0ec9a8b5, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6169428675074568870, guid: 3f2f12b11e22543ce9e19b2c0ec9a8b5, type: 3}
       propertyPath: m_LocalScale.x
       value: 20
@@ -2916,6 +2928,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Object
       objectReference: {fileID: 0}
+    - target: {fileID: 6305142542480662853, guid: d599e53d74abb4021ae93fbf361d8a8a, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3006,6 +3022,10 @@ PrefabInstance:
     - target: {fileID: 3410529399460270116, guid: acee7e1f8c8f344f196c96dca6c56bf7, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548511069236423499, guid: acee7e1f8c8f344f196c96dca6c56bf7, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3805,6 +3825,10 @@ PrefabInstance:
     - target: {fileID: 3394575511388395290, guid: ea5120fb8fdaf40dbb0062a5f34690bc, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562384662543232117, guid: ea5120fb8fdaf40dbb0062a5f34690bc, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
