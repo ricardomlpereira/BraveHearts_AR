@@ -42,9 +42,9 @@ public class MinigameControl : MonoBehaviour
     void Update()
     {   
         // hack fix - trocar a tag do garrote_arm para "Object" para ser possível detetar toques
-        if(minigameLevel == 1 && idx == garroteArmIdx) {
+        /*if(minigameLevel == 1 && idx == garroteArmIdx) {
             objectCollection[idx].tag = tagObjects;
-        }
+        } */
 
         if(idx == garroteArmIdx) {
             idx++;
@@ -202,7 +202,8 @@ public class MinigameControl : MonoBehaviour
             initialTouchPos = touch1.position;
             isObjectSelected = CheckTouchOnObject(initialTouchPos);
 
-            if(minigameLevel == 1 && idx == garroteArmIdx && garroteTaps <= 3) {
+            if(minigameLevel == 1 && objectCollection[garroteArmIdx].activeSelf && garroteTaps <= 3) {
+                objectCollection[garroteArmIdx].tag = tagObjects;
                 if(touch1.phase == TouchPhase.Began && isObjectSelected) {
                     Vector3 newScale = new Vector3(5f, 5f, 5f);
                     objectCollection[idx].gameObject.transform.localScale -= newScale;
@@ -443,6 +444,9 @@ public class MinigameControl : MonoBehaviour
                     break;
                 case 5:
                     minigameUIControl.DisplayMessage("Boa! Vamos agora aplicar o garrote. Arrasta-o para o inicio do antebraço!");
+                    break;
+                case 6:
+                    minigameUIControl.DisplayMessage("Muito bem! Agora vai carrega no garrote para o apertar!");
                     break;
                 default:
                     minigameUIControl.DisplayMessage("Erro");
