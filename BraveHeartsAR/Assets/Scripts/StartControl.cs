@@ -11,7 +11,6 @@ public class StartControl : MonoBehaviour
     [SerializeField] private TextMeshProUGUI speechBubbleText;
     [SerializeField] private GameObject speechBubbleBtnNext;
     [SerializeField] private GameObject speechBubbleBtnPlay;
-
     private AudioManager audioManager;
     public static bool hasReturned;
 
