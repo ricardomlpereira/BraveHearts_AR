@@ -41,12 +41,7 @@ public class MinigameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        // hack fix - trocar a tag do garrote_arm para "Object" para ser possível detetar toques
-        /*if(minigameLevel == 1 && idx == garroteArmIdx) {
-            objectCollection[idx].tag = tagObjects;
-        } */
-
-        if(idx == garroteArmIdx) {
+        if(minigameLevel == 2 && idx == garroteArmIdx) {
             idx++;
             placedObjects++;
             currentObj = objectCollection[idx].gameObject;
@@ -188,9 +183,11 @@ public class MinigameControl : MonoBehaviour
         currentObj.SetActive(true);
 
         // Hack fix - get garrote arm idx
-        foreach(GameObject obj in objectCollection) {
-            if(obj.name == "garrote_arm") {
-                garroteArmIdx = objectCollection.IndexOf(obj);
+        if(minigameLevel == 1 || minigameLevel == 2) {
+            foreach(GameObject obj in objectCollection) {
+                if(obj.name == "garrote_arm") {
+                    garroteArmIdx = objectCollection.IndexOf(obj);
+                }
             }
         }
     }
@@ -202,7 +199,8 @@ public class MinigameControl : MonoBehaviour
             initialTouchPos = touch1.position;
             isObjectSelected = CheckTouchOnObject(initialTouchPos);
 
-            if(minigameLevel == 1 && objectCollection[garroteArmIdx].activeSelf && garroteTaps <= 3) {
+            // Tap the garrote to tighten it
+            if(minigameLevel == 1 && objectCollection[garroteArmIdx].gameObject.activeSelf && garroteTaps <= 3) {
                 objectCollection[garroteArmIdx].tag = tagObjects;
                 if(touch1.phase == TouchPhase.Began && isObjectSelected) {
                     Vector3 newScale = new Vector3(5f, 5f, 5f);
@@ -212,6 +210,7 @@ public class MinigameControl : MonoBehaviour
 
                 if(garroteTaps == 3) {
                     objectCollection[idx].gameObject.tag = backgroundObj;
+                    placedObjects++;
                     PlaceObject();
                 }
 
@@ -303,9 +302,11 @@ public class MinigameControl : MonoBehaviour
                 case "garrote":
                     objectCollection[idx].SetActive(false); // Desativar o garrote
                     idx++;
+
+                    objectCollection[idx].gameObject.transform.localScale = new Vector3(85f, 85f, 85f);
                     objectCollection[idx].SetActive(true); // Ativar o garrote_arm
                     audioManager.PlayAudio("progress");
-                    //placedObjects++;
+                    placedObjects++;
                     return;
                 default:
                     break;
