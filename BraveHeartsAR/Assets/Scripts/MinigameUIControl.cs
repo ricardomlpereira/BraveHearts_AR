@@ -7,24 +7,27 @@ using TMPro;
 
 public class MinigameUIControl : MonoBehaviour
 {
-    [SerializeField] private GameObject getEggBtn;
-    [SerializeField] private GameObject nextBtn;
+    [SerializeField] private List<GameObject> nextBtns;
+    [SerializeField] private List<GameObject> getEggBtns;
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI mainText;
+    [SerializeField] private List<TextMeshProUGUI> mainTexts;
     //private MinigameControl minigameControl;
     public static bool isMinigameCompleted;
     private AudioManager audioManager;
+    private GameObject nextBtn;
+    private GameObject getEggBtn;
+    private TextMeshProUGUI mainText;
     private TW_MultiStrings_All typewriter;
 
     void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
+
+        HandleTexts();
+
         typewriter = mainText.gameObject.AddComponent<TW_MultiStrings_All>();
         typewriter.timeOut = 1; // Set timeout for the typewriter effect
         typewriter.LaunchOnStart = false;
-
-        //minigameControl = FindObjectOfType<MinigameControl>();
-        
 
         scoreText.text = MainControl.score + "/3";
         isMinigameCompleted = false;
@@ -39,7 +42,6 @@ public class MinigameUIControl : MonoBehaviour
 
         switch(MinigameControl.minigameLevel) {
             case 0:
-            case 2:
                 if(MinigameControl.placedObjects > 0) {
                     nextBtn.SetActive(false);
                 }
@@ -49,8 +51,13 @@ public class MinigameUIControl : MonoBehaviour
                     nextBtn.SetActive(false);
                 }
                 break;
+            case 2:
+                if(MinigameControl.placedObjects > 0) {
+                    nextBtn.SetActive(false);
+                }
+                break;
             default:
-            break;
+                break;
         }
         
     }
@@ -79,5 +86,43 @@ public class MinigameUIControl : MonoBehaviour
     public void DisplayMessage(string msg) {
         typewriter.ORIGINAL_TEXT = msg;
         typewriter.StartTypewriter();
+    }
+
+    private void HandleTexts() {
+        switch(MinigameControl.minigameLevel) {
+            case 0:
+                foreach(var text in mainTexts) {
+                    if(text.name != "mainText") {
+                        Destroy(text.gameObject);
+                    } else {
+                        mainText = text;
+                        getEggBtn = getEggBtns[0];
+                        nextBtn = nextBtns[0];
+                    }
+                }
+                break;
+            case 1:
+                foreach(var text in mainTexts) {
+                    if(text.name != "mainText_1") {
+                        Destroy(text.gameObject);
+                    } else {
+                        mainText = text;
+                        getEggBtn = getEggBtns[1];
+                        nextBtn = nextBtns[1];
+                    }
+                }
+                break;
+            case 2:
+                foreach(var text in mainTexts) {
+                    if(text.name != "mainText_2") {
+                        Destroy(text.gameObject);
+                    } else {
+                        mainText = text;
+                        getEggBtn = getEggBtns[2];
+                        nextBtn = nextBtns[2];
+                    }
+                }
+                break;
+        }
     }
 }

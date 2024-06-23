@@ -887,9 +887,12 @@ MonoBehaviour:
   MultiStrings:
   - 
   - "O meu nome \xE9 Alfredo"
-  - E vou te acompanhar durante esta aventura
-  - Preciso da tua ajuda para encontrar os meus ovos
-  - Achas que me consegues ajudar?
+  - E preciso da tua ajuda!
+  - Houve uma tempaste!!\n O meu ninho voou...
+  - "N\xE3o sei onde est\xE3o os meus 3 ovos"
+  - Preciso de ti para os encontrar\n Achas que me consegues ajudar?
+  - "N\xE3o te preocupes, vou-te acompanhar durante esta aventura"
+  - Para isso precisamos de completar alguns jogos
   - Placeholder
   - Vamos Jogar?
   pointer: 0
