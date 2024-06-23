@@ -11,10 +11,16 @@ public class MinigameUIControl : MonoBehaviour
     [SerializeField] private GameObject nextBtn;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI mainText;
+    [SerializeField] private TextMeshProUGUI mainText_1;
+    [SerializeField] private TextMeshProUGUI mainText_2;
     //private MinigameControl minigameControl;
     public static bool isMinigameCompleted;
     private AudioManager audioManager;
     private TW_MultiStrings_All typewriter;
+    /*
+    private TW_MultiStrings_All typewriter_1;
+    private TW_MultiStrings_All typewriter_2;
+    */
 
     void Start()
     {
@@ -22,6 +28,17 @@ public class MinigameUIControl : MonoBehaviour
         typewriter = mainText.gameObject.AddComponent<TW_MultiStrings_All>();
         typewriter.timeOut = 1; // Set timeout for the typewriter effect
         typewriter.LaunchOnStart = false;
+
+        /*
+
+        typewriter_1 = mainText_1.gameObject.AddComponent<TW_MultiStrings_All>();
+        typewriter_1.timeOut = 1; // Set timeout for the typewriter effect
+        typewriter_1.LaunchOnStart = false;
+
+        typewriter_2 = mainText_2.gameObject.AddComponent<TW_MultiStrings_All>();
+        typewriter_2.timeOut = 1; // Set timeout for the typewriter effect
+        typewriter_2.LaunchOnStart = false;
+        */
 
         //minigameControl = FindObjectOfType<MinigameControl>();
         

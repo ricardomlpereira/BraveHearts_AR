@@ -8704,7 +8704,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Vamos agora jogar um jogo!
+  m_text: "Neste jogo vamos por a nossa mem\xF3ria a funcionar!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8798,9 +8798,18 @@ MonoBehaviour:
   Charstype: 0
   MultiStrings:
   - 
-  - Procura os animais debaixo das cartas
-  - "Aponta a c\xE2mara para os marcadores para os descobrires"
-  - E tenta encontrar os pares.\n Boa sorte!
+  - "Posiciona as 6 cartas viradas para baixo, \xE0 tua frente "
+  - A seguir vamos ter de procurar os animais debaixo das cartas
+  - "Para isso tens de apontar a c\xE2mara para os marcadores"
+  - Depois de encontrares um animal vira outra carta para tentares encontrar o par
+  - "Para o par ser detetado tens de ter os 2 animais iguais no ecr\xE2 "
+  - Se estiveres a ter dificuldades a encontrar um animal experimenta aproximar a
+    camara do marcador
+  - "Aten\xE7\xE3o n\xE3o podes ter mais que duas cartas viradas para cima ao mesmo
+    tempo"
+  - Quando encontrares um par podes tirar as duas cartas do jogo
+  - Vou estar sempre aqui para te ajudar
+  - "Podes come\xE7ar\\n Boa sorte!"
   pointer: 0
   style: 0
   ORIGINAL_TEXT: 
