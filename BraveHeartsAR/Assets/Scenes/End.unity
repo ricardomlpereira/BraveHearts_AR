@@ -2097,7 +2097,6 @@ MonoBehaviour:
   MultiStrings:
   - 
   - Conseguiste encontrar todos os  ovos!
-  - Placeholder
   - "Se quiseres voltar a jogar, carrega no bot\xE3o"
   pointer: 0
   style: 0

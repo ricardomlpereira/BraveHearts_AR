@@ -233,8 +233,8 @@ MonoBehaviour:
   Charstype: 0
   MultiStrings:
   - 
-  - Agora vamos aprender para que serve o cateter
-  - "O cateter \xE9 posto na tua m\xE3o pelos enfermeiros"
+  - Agora vamos aprender para que serve o cateter.
+  - "O cateter \xE9 posto na tua m\xE3o pelos enfermeiros."
   - "E \xE9 atrav\xE9s dele que vais receber a medica\xE7\xE3o."
   - Ao colocarem o cateter, vais sentir uma pequena pica, parecida a um beijinho
     meu.
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: No jogo anterior aprendeste para que serve o garrote
+  m_text: No jogo anterior aprendeste para que serve o garrote.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -477,6 +477,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162064213}
   m_CullTransparentMesh: 1
+--- !u!1001 &165484740
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 871680633}
+    m_Modifications:
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5800002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5800002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5800002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.603
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.041
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.689
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.64096826
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.64074457
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.2988884
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.29878408
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564692986924867789, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_Name
+      value: Butterfly_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564692986924867789, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+--- !u!4 &165484741 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5076139957072165495, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+  m_PrefabInstance: {fileID: 165484740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &191309792
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,7 +1148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Neste jogo vamos aprender o que ir\xE1 acontecer"
+  m_text: "Neste jogo vamos aprender o que ir\xE1 acontecer."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1156,7 +1234,7 @@ MonoBehaviour:
   Charstype: 0
   MultiStrings:
   - 
-  - "Os enfermeiros v\xE3o aplicar uma pomada na tua m\xE3o "
+  - "Os enfermeiros v\xE3o aplicar uma pomada na tua m\xE3o."
   - "Vais sentir uma sensa\xE7\xE3o parecida a um toque meu."
   - "A pomada vai fazer com que n\xE3o sintas dor."
   - "Depois v\xE3o colocar um penso para ter a certeza que a pomada fica no s\xEDtio."
@@ -2196,6 +2274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sparrow
       objectReference: {fileID: 0}
+    - target: {fileID: 8020991150851663783, guid: 3505cf128b1e334498a3e2b19ffcacdb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2487,6 +2569,7 @@ Transform:
   m_Children:
   - {fileID: 1992861582}
   - {fileID: 762825041}
+  - {fileID: 165484741}
   m_Father: {fileID: 1017947263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &871680634
@@ -4373,7 +4456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: No jogo anterior aprendeste para que servem o penso e a pomada
+  m_text: No jogo anterior aprendeste para que servem o penso e a pomada.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
