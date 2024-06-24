@@ -687,10 +687,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6404,7 +6404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &919486322
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6414,15 +6414,15 @@ RectTransform:
   m_GameObject: {fileID: 919486321}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2499998, y: 1.2499998, z: 1.2499998}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1076936853}
   m_Father: {fileID: 1854520461}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -56.500015, y: 11}
+  m_AnchoredPosition: {x: -56.5, y: 0}
   m_SizeDelta: {x: 113, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &919486323
@@ -6446,10 +6446,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
-    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_NormalColor: {r: 0, g: 0.5019608, b: 0.34117648, a: 1}
+    m_HighlightedColor: {r: 0.007843138, g: 0.2509804, b: 0.1764706, a: 1}
+    m_PressedColor: {r: 0.007843138, g: 0.2509804, b: 0.1764706, a: 1}
+    m_SelectedColor: {r: 0.009063689, g: 0.2528302, b: 0.17474875, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -6754,7 +6754,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BRINCAR
+  m_text: Brincar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7270,7 +7270,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -8798,19 +8798,18 @@ MonoBehaviour:
   Charstype: 0
   MultiStrings:
   - 
-  - "Posiciona as 6 cartas viradas para baixo, \xE0 tua frente"
-  - A seguir, vamos ter de encontrar os animais debaixo das cartas
-  - "Para isso, tens que apontar a c\xE2mara para os marcadores presentes em cada
-    carta"
-  - Depois de encontrares um animal, vira outra carta para tentares encontrar o par
-  - "Para o par ser detetado tens de ter os 2 animais iguais no ecr\xE3"
+  - "Posiciona as 6 cartas viradas para baixo, \xE0 tua frente."
+  - A seguir, vamos ter de encontrar os animais debaixo das cartas.
+  - "Para isso, tens de virar uma carta e apontar a c\xE2mara para ela. "
+  - Depois de encontrares um animal, vira outra carta para tentares encontrar o par.
+  - "Para o par ser detetado tens de ter os 2 animais iguais no ecr\xE3."
   - "Se estiveres a ter dificuldade em detetar um animal, experimenta aproximar a
-    c\xE2mara do marcador"
+    c\xE2mara da carta."
   - "Aten\xE7\xE3o, n\xE3o podes ter mais do que 2 cartas viradas para cima ao mesmo
-    tempo"
-  - Quando encontrares um par podes tirar as duas cartas do jogo
-  - Vou estar sempre aqui para te ajudar
-  - "Podes come\xE7ar\\n Boa sorte!"
+    tempo."
+  - Quando encontrares um par podes tirar as duas cartas do jogo.
+  - Vou estar sempre aqui para te ajudar.
+  - "Podes come\xE7ar.\\n Boa sorte!"
   pointer: 0
   style: 0
   ORIGINAL_TEXT: 

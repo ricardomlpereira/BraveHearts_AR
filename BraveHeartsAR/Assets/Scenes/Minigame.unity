@@ -234,16 +234,16 @@ MonoBehaviour:
   MultiStrings:
   - 
   - Agora vamos aprender para que serve o cateter
-  - "O cateter \xE9 posto na tua m\xE3o pelas enfermeiras"
-  - "E \xE9 atrav\xE9s dele que vais receber a medica\xE7\xE3o"
+  - "O cateter \xE9 posto na tua m\xE3o pelos enfermeiros"
+  - "E \xE9 atrav\xE9s dele que vais receber a medica\xE7\xE3o."
   - Ao colocarem o cateter, vais sentir uma pequena pica, parecida a um beijinho
-    meu
+    meu.
   - "Depois de estar na tua m\xE3o, \xE9 preciso colocar um adesivo para ter a certeza
-    que ele n\xE3o foge"
-  - Pode ser preciso colocar uma tala para garantir que fica tudo seguro
-  - "Antes de come\xE7ar \xE9 preciso, ainda, desinfetar a tua m\xE3o"
+    que ele n\xE3o foge."
+  - Pode ser preciso colocar uma tala para garantir que fica tudo seguro.
+  - "Antes de come\xE7ar \xE9 preciso, ainda, desinfetar a tua m\xE3o."
   - "Vamos come\xE7ar! Agora o enfermeiro \xE9s tu!"
-  - "Carrega no desinfetante para desinfetar a m\xE3o"
+  - "Carrega no desinfetante para desinfetar a m\xE3o."
   pointer: 0
   style: 0
   ORIGINAL_TEXT: 
@@ -404,10 +404,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -722,10 +722,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -770,7 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Neste jogo vamos aprender os procedimentos que ir\xE3o acontecer"
+  m_text: "Neste jogo vamos aprender o que ir\xE1 acontecer"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1156,12 +1156,12 @@ MonoBehaviour:
   Charstype: 0
   MultiStrings:
   - 
-  - "As enfermeiras v\xE3o aplicar uma pomada na tua m\xE3o "
-  - "Vais sentir uma sensa\xE7\xE3o parecida a um toque meu"
-  - "A pomada vai fazer com que n\xE3o sintas dor"
-  - "Depois v\xE3o colocar um penso para ter a certeza que a pomada fica no s\xEDtio"
+  - "Os enfermeiros v\xE3o aplicar uma pomada na tua m\xE3o "
+  - "Vais sentir uma sensa\xE7\xE3o parecida a um toque meu."
+  - "A pomada vai fazer com que n\xE3o sintas dor."
+  - "Depois v\xE3o colocar um penso para ter a certeza que a pomada fica no s\xEDtio."
   - "Vamos come\xE7ar! Agora o enfermeiro \xE9s tu!"
-  - "Arrasta a pomada para a m\xE3o"
+  - "Arrasta a pomada para a m\xE3o."
   pointer: 0
   style: 0
   ORIGINAL_TEXT: 
@@ -1227,16 +1227,16 @@ RectTransform:
   m_GameObject: {fileID: 368630010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1311607682}
   m_Father: {fileID: 265172236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -76, y: 96}
-  m_SizeDelta: {x: 110.89, y: 30}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -55.445007, y: 22.9}
+  m_SizeDelta: {x: 110.890015, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &368630012
 MonoBehaviour:
@@ -1259,10 +1259,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
-    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_NormalColor: {r: 0, g: 0.5019608, b: 0.34117648, a: 1}
+    m_HighlightedColor: {r: 0.007843138, g: 0.2509804, b: 0.1764706, a: 1}
+    m_PressedColor: {r: 0.007843138, g: 0.2509804, b: 0.1764706, a: 1}
+    m_SelectedColor: {r: 0.007843138, g: 0.2509804, b: 0.1764706, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1307,7 +1307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1802,16 +1802,16 @@ RectTransform:
   m_GameObject: {fileID: 664615293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1266832315}
   m_Father: {fileID: 1412692231}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -76, y: 96}
-  m_SizeDelta: {x: 110.89, y: 30}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -55.445007, y: 23.2}
+  m_SizeDelta: {x: 110.890015, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &664615295
 MonoBehaviour:
@@ -1834,10 +1834,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
-    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_NormalColor: {r: 0, g: 0.5019608, b: 0.34117648, a: 1}
+    m_HighlightedColor: {r: 0.007843138, g: 0.2509804, b: 0.1764706, a: 1}
+    m_PressedColor: {r: 0.007843138, g: 0.2509804, b: 0.1764706, a: 1}
+    m_SelectedColor: {r: 0.007843138, g: 0.2509804, b: 0.1764706, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1882,7 +1882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3143,10 +3143,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3191,7 +3191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3745,7 +3745,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4342,14 +4342,14 @@ MonoBehaviour:
   Charstype: 0
   MultiStrings:
   - 
-  - Agora, vais aprender para que serve o garrote
-  - "O garrote d\xE1 abra\xE7os assim como eu"
-  - "As enfermeiras v\xE3o colocar um garrote no teu bra\xE7o e vais sentir um grande
-    abra\xE7o"
-  - Isto ajuda-as a encontrar as tuas veias
-  - "Antes disso \xE9 preciso retirar o penso e limpar a pomada"
+  - Agora, vais aprender para que serve o garrote.
+  - "O garrote d\xE1 abra\xE7os assim como eu."
+  - "Os enfermeiros v\xE3o colocar um garrote no teu bra\xE7o e vais sentir um grande
+    abra\xE7o."
+  - Isto ajuda-as a encontrar as tuas veias.
+  - "Antes disso \xE9 preciso retirar o penso e limpar a pomada."
   - "Vamos come\xE7ar! Agora o enfermeiro \xE9s tu!"
-  - Carrega no penso para o retirar
+  - Carrega no penso para o retirar.
   pointer: 0
   style: 0
   ORIGINAL_TEXT: 
@@ -4641,10 +4641,10 @@ RectTransform:
   - {fileID: 825338851}
   m_Father: {fileID: 113797319}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -76, y: 96}
-  m_SizeDelta: {x: 110.89, y: 30}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -55.445007, y: 22.7}
+  m_SizeDelta: {x: 110.890015, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1445160075
 MonoBehaviour:
@@ -4667,10 +4667,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
-    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_NormalColor: {r: 0, g: 0.5019608, b: 0.34117648, a: 1}
+    m_HighlightedColor: {r: 0.007843138, g: 0.2509804, b: 0.1764706, a: 1}
+    m_PressedColor: {r: 0.007843138, g: 0.2509804, b: 0.1764706, a: 1}
+    m_SelectedColor: {r: 0.007843138, g: 0.2509804, b: 0.1764706, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -4715,7 +4715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5544,7 +5544,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -5678,7 +5678,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
