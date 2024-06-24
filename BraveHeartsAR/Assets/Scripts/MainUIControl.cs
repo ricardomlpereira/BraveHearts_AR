@@ -91,19 +91,19 @@ public class MainUIControl : MonoBehaviour
                 //typewriter.ORIGINAL_TEXT = "A BORBOLETA AURORA QUER BRINCAR CONTIGO!";
                 //typewriter.StartTypewriter();
                 //mainText.text = "A BORBOLETA AURORA QUER BRINCAR CONTIGO!";
-                DisplayMessage("Encontraste a minha amiga a Borboleta Aurora!\n E ela quer brincar contigo!");
+                DisplayMessage("Encontraste a minha amiga, a Borboleta Aurora!\n E ela quer brincar contigo!");
                 break;
             case 1:
                 //typewriter.ORIGINAL_TEXT = "O COALA KIKO QUER BRINCAR CONTIGO!";
                 //typewriter.StartTypewriter();
                 //mainText.text = "O COALA KIKO QUER BRINCAR CONTIGO!";
-                DisplayMessage("Encontraste a minha amigo o Coala Kiko!\n E ele quer brincar contigo!");
+                DisplayMessage("Encontraste o meu amigo, o Coala Kiko!\n E ele quer brincar contigo!");
                 break;
             case 2:
                 //typewriter.ORIGINAL_TEXT = "A ABELHA MEL QUER BRINCAR CONTIGO!";
                 //typewriter.StartTypewriter();
                 //mainText.text = "A ABELHA MEL QUER BRINCAR CONTIGO!";
-                DisplayMessage("Encontraste a minha amiga a Abelha Mel!\n E ela quer brincar contigo!");
+                DisplayMessage("Encontraste a minha amiga, a Abelha Mel!\n E ela quer brincar contigo!");
                 break;
             default: //ESTÁ MENSAGEM NUNCA APARECE ACHO EU 
                 //typewriter.ORIGINAL_TEXT = "BOA! ENCONTRASTE TODOS OS PARES";

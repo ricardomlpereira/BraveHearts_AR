@@ -81,7 +81,7 @@ public class SearchEggControl : MonoBehaviour
                         //buddyText.text = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
                         audioManager.PlayAudio("fail");
                         if(eggFound == false){
-                        typewriter.ORIGINAL_TEXT = "Parece que não está nesse arbustro!\nTenta outro";
+                        typewriter.ORIGINAL_TEXT = "Parece que não está nesse arbusto!\nTenta outro.";
                         typewriter.StartTypewriter();
                         }     
                     }else if(hit.transform == goalBushSprite.transform && eggFound){ //JA ENCONTROU O OVO

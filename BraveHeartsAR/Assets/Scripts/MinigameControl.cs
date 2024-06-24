@@ -402,7 +402,7 @@ public class MinigameControl : MonoBehaviour
 
     private bool isLastObject() {
         if(placedObjects >= objectCollection.Count) {
-            minigameUIControl.DisplayMessage("Boa! completaste o mini-jogo!\n Vamos encontrar o ovo!");
+            minigameUIControl.DisplayMessage("Boa! completaste o jogo!\n Vamos procurar o ovo!");
             minigameUIControl.CompleteMinigame();
             isCompleted = true;
             if(minigameLevel == 1) {
@@ -419,7 +419,7 @@ public class MinigameControl : MonoBehaviour
         if(minigameLevel == 0) {
             switch (placedObjects){
                 case 0:
-                    minigameUIControl.DisplayMessage("Vamos começar por aplicar a pomada. Arrasta esta para o local correto.");
+                    //minigameUIControl.DisplayMessage("Vamos começar por aplicar a pomada. Arrasta esta para o local correto.");
                     break;
                 case 2:
                     minigameUIControl.DisplayMessage("Boa! Agora, vamos abrir o penso. Carrega nele!");
@@ -434,20 +434,20 @@ public class MinigameControl : MonoBehaviour
         } else if(minigameLevel == 1) {
             switch(placedObjects) {
                 case 1:
-                    minigameUIControl.DisplayMessage("Vamos começar por retirar o penso. Carrega nele!");
+                    //minigameUIControl.DisplayMessage("Vamos começar por retirar o penso. Carrega nele!");
                     break;
                 case 2:
                     minigameUIControl.DisplayMessage("Boa! Vamos desinfetar o local. Carrega no desinfetante!");
                     break;
                 case 3:
                 case 4:
-                    minigameUIControl.DisplayMessage("Muito bem! Agora vamos desinfetar o local. Arrasta o pano para lá!");
+                    minigameUIControl.DisplayMessage("Muito bem! Agora vamos limpar o local. Arrasta o pano para lá!");
                     break;
                 case 5:
                     minigameUIControl.DisplayMessage("Boa! Vamos agora aplicar o garrote. Arrasta-o para o inicio do antebraço!");
                     break;
                 case 6:
-                    minigameUIControl.DisplayMessage("Muito bem! Agora vai carrega no garrote para o apertar!");
+                    minigameUIControl.DisplayMessage("Muito bem! Agora carrega no garrote para o apertar!");
                     break;
                 default:
                     minigameUIControl.DisplayMessage("Erro");
@@ -456,7 +456,7 @@ public class MinigameControl : MonoBehaviour
         } else if(minigameLevel == 2) {
             switch(placedObjects) {
                 case 0:
-                    minigameUIControl.DisplayMessage("Vamos começar por desinfetar o local. Carrega no desinfetante!");
+                    //minigameUIControl.DisplayMessage("Vamos começar por desinfetar o local. Carrega no desinfetante!");
                     break;
                 case 1:
                 case 2:
