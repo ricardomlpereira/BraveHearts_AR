@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8803,9 +8803,9 @@ MonoBehaviour:
   - "Para isso, tens que apontar a c\xE2mara para os marcadores presentes em cada
     carta"
   - Depois de encontrares um animal, vira outra carta para tentares encontrar o par
-  - "Para o par ser detetado tens que ter os 2 animais iguals no ecr\xE3"
-  - Se estiveres a ter dificuldade em detetar um animal, experimenta aproximar a
-    camara do marcador
+  - "Para o par ser detetado tens de ter os 2 animais iguais no ecr\xE3"
+  - "Se estiveres a ter dificuldade em detetar um animal, experimenta aproximar a
+    c\xE2mara do marcador"
   - "Aten\xE7\xE3o, n\xE3o podes ter mais do que 2 cartas viradas para cima ao mesmo
     tempo"
   - Quando encontrares um par podes tirar as duas cartas do jogo

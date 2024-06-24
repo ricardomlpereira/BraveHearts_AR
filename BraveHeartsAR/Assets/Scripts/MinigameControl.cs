@@ -447,7 +447,7 @@ public class MinigameControl : MonoBehaviour
                     minigameUIControl.DisplayMessage("Boa! Vamos agora aplicar o garrote. Arrasta-o para o inicio do antebraço!");
                     break;
                 case 6:
-                    minigameUIControl.DisplayMessage("Muito bem! Agora vai carrega no garrote para o apertar!");
+                    minigameUIControl.DisplayMessage("Muito bem! Agora carrega no garrote para o apertar!");
                     break;
                 default:
                     minigameUIControl.DisplayMessage("Erro");
