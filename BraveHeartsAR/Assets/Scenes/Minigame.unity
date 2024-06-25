@@ -176,6 +176,89 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.01, y: 0.1, z: 0.05}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &109947540
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 871680633}
+    m_Modifications:
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.603
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.041
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.689
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7067575
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.70651084
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.02585384
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.025844818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -4.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3184412941079108706, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+      propertyPath: m_Name
+      value: Bee_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+--- !u!4 &109947541 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2844759966888036056, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+  m_PrefabInstance: {fileID: 109947540}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &109947542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3184412941079108706, guid: 7f30d9a172e894c96a54c2c4088634e5, type: 3}
+  m_PrefabInstance: {fileID: 109947540}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &113797318
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +316,7 @@ MonoBehaviour:
   Charstype: 0
   MultiStrings:
   - 
-  - Agora vamos aprender para que serve o cateter.
+  - Agora, vou-te explicar para que serve o cateter.
   - "O cateter \xE9 posto na tua m\xE3o pelos enfermeiros."
   - "E \xE9 atrav\xE9s dele que vais receber a medica\xE7\xE3o."
   - Ao colocarem o cateter, vais sentir uma pequena pica, parecida a um beijinho
@@ -543,7 +626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5564692986924867789, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1148,7 +1231,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Neste jogo vamos aprender o que ir\xE1 acontecer."
+  m_text: "Vou-te explicar o que \xE9 que te vai acontecer."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2276,18 +2359,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8020991150851663783, guid: 3505cf128b1e334498a3e2b19ffcacdb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3505cf128b1e334498a3e2b19ffcacdb, type: 3}
---- !u!1 &762825040 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8020991150851663783, guid: 3505cf128b1e334498a3e2b19ffcacdb, type: 3}
-  m_PrefabInstance: {fileID: 762825039}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &762825041 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7877539184271146519, guid: 3505cf128b1e334498a3e2b19ffcacdb, type: 3}
@@ -2570,6 +2648,8 @@ Transform:
   - {fileID: 1992861582}
   - {fileID: 762825041}
   - {fileID: 165484741}
+  - {fileID: 1635866724}
+  - {fileID: 109947541}
   m_Father: {fileID: 1017947263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &871680634
@@ -2898,6 +2978,11 @@ RectTransform:
   m_AnchoredPosition: {x: -29.908447, y: -27.291626}
   m_SizeDelta: {x: 55, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &901982499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5564692986924867789, guid: 2b1a40dda12a20c4eac9692e829de486, type: 3}
+  m_PrefabInstance: {fileID: 165484740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &917490759
 GameObject:
   m_ObjectHideFlags: 0
@@ -4425,14 +4510,14 @@ MonoBehaviour:
   Charstype: 0
   MultiStrings:
   - 
-  - Agora, vais aprender para que serve o garrote.
+  - Agora, vou-te explicar para que serve o garrote.
   - "O garrote d\xE1 abra\xE7os assim como eu."
   - "Os enfermeiros v\xE3o colocar um garrote no teu bra\xE7o e vais sentir um grande
     abra\xE7o."
-  - Isto ajuda-as a encontrar as tuas veias.
+  - Isto ajuda-os a encontrar as tuas veias.
   - "Antes disso \xE9 preciso retirar o penso e limpar a pomada."
   - "Vamos come\xE7ar! Agora o enfermeiro \xE9s tu!"
-  - Carrega no penso para o retirar.
+  - Clica no penso para o retirar.
   pointer: 0
   style: 0
   ORIGINAL_TEXT: 
@@ -4970,7 +5055,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f8448ce38a14d998415d6575631024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToShow: {fileID: 762825040}
+  buddy: {fileID: 1795075235}
+  objectToShow: {fileID: 901982499}
+  objectToShow_1: {fileID: 1635866725}
+  objectToShow_2: {fileID: 109947542}
 --- !u!4 &1554797043
 Transform:
   m_ObjectHideFlags: 0
@@ -4990,6 +5078,93 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7269858982611659362, guid: aec126ebd15224c53aa1fb0581a56dd2, type: 3}
   m_PrefabInstance: {fileID: 5991173650631678405}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1635866723
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 871680633}
+    m_Modifications:
+    - target: {fileID: 2535514775046099799, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_Name
+      value: Koala_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2535514775046099799, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.603
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.041
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.689
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.690466
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.69022506
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.15307261
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.15301919
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+--- !u!4 &1635866724 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2910492961371376109, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+  m_PrefabInstance: {fileID: 1635866723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1635866725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2535514775046099799, guid: 440870a707ac94047bf7c18da9c5c650, type: 3}
+  m_PrefabInstance: {fileID: 1635866723}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1700149779
 GameObject:
@@ -5210,6 +5385,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2616631917880790432, guid: ea5120fb8fdaf40dbb0062a5f34690bc, type: 3}
   m_PrefabInstance: {fileID: 1745826034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1795075235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8020991150851663783, guid: 3505cf128b1e334498a3e2b19ffcacdb, type: 3}
+  m_PrefabInstance: {fileID: 762825039}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1844046465
 GameObject:

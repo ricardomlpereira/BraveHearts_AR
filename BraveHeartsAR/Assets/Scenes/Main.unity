@@ -6681,7 +6681,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f8448ce38a14d998415d6575631024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToShow: {fileID: 1091677944}
+  buddy: {fileID: 1091677944}
+  objectToShow: {fileID: 0}
+  objectToShow_1: {fileID: 0}
+  objectToShow_2: {fileID: 0}
 --- !u!4 &984614357
 Transform:
   m_ObjectHideFlags: 0
@@ -8704,7 +8707,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Neste jogo vamos p\xF4r a nossa mem\xF3ria a funcionar."
+  m_text: "Neste jogo temos de p\xF4r a nossa mem\xF3ria a funcionar."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8802,11 +8805,11 @@ MonoBehaviour:
   - A seguir, vamos ter de encontrar os animais debaixo das cartas.
   - "Para isso, tens de virar uma carta para cima e apontar a c\xE2mara para ela. "
   - Depois de encontrares um animal, vira outra carta para tentares encontrar o par.
-  - "Para o par ser detetado tens de ter os 2 animais iguais no ecr\xE3."
+  - "Para o par ser detetado, tens de ter os 2 animais iguais no ecr\xE3."
   - "Se estiveres a ter dificuldade em detetar um animal, experimenta aproximar a
     c\xE2mara da carta."
   - "Aten\xE7\xE3o, n\xE3o podes ter mais do que 2 cartas viradas para cima ao mesmo
-    tempo."
+    tempo!"
   - Quando encontrares um par podes tirar as duas cartas do jogo.
   - Vou estar sempre aqui para te ajudar.
   - "Podes come\xE7ar.\\n Boa sorte!"

@@ -792,7 +792,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bem-vindo BraveHeart!
+  m_text: Bem-vindo, BraveHeart!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -889,10 +889,10 @@ MonoBehaviour:
   - "O meu nome \xE9 Alfredo"
   - E preciso da tua ajuda!
   - Houve uma tempestade!!\n O meu ninho voou...
-  - "N\xE3o sei onde est\xE3o os meus 3 ovos"
+  - "E sei onde est\xE3o os meus 3 ovos"
   - Preciso de ti para os encontrar.\n Achas que me consegues ajudar?
-  - "N\xE3o te preocupes, vou acompanhar-te durante esta aventura"
-  - Para isso precisamos de superar alguns desafios
+  - "N\xE3o te preocupes, vou acompanhar-te durante esta aventura."
+  - Para isso, precisamos de superar alguns desafios.
   - Vamos a isso?
   pointer: 0
   style: 0

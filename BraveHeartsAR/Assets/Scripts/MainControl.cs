@@ -177,7 +177,7 @@ public class MainControl : MonoBehaviour
                 model.SetActive(false);
                 //modelState[model.name] = false;
             }
-            MainUIControl.DisplayMessage("Tenha apenas duas cartas viradas para cima!");
+            MainUIControl.DisplayMessage("Mantém apenas duas cartas viradas para cima!");
             
             playedFailAudio = false;
 

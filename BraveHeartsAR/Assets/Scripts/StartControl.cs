@@ -27,7 +27,7 @@ public class StartControl : MonoBehaviour
     public void SwitchCanvas()
     {
         Debug.Log("TEXT"+ speechBubbleText.text);
-        if (speechBubbleText.text == "Para isso precisamos de superar alguns desafios") // Change to the last string before "Let's play?"
+        if (speechBubbleText.text == "Para isso, precisamos de superar alguns desafios.") // Change to the last string before "Let's play?"
         {
             speechBubbleBtnNext.SetActive(false);
             audioManager.PlayAudio("btn");
