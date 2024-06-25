@@ -422,7 +422,7 @@ public class MinigameControl : MonoBehaviour
                     //minigameUIControl.DisplayMessage("Vamos começar por aplicar a pomada. Arrasta esta para o local correto.");
                     break;
                 case 2:
-                    minigameUIControl.DisplayMessage("Boa! Agora, vamos abrir o penso. Carrega nele!");
+                    minigameUIControl.DisplayMessage("Boa! Agora, vamos abrir o penso. Clica nele!");
                     break;
                 case 3:
                     minigameUIControl.DisplayMessage("Muito bem! Para aplicar o penso, arrasta-o para cima da pomada!");
@@ -437,17 +437,17 @@ public class MinigameControl : MonoBehaviour
                     //minigameUIControl.DisplayMessage("Vamos começar por retirar o penso. Carrega nele!");
                     break;
                 case 2:
-                    minigameUIControl.DisplayMessage("Boa! Vamos desinfetar o local. Carrega no desinfetante!");
+                    minigameUIControl.DisplayMessage("Boa! Vamos desinfetar o local. Clica no desinfetante!");
                     break;
                 case 3:
                 case 4:
                     minigameUIControl.DisplayMessage("Muito bem! Agora vamos limpar o local. Arrasta o pano para lá!");
                     break;
                 case 5:
-                    minigameUIControl.DisplayMessage("Boa! Vamos agora aplicar o garrote. Arrasta-o para o inicio do antebraço!");
+                    minigameUIControl.DisplayMessage("Boa! Vamos agora aplicar o garrote. Arrasta-o para o inicio do braço!");
                     break;
                 case 6:
-                    minigameUIControl.DisplayMessage("Muito bem! Agora carrega no garrote para o apertar!");
+                    minigameUIControl.DisplayMessage("Muito bem! Agora clica no garrote até ficar apertado!");
                     break;
                 default:
                     minigameUIControl.DisplayMessage("Erro");

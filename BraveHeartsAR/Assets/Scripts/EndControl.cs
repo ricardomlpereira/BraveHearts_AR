@@ -33,7 +33,7 @@ public class EndControl : MonoBehaviour
 
     public void ChangeSBBtn()
     {
-        if (sbText.text == "Conseguiste encontrar todos os  ovos!") // Change to the last string before "Let's play?"
+        if (sbText.text == "Conseguiste encontrar todos os ovos!") // Change to the last string before "Let's play?"
         {
             sbBtnNext.SetActive(false);
             audioManager.PlayAudio("btn");

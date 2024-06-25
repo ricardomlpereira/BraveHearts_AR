@@ -21470,7 +21470,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f8448ce38a14d998415d6575631024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToShow: {fileID: 899332029}
+  buddy: {fileID: 899332029}
+  objectToShow: {fileID: 0}
+  objectToShow_1: {fileID: 0}
+  objectToShow_2: {fileID: 0}
 --- !u!4 &1996461424
 Transform:
   m_ObjectHideFlags: 0
