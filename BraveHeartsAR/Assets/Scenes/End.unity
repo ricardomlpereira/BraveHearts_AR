@@ -2097,7 +2097,7 @@ MonoBehaviour:
   MultiStrings:
   - 
   - Conseguiste encontrar todos os ovos!
-  - "Se quiseres voltar a jogar, clica no bot\xE3o"
+  - "Se quiseres voltar a jogar, clica no bot\xE3o de recome\xE7ar"
   pointer: 0
   style: 0
   ORIGINAL_TEXT: 
