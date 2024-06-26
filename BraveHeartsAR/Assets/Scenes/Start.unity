@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 831655754}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -889,7 +889,7 @@ MonoBehaviour:
   - "O meu nome \xE9 Alfredo"
   - E preciso da tua ajuda!
   - Houve uma tempestade!!\n O meu ninho voou...
-  - "E sei onde est\xE3o os meus 3 ovos"
+  - "E n\xE3o sei onde est\xE3o os meus 3 ovos"
   - Preciso de ti para os encontrar.\n Achas que me consegues ajudar?
   - "N\xE3o te preocupes, vou acompanhar-te durante esta aventura."
   - Para isso, precisamos de superar alguns desafios.
