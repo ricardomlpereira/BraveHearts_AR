@@ -1,15 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-using TMPro;
 using System.Text.RegularExpressions;
-using UnityEngine.SceneManagement;
-using System.Net.Sockets;
-using System.Linq;
-using System.Numerics;
 
 public class MainControl : MonoBehaviour
 {
@@ -294,21 +288,18 @@ public class MainControl : MonoBehaviour
             GameObject arModel = arModels[trackedImage.referenceImage.name];
             arModel.transform.position = trackedImage.transform.position;
             arModel.SetActive(true);
-/*
-            if(score == 0) {
+
+             if(score == 0) {
                 // Level 1 - Butterfly
-                arModel.transform.rotation = UnityEngine.Quaternion.Euler(-180f, -140f, -90f);
+                arModel.transform.rotation = Quaternion.Euler(-45f, 0f, 90f);
             } else if(score == 1) {
                 // Level 2 - Koala
-                arModel.transform.rotation = UnityEngine.Quaternion.Euler(0f, -140f, -90f);
+                arModel.transform.rotation = Quaternion.Euler(-90f, 0f, 90f);
             } else if(score == 2) {
                 // Level 3 - Bee
-            }
+                arModel.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
+            } 
 
-            UnityEngine.Vector3 camPos = Camera.main.transform.position;
-            arModel.transform.LookAt(camPos);
-
-*/
             modelState[trackedImage.referenceImage.name] = true;
         }
         else
