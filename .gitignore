@@ -72,8 +72,10 @@
 # MacOS files
 **/.DS_Store
 
-# Hidden word file
+# Hidden word files
 ~$*
+*.tmp
+~*.tmp
 
 # VSCode hidden files
 /BraveHeartsAR/.vscode/
