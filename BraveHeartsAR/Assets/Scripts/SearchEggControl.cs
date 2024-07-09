@@ -78,13 +78,12 @@ public class SearchEggControl : MonoBehaviour
                     if(hit.transform != goalBushSprite.transform){
                         //Arbustos desaparecem
                         hit.transform.gameObject.SetActive(false);
-                        //buddyText.text = "PARECE QUE NÃO ESTÁ NESSE ARBUSTRO!\nTENTA OUTRO";
                         audioManager.PlayAudio("fail");
                         if(eggFound == false){
                         typewriter.ORIGINAL_TEXT = "Parece que não está nesse arbusto!\nTenta outro.";
                         typewriter.StartTypewriter();
                         }     
-                    }else if(hit.transform == goalBushSprite.transform && eggFound){ //JA ENCONTROU O OVO
+                    } else if(hit.transform == goalBushSprite.transform && eggFound){ //JA ENCONTROU O OVO
                         confettiParticleSystem.gameObject.SetActive(true);
                         confettiParticleSystem.Play();
 
@@ -95,13 +94,10 @@ public class SearchEggControl : MonoBehaviour
                         bushSprite_3.gameObject.SetActive(false);
                         goalEggSprite.gameObject.SetActive(false);
                         eggFinalSprite.gameObject.SetActive(true);
-                    }else{ //AINDA NAO ENCONTROU O OVO
-                        //Encontrou o ovo
+                    } else{ // AINDA NAO ENCONTROU O OVO
                         audioManager.PlayAudio("progress");
                         goalEggSprite.gameObject.SetActive(true);
-                        //goalBushSprite.gameObject.SetActive(false);
-                        eggFound = true;
-                        //buddyText.text = "BOA ENCONTRASTE O OVO!\nOBRIGADO!";
+                        eggFound = true; //Encontrou o ovo
                         typewriter.ORIGINAL_TEXT = "Boa encontraste o ovo!\nObrigado!";
                         typewriter.StartTypewriter();
                     }

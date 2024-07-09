@@ -12,7 +12,7 @@ public class MinigameControl : MonoBehaviour
     [SerializeField] private List<GameObject> objectCollection;
     [SerializeField] private List<GameObject> colliderCollection;
     private GameObject currentObj;
-    public static int minigameLevel; // TODO - Tal como o score deve haver uma maneira melhor de fazer isto
+    public static int minigameLevel;
     private int idx;
     private bool isObjectSelected;
     private UnityEngine.Vector2 initialTouchPos;
@@ -49,13 +49,13 @@ public class MinigameControl : MonoBehaviour
             return;
         }
 
-        // FIXME: meter isto como deve ser depois
+        // FIXME
         if(isFirstInteration) {
             HandleMessage();
             isFirstInteration = false;
         }
 
-        // FIXME: meter isto como deve ser depois; n faz sentido ter 2 bools relativos ao facto de o minijogo estar completo ou n em 2 scripts
+        // FIXME: n é propriamente correto ter 2 bools relativos ao facto de o minijogo estar completo ou n em 2 scripts
         if(isCompleted) {
             return;
         }
@@ -66,7 +66,7 @@ public class MinigameControl : MonoBehaviour
         }
 
         if(previousPlacedObjects != placedObjects) {
-            // Mudar a msg quando é colocado um objeto)
+            // Mudar a msg quando é colocado um objeto
             HandleMessage();
             previousPlacedObjects = placedObjects;
         }
@@ -415,11 +415,9 @@ public class MinigameControl : MonoBehaviour
     }
 
     private void HandleMessage() {
-        // TODO - Refactor
         if(minigameLevel == 0) {
             switch (placedObjects){
                 case 0:
-                    //minigameUIControl.DisplayMessage("Vamos começar por aplicar a pomada. Arrasta esta para o local correto.");
                     break;
                 case 2:
                     minigameUIControl.DisplayMessage("Boa! Agora, vamos abrir o penso. Clica nele!");
@@ -434,7 +432,6 @@ public class MinigameControl : MonoBehaviour
         } else if(minigameLevel == 1) {
             switch(placedObjects) {
                 case 1:
-                    //minigameUIControl.DisplayMessage("Vamos começar por retirar o penso. Carrega nele!");
                     break;
                 case 2:
                     minigameUIControl.DisplayMessage("Boa! Vamos desinfetar o local. Clica no desinfetante!");
@@ -456,7 +453,6 @@ public class MinigameControl : MonoBehaviour
         } else if(minigameLevel == 2) {
             switch(placedObjects) {
                 case 0:
-                    //minigameUIControl.DisplayMessage("Vamos começar por desinfetar o local. Carrega no desinfetante!");
                     break;
                 case 1:
                 case 2:

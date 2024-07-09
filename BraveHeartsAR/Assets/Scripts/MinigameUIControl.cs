@@ -35,7 +35,6 @@ public class MinigameUIControl : MonoBehaviour
 
     void Update()
     {
-        /* There's probably a better way to do this */
         if(isMinigameCompleted) {
             getEggBtn.SetActive(true);
         }
@@ -69,7 +68,6 @@ public class MinigameUIControl : MonoBehaviour
 
     public void NextAction() {
         audioManager.PlayAudio("btn");
-        //DisplayMessage("VAMOS ENCONTRAR O MEU OVO!");
         StartCoroutine(HatchEggSceneCoroutine());
     }
 

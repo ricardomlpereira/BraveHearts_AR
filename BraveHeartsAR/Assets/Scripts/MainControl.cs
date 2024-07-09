@@ -134,7 +134,6 @@ public class MainControl : MonoBehaviour
             id2 = int.Parse(Regex.Match(activeModels[1].name, @"\d+").Value);
         }
 
-        // Changes Start: Update the currentState variable
         GameState currentState = new GameState
         {
             numActiveModels = numActiveModels,
@@ -142,7 +141,7 @@ public class MainControl : MonoBehaviour
             id2 = id2
         };
 
-        if(nextButton.activeSelf == true && numActiveModels == 1){ //Encontrou o primeiro model de todos - Desativa o tutorial
+        if(nextButton.activeSelf == true && numActiveModels == 1){ 
                 MainUIControl.DisplayMessage("Encontra os pares!");
                 nextButton.SetActive(false);
         }
@@ -153,8 +152,6 @@ public class MainControl : MonoBehaviour
         }
 
         previousState = currentState;
-        // Changes End
-        Debug.Log("Num active models: " + numActiveModels);
 
         if (numActiveModels <= 1)
         {

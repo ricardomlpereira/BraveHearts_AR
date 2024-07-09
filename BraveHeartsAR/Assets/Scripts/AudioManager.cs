@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Possible FIXME: os clips de audio só passam som no inicio sendo que ficam os proximos ~3 a serem played mas sem som;
-// Isto pode eventualmente vir a intervir com alguma coisa
+// FIXME: os clips de audio só passam som no inicio sendo que ficam os proximos ~3 a serem played mas sem som;
 public class AudioManager : MonoBehaviour
 {
     private AudioSource _audioSource;
@@ -17,8 +16,6 @@ public class AudioManager : MonoBehaviour
     {
         AudioClip clip = Resources.Load<AudioClip>("Audios/" + audioID);
         _audioSource.clip = clip;
-        // Possible FIXME: .wav audio clips are quieter than .ogg
-        //_audioSource.volume = 5f;
         _audioSource.Play();
     }
 }
