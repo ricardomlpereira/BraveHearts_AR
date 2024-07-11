@@ -67,6 +67,14 @@ public class SearchEggUIControl : MonoBehaviour
         LoaderUtility.Initialize();
     }
 
+    public void ChangeColorText(){
+        if(mainText.text == "Usa a camâra para encontrares os arbustos."){
+        mainText.color = new Color(0.0f, 0.5f, 0.3412f, 1.0f);
+        }else{
+        mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+        }
+    }
+
     public void DisplayMessage(string msg) {
         mainText.text = msg;
     }

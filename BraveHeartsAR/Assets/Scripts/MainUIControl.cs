@@ -88,16 +88,18 @@ public class MainUIControl : MonoBehaviour
 
         switch (MainControl.score){
             case 0:
+                mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                 DisplayMessage("Encontraste a minha amiga, a Borboleta Aurora!\n E ela quer brincar contigo!");
                 break;
             case 1:
+                mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                 DisplayMessage("Encontraste o meu amigo, o Coala Kiko!\n E ele quer brincar contigo!");
                 break;
             case 2:
+                mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                 DisplayMessage("Encontraste a minha amiga, a Abelha Mel!\n E ela quer brincar contigo!");
                 break;
             default:
-                DisplayMessage("Boa! Encontraste todos os pares!");
                 break;
         }
 
@@ -149,6 +151,14 @@ public class MainUIControl : MonoBehaviour
 
         /* Disable infoText after switching to start scene */
         infoText.enabled = false;
+    }
+
+    public void ChangeColorText(){
+        if(mainText.text == "Vou estar sempre aqui para te ajudar."){
+        mainText.color = new Color(0.0f, 0.5f, 0.3412f, 1.0f);
+        }else{
+        mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+        }
     }
 
     // TEMP: Only for debugging purposes (minigames)
