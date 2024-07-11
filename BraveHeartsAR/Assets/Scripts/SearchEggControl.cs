@@ -8,6 +8,7 @@ using UnityEngine.XR.ARFoundation;
 public class SearchEggControl : MonoBehaviour
 {
     [SerializeField] private GameObject nextButton;
+    [SerializeField] private TextMeshProUGUI mainText;
     private SpriteRenderer goalBushSprite;
     public SpriteRenderer bushSprite_1; 
     public SpriteRenderer bushSprite_2;
@@ -80,6 +81,7 @@ public class SearchEggControl : MonoBehaviour
                         hit.transform.gameObject.SetActive(false);
                         audioManager.PlayAudio("fail");
                         if(eggFound == false){
+                        mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                         typewriter.ORIGINAL_TEXT = "Parece que não está nesse arbusto!\nTenta outro.";
                         typewriter.StartTypewriter();
                         }     
@@ -98,7 +100,8 @@ public class SearchEggControl : MonoBehaviour
                         audioManager.PlayAudio("progress");
                         goalEggSprite.gameObject.SetActive(true);
                         eggFound = true; //Encontrou o ovo
-                        typewriter.ORIGINAL_TEXT = "Boa encontraste o ovo!\nObrigado!";
+                        mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+                        typewriter.ORIGINAL_TEXT = "Boa encontraste o ovo, obrigado!\nCarrega nele para o apanhares!";
                         typewriter.StartTypewriter();
                     }
                 }

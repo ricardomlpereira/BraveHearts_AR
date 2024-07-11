@@ -42,16 +42,19 @@ public class MinigameUIControl : MonoBehaviour
         switch(MinigameControl.minigameLevel) {
             case 0:
                 if(MinigameControl.placedObjects > 0) {
+                    mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                     nextBtn.SetActive(false);
                 }
                 break;
             case 1:
                 if(MinigameControl.placedObjects > 1) {
+                    mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                     nextBtn.SetActive(false);
                 }
                 break;
             case 2:
                 if(MinigameControl.placedObjects > 0) {
+                    mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                     nextBtn.SetActive(false);
                 }
                 break;
@@ -84,6 +87,14 @@ public class MinigameUIControl : MonoBehaviour
     public void DisplayMessage(string msg) {
         typewriter.ORIGINAL_TEXT = msg;
         typewriter.StartTypewriter();
+    }
+
+    public void ChangeColorText(){
+        if(mainText.text == "Vamos começar! Agora o enfermeiro és tu!"){
+        mainText.color = new Color(0.0f, 0.5f, 0.3412f, 1.0f);
+        }else{
+        mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+        }
     }
 
     private void HandleTexts() {
