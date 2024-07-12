@@ -167,6 +167,8 @@ public class MainControl : MonoBehaviour
             {
                 model.SetActive(false);
             }
+            
+            MainUIControl.mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
             MainUIControl.DisplayMessage("Mantém apenas duas cartas viradas para cima!");
             
             playedFailAudio = false;
@@ -199,6 +201,7 @@ public class MainControl : MonoBehaviour
         int matchIdx = GetMatchIdx(id1, id2);
         if (matchIdx == -1)
         {
+            MainUIControl.mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
             MainUIControl.DisplayMessage("Não é um par!\nTenta outra vez");
             if (!playedFailAudio)
             {
@@ -210,6 +213,7 @@ public class MainControl : MonoBehaviour
         }
         else if (matchIdx == 0)
         {
+            MainUIControl.mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
             MainUIControl.DisplayMessage("Encontraste um par - " + animal);
             playedFailAudio = false;
             
@@ -222,6 +226,7 @@ public class MainControl : MonoBehaviour
         }
         else if (matchIdx == 1)
         {
+            MainUIControl.mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
             MainUIControl.DisplayMessage("Encontraste um par - " + animal);
             playedFailAudio = false;
             
@@ -234,6 +239,7 @@ public class MainControl : MonoBehaviour
         }
         else if (matchIdx == 2)
         {
+            MainUIControl.mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
             MainUIControl.DisplayMessage("Encontraste um par - " + animal);
             playedFailAudio = false;
             
