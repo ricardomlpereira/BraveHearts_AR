@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1064859981}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -316,6 +316,7 @@ MonoBehaviour:
   Charstype: 0
   MultiStrings:
   - 
+  - No jogo anterior aprendeste para que serve o garrote.
   - Agora, vou-te explicar para que serve o cateter.
   - "O cateter \xE9 posto na tua m\xE3o pelos enfermeiros."
   - "E \xE9 atrav\xE9s dele que vais receber a medica\xE7\xE3o."
@@ -350,7 +351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: No jogo anterior aprendeste para que serve o garrote.
+  m_text: "Ol\xE1! Sou a abelha Mel, amiga do Alfredo."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1255,7 +1256,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Vou-te explicar o que \xE9 que te vai acontecer."
+  m_text: "Ol\xE1! Sou a borboleta Aurora, amiga do Alfredo."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1341,6 +1342,7 @@ MonoBehaviour:
   Charstype: 0
   MultiStrings:
   - 
+  - "Vou-te explicar o que \xE9 que te vai acontecer."
   - "Os enfermeiros v\xE3o aplicar uma pomada na tua m\xE3o."
   - "Vais sentir uma sensa\xE7\xE3o parecida a um toque meu."
   - "A pomada vai fazer com que n\xE3o sintas dor."
@@ -4546,6 +4548,7 @@ MonoBehaviour:
   Charstype: 0
   MultiStrings:
   - 
+  - No jogo anterior aprendeste para que servem o penso e a pomada.
   - Agora, vou-te explicar para que serve o garrote.
   - "O garrote d\xE1 abra\xE7os assim como eu."
   - "Os enfermeiros v\xE3o colocar um garrote no teu bra\xE7o e vais sentir um grande
@@ -4577,7 +4580,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: No jogo anterior aprendeste para que servem o penso e a pomada.
+  m_text: "Ol\xE1! Sou o coala Kiko, amigo do Alfredo."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
