@@ -16,12 +16,12 @@ public class ARObjectManipulator : MonoBehaviour
     private string tagARObjects = "ARObject";
     private Vector2 initialTouchPos;
     
-    private float speedRotation = 5.0f;
+    //private float speedRotation = 5.0f;
     private float scaleFactor = 0.1f;
 
     private float touchDis;
     private Vector2 touchPosDiff;
-    private float rotationTolerance = 1.5f;
+    //private float rotationTolerance = 1.5f;
     private float scaleTolerance = 25f;
 
     // Start is called before the first frame update
@@ -48,6 +48,20 @@ public class ARObjectManipulator : MonoBehaviour
                 GetARObjectForDetails(initialTouchPos);
                 if(ARObjectForDetails != null)
                 {
+                    switch(MainControl.score){
+                        case 0:
+                            StartCoroutine(DetailsCoroutine("Olá, eu sou uma borboleta!"));
+                            break;
+                        case 1:
+                            StartCoroutine(DetailsCoroutine("Olá, eu sou um coala!"));
+                            break;
+                        case 2:
+                            StartCoroutine(DetailsCoroutine("Olá, eu sou uma abelha!"));
+                            break;
+                        default:
+                            break;
+                    }
+                    /*
                     if(ARObjectForDetails.name == "marker1" || ARObjectForDetails.name == "marker4")
                     {
                         StartCoroutine(DetailsCoroutine("Eu sou um médico!"));
@@ -58,6 +72,7 @@ public class ARObjectManipulator : MonoBehaviour
                     {
                         StartCoroutine(DetailsCoroutine("Eu sou um paciente!"));
                     }
+                    */
                 }
             } else
             {
