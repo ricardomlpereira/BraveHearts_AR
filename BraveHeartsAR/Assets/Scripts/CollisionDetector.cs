@@ -5,7 +5,6 @@ using TMPro;
 
 public class CollisionDetector : MonoBehaviour
 {
-    // TODO - Por enquanto e necessario colocar este script em todos os objetos que queremos que colidam
     private MinigameControl control;
 
     void Start() {

@@ -67,7 +67,6 @@ public class SearchEggControl : MonoBehaviour
         // Check if the user has touched the screen
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            // Create a ray from the touch position
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
             RaycastHit hit;
 
@@ -85,7 +84,7 @@ public class SearchEggControl : MonoBehaviour
                         typewriter.ORIGINAL_TEXT = "Parece que não está nesse arbusto!\nTenta outro.";
                         typewriter.StartTypewriter();
                         }     
-                    } else if(hit.transform == goalBushSprite.transform && eggFound){ //JA ENCONTROU O OVO
+                    } else if(hit.transform == goalBushSprite.transform && eggFound){ //Ovo já foi encontrado
                         confettiParticleSystem.gameObject.SetActive(true);
                         confettiParticleSystem.Play();
 
@@ -96,10 +95,10 @@ public class SearchEggControl : MonoBehaviour
                         bushSprite_3.gameObject.SetActive(false);
                         goalEggSprite.gameObject.SetActive(false);
                         eggFinalSprite.gameObject.SetActive(true);
-                    } else{ // AINDA NAO ENCONTROU O OVO
+                    } else{ // Ovo ainda não foi encontrado
                         audioManager.PlayAudio("progress");
                         goalEggSprite.gameObject.SetActive(true);
-                        eggFound = true; //Encontrou o ovo
+                        eggFound = true; 
                         mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                         typewriter.ORIGINAL_TEXT = "Boa encontraste o ovo, obrigado!\nCarrega nele para o apanhares!";
                         typewriter.StartTypewriter();
@@ -168,7 +167,7 @@ public class SearchEggControl : MonoBehaviour
         if (!eggFound && goalParticleSystem != null)
         {
             goalParticleSystem.Play();
-        }if (!eggFound) // Check if eggFound is false
+        }if (!eggFound) 
         {
             StartCoroutine(WaitAndShake());
         }

@@ -42,7 +42,7 @@ public class ARObjectManipulator : MonoBehaviour
             if (Input.touchCount == 1 && touch1.phase == TouchPhase.Stationary && isARObjectSelected)
             {
                 /* Verificar se é necessário verificar se ARObjectForDetails é != null pois:
-                 * Se entra aqui então isARObjectSelect tem de ser true, ou seja, ele o ARObjectForDetails vai sempre devolver um objecto
+                 * Se entra aqui então isARObjectSelect tem de ser true, ou seja, o ARObjectForDetails vai sempre devolver um objecto
                  * e não null */
 
                 GetARObjectForDetails(initialTouchPos);
@@ -88,12 +88,6 @@ public class ARObjectManipulator : MonoBehaviour
                     }
 
                     float angle = Vector2.SignedAngle(touchPosDiff, currentTouchPosDiff);
-
-                    // TODO
-                    /*if(Mathf.Abs(angle) > rotationTolerance)
-                    {
-                        ARObject.transform.rotation = Quaternion.Euler(0, ARObject.transform.rotation.eulerAngles.y - Mathf.Sign(angle) * speedRotation, 0);
-                    }*/
 
                     touchDis = currentTouchDis;
                     touchPosDiff = currentTouchPosDiff;

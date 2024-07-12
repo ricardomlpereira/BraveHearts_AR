@@ -20,7 +20,7 @@ public class MainControl : MonoBehaviour
     [SerializeField] private GameObject[] arCollection;
 
     private Dictionary<string, GameObject> arModels = new Dictionary<string, GameObject>(); // Key: string (nome do gameObject). Vai retornar o gameObject cujo o nome corresponde aquele passado pela chave.
-    private Dictionary<string, bool> modelState = new Dictionary<string, bool>(); // Key: string (nome do gameObject). Vai retornar o estado de um gameObject, isto é, se esta ativado ou não (presente)
+    private Dictionary<string, bool> modelState = new Dictionary<string, bool>(); // Key: string (nome do gameObject). Vai retornar o estado de um gameObject, isto é, se está ativado ou não (presente)
     public static int score; // Score of the player; Also used as an indicator for the current level of the game; Static so that the variable keeps the value independent of the scene;
     public static bool foundFirstMatch = false;
     public static bool foundSecondMatch = false;
@@ -142,6 +142,7 @@ public class MainControl : MonoBehaviour
         };
 
         if(nextButton.activeSelf == true && numActiveModels == 1){ 
+                MainUIControl.mainText.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
                 MainUIControl.DisplayMessage("Encontra os pares!");
                 nextButton.SetActive(false);
         }
@@ -162,11 +163,9 @@ public class MainControl : MonoBehaviour
 
         if (numActiveModels > 2)
         {
-            //DisableActiveModels();
             foreach (var model in arModels.Values)
             {
                 model.SetActive(false);
-                //modelState[model.name] = false;
             }
             MainUIControl.DisplayMessage("Mantém apenas duas cartas viradas para cima!");
             

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BuddyControl : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class BuddyControl : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "Minigame"){
         switch(MinigameControl.minigameLevel){
             case 0:
             objectToShow.SetActive(true);
@@ -35,6 +38,7 @@ public class BuddyControl : MonoBehaviour
             default:
             break;
         }
+        }
     }
 
     // Update is called once per frame
@@ -49,6 +53,8 @@ public class BuddyControl : MonoBehaviour
         buddy.transform.position = objectPosition;
 
         /* Set the position of the object to the calculated position */
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "Minigame"){
         switch(MinigameControl.minigameLevel){
             case 0:
             objectToShow.transform.position = objectPosition;
@@ -61,6 +67,7 @@ public class BuddyControl : MonoBehaviour
             break;
             default:
             break;
+        }
         }
     }
 }

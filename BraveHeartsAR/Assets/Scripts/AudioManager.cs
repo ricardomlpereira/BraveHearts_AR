@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// FIXME: os clips de audio só passam som no inicio sendo que ficam os proximos ~3 a serem played mas sem som;
 public class AudioManager : MonoBehaviour
 {
     private AudioSource _audioSource;

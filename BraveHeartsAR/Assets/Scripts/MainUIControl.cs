@@ -8,7 +8,7 @@ using UnityEngine.XR.ARFoundation;
 
 public class MainUIControl : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI mainText;
+    [SerializeField] public TextMeshProUGUI mainText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI foundMatchesText;
     [SerializeField] private TextMeshProUGUI infoText;
@@ -42,7 +42,6 @@ public class MainUIControl : MonoBehaviour
                 break;
             case 2:
                 koalaImage.gameObject.SetActive(false);
-                //butterflyImage.gameObject.SetActive(false);
                 beeImage.gameObject.SetActive(true);
                 break;
             default:
@@ -62,7 +61,6 @@ public class MainUIControl : MonoBehaviour
         }
         typewriter.ORIGINAL_TEXT = msg;
         typewriter.StartTypewriter();
-        //mainText.text = msg;
     }
 
     private IEnumerator DisplayMessageCoroutine(string msg)
@@ -124,7 +122,7 @@ public class MainUIControl : MonoBehaviour
         LoaderUtility.Deinitialize();
         LoaderUtility.Initialize();
 
-        /* Disable infoText after switching to minigame scene - probably useless */
+        /* Disable infoText after switching to minigame scene */
         infoText.enabled = false;
     }
 
